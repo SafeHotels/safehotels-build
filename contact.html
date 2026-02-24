@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | SafeHotels.ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:white;padding:60px 0 40px}
+        .page-hero h1{font-size:2.4rem;margin-bottom:8px}
+        .page-hero p{opacity:.75;font-size:16px}
+        .page-body{padding:60px 0 80px;background:#f8f9fb}
+        .contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:32px;max-width:1000px;margin:0 auto}
+        .card{background:white;border-radius:16px;padding:36px;box-shadow:0 2px 16px rgba(0,0,0,.07)}
+        .card h2{font-size:1.2rem;color:#1a1a2e;margin:0 0 28px}
+        .contact-item{display:flex;gap:14px;margin-bottom:28px;align-items:flex-start}
+        .contact-icon{width:46px;height:46px;background:#fff3e6;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+        .contact-item h3{font-size:11px;color:#aaa;font-weight:700;text-transform:uppercase;margin:0 0 4px}
+        .contact-item p,.contact-item a{font-size:15px;color:#1a1a2e;font-weight:500;margin:0;text-decoration:none}
+        .contact-item a{color:#ff751f}
+        .contact-item a:hover{text-decoration:underline}
+        .response-tag{display:inline-block;background:#d4f5e2;color:#0a6b3d;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:700;margin-top:8px}
+        .form-group{margin-bottom:18px}
+        .form-group label{display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:6px;text-transform:uppercase}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1.5px solid #e8e8e8;border-radius:8px;font-family:inherit;font-size:15px;color:#1a1a2e;background:#fafafa;transition:border-color .2s;box-sizing:border-box}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#ff751f;background:white}
+        .form-group textarea{min-height:130px;resize:vertical}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .btn-submit{width:100%;background:linear-gradient(135deg,#ff6b35,#f7931e);color:white;border:none;padding:14px 24px;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;transition:opacity .2s}
+        .btn-submit:hover{opacity:.9}
+        .success-msg{display:none;background:#d4f5e2;color:#0a6b3d;padding:16px;border-radius:8px;text-align:center;font-weight:700;margin-top:16px}
+        .partner-box{background:#fff8e1;border-radius:12px;padding:20px 24px;border-left:4px solid #f0b429;max-width:1000px;margin:32px auto 0}
+        .partner-box h3{font-size:14px;color:#7a5200;margin:0 0 6px}
+        .partner-box p{font-size:14px;color:#555;margin:0}
+        .partner-box a{color:#ff751f;font-weight:700}
+        @media(max-width:768px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+    </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3R56CJDZZ0');
+</script>
+<!-- Travelpayouts Verification -->
+<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+  (function () {
+      var script = document.createElement("script");
+      script.async = 1;
+      script.src = 'https://tp-em.com/NTAxMjQw.js?t=501240';
+      document.head.appendChild(script);
+  })();
+</script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="logo.jpg" alt="SafeHotels.ai" height="44" style="border-radius:8px;">
+                </a>
+                <nav class="nav-menu">
+                    <a href="index.html">Home</a>
+                    <a href="search.html">Search Hotels</a>
+                    <a href="index.html#features">Our Features</a>
+                    <a href="submit-review.html">Submit Review</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#" class="nav-chat-btn">Chat with AI</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>📬 Contact Us</h1>
+            <p>Questions, partnerships, press, or feedback — we'd love to hear from you</p>
+        </div>
+    </section>
+
+    <section class="page-body">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="card">
+                    <h2>Get in Touch</h2>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div><h3>General Enquiries</h3><a href="/cdn-cgi/l/email-protection#49212c252526093a282f2c21263d2c253a672820"><span class="__cf_email__" data-cfemail="29414c454546695a484f4c41465d4c455a074840">[email&#160;protected]</span></a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🤝</div>
+                        <div><h3>Partnerships & Affiliates</h3><a href="/cdn-cgi/l/email-protection#3d4d5c4f4953584f4e7d4e5c5b5855524958514e135c54"><span class="__cf_email__" data-cfemail="a2d2c3d0d6ccc7d0d1e2d1c3c4c7cacdd6c7ced18cc3cb">[email&#160;protected]</span></a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📰</div>
+                        <div><h3>Press & Media</h3><a href="/cdn-cgi/l/email-protection#d9a9abbcaaaa99aab8bfbcb1b6adbcb5aaf7b8b0"><span class="__cf_email__" data-cfemail="46363423353506352720232e2932232a3568272f">[email&#160;protected]</span></a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🔒</div>
+                        <div><h3>Privacy & Data</h3><a href="/cdn-cgi/l/email-protection#61111308170002182112000704090e15040d124f0008"><span class="__cf_email__" data-cfemail="4f3f3d26392e2c360f3c2e292a27203b2a233c612e26">[email&#160;protected]</span></a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏨</div>
+                        <div>
+                            <h3>Hotel Listings</h3>
+                            <p style="font-size:13px;color:#777;margin-bottom:4px;">Want your hotel listed with a safety profile?</p>
+                            <a href="/cdn-cgi/l/email-protection#84ecebf0e1e8f7c4f7e5e2e1ecebf0e1e8f7aae5ed"><span class="__cf_email__" data-cfemail="375f5843525b4477445651525f5843525b4419565e">[email&#160;protected]</span></a>
+                        </div>
+                    </div>
+                    <span class="response-tag">⚡ We typically respond within 48 hours</span>
+                </div>
+
+                <div class="card">
+                    <h2>Send Us a Message</h2>
+                    <!-- Netlify Forms: add data-netlify="true" and name attribute so Netlify captures submissions -->
+                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact-success.html">
+                        <!-- Honeypot field to block spam bots -->
+                        <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+                        <input type="hidden" name="form-name" value="contact">
+                        <div class="form-row">
+                            <div class="form-group"><label>First Name *</label><input type="text" name="first-name" required placeholder="Jane"></div>
+                            <div class="form-group"><label>Last Name *</label><input type="text" name="last-name" placeholder="Smith"></div>
+                        </div>
+                        <div class="form-group"><label>Email Address *</label><input type="email" name="email" required placeholder="jane@example.com"></div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select name="subject">
+                                <option value="">Select a topic...</option>
+                                <option>General Question</option>
+                                <option>Safety Review Issue</option>
+                                <option>Hotel Listing Request</option>
+                                <option>Partnership / Affiliate</option>
+                                <option>Press & Media</option>
+                                <option>Privacy / Data Request</option>
+                                <option>Technical Issue</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Message *</label><textarea name="message" required placeholder="Tell us how we can help..."></textarea></div>
+                        <button type="submit" class="btn-submit">Send Message →</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="partner-box">
+                <h3>🤝 Are you from Booking.com, Expedia or another travel platform?</h3>
+                <p>We're actively seeking affiliate partnerships. SafeHotels.ai has a highly engaged audience of safety-conscious travelers — solo female travelers, families, and business travelers. Email <a href="/cdn-cgi/l/email-protection#eb9b8a999f858e9998ab988a8d8e83849f8e8798c58a82"><span class="__cf_email__" data-cfemail="11617063657f7463625162707774797e65747d623f7078">[email&#160;protected]</span></a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo"><img src="logo.jpg" alt="SafeHotels.ai" height="36" style="border-radius:6px;"></div>
+                    <p>Your trusted platform for safe hotel bookings across the UK.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul><li><a href="contact.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="submit-review.html">Submit Review</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Discover</h4>
+                    <ul><li><a href="search.html">All Hotels</a></li><li><a href="search.html">Solo Female Picks</a></li><li><a href="search.html">Family Hotels</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Use</a></li><li><a href="contact.html">Contact</a></li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SafeHotels.ai &bull; <a href="privacy.html" style="color:#aaa;">Privacy</a> &bull; <a href="terms.html" style="color:#aaa;">Terms</a> &bull; <a href="contact.html" style="col

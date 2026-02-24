@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHotels.ai - Book Safe Hotels Worldwide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3R56CJDZZ0');
+</script>
+<!-- Travelpayouts Verification -->
+<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+  (function () {
+      var script = document.createElement("script");
+      script.async = 1;
+      script.src = 'https://tp-em.com/NTAxMjQw.js?t=501240';
+      document.head.appendChild(script);
+  })();
+</script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="logo.jpg" alt="SafeHotels.ai" height="44" style="border-radius: 8px;">
+                </a>
+                <nav class="nav-menu">
+                    <a href="index.html">Home</a>
+                    <a href="search.html">Search Hotels</a>
+                    <a href="blog/">Blog</a>
+                    <a href="#features">Our Features</a>
+                    <a href="submit-review.html">Submit Review</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#" class="nav-chat-btn">Chat with AI</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Original Style) -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Find Safe Hotels in London & Worldwide</h1>
+                <p class="hero-subtitle">Book with confidence using real-time crime data, verified community reviews, and AI recommendations</p>
+                
+                <!-- Search Box -->
+                <div class="search-card">
+                    <div class="search-inputs">
+                        <div class="input-group location-input">
+                            <label>📍 Where</label>
+                            <input type="text" id="location" placeholder="London, United Kingdom" value="London, United Kingdom">
+                        </div>
+                        <div class="input-group date-input">
+                            <label>📅 Check-in</label>
+                            <input type="date" id="checkin">
+                        </div>
+                        <div class="input-group date-input">
+                            <label>📅 Check-out</label>
+                            <input type="date" id="checkout">
+                        </div>
+                        <div class="input-group guests-input">
+                            <label>👥 Guests</label>
+                            <select id="guests">
+                                <option>1 guest</option>
+                                <option selected>2 guests</option>
+                                <option>3 guests</option>
+                                <option>4 guests</option>
+                                <option>5+ guests</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="search-btn" id="main-search" onclick="goToSearch()">Search Safe Hotels</button>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <strong>2,847</strong>
+                        <span>Community Reviews</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>95%</strong>
+                        <span>Avg Safety Score</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>24/7</strong>
+                        <span>AI Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase (NEW - Prominently Displayed) -->
+    <section class="features-showcase" id="features">
+        <div class="container">
+            <div class="showcase-header">
+                <h2>🌟 What Makes SafeHotels.ai Unique</h2>
+                <p>The only platform combining official crime data, verified community reviews, and AI-powered safety recommendations</p>
+            </div>
+
+            <!-- Community Features -->
+            <div class="feature-section">
+                <div class="section-badge community">👥 Community-Powered Safety Reviews</div>
+                <h3 class="section-heading">Real Travelers Share Real Safety Experiences</h3>
+                
+                <div class="features-grid-alt">
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                        <h4>Detailed Star Ratings</h4>
+                        <p>Rate Night Safety, Street Safety, Hotel Security, Area Cleanliness, and Emergency Access separately for complete safety picture</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                        <h4>Verified User Testimonials</h4>
+                        <p>Read firsthand safety experiences from travelers who actually stayed there. No fake reviews, just real stories</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                        <h4>"Solo Female Approved" Badge</h4>
+                        <p>Hotels with 90%+ positive ratings from solo female travelers earn our special safety approval badge</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                        <h4>"Verified Stay" Badges</h4>
+                        <p>Reviewers must prove they stayed with booking confirmation. Only authentic, verified reviews get the badge</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></div>
+                        <h4>Helpful Voting System</h4>
+                        <p>Community votes on most useful reviews. The best safety insights automatically rise to the top</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+                        <h4>Easy Review Submission</h4>
+                        <p>Share your safety experience in just 5 minutes. Help fellow travelers make safer travel choices</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crime Data Features -->
+            <div class="feature-section alt-bg">
+                <div class="section-badge crime">📊 Real-Time Crime Data Integration</div>
+                <h3 class="section-heading">Official Police Statistics for Every Single Hotel</h3>
+                
+                <div class="features-grid-alt">
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">📍</div>
+                        <h4>Postcode-Specific Safety Scores</h4>
+                        <p>Get exact crime data for your hotel's postcode - not vague neighborhood estimates or guesswork</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">📈</div>
+                        <h4>Crime Breakdown by Type</h4>
+                        <p>See theft, burglary, violence, and anti-social behavior statistics shown separately for each area</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">📉</div>
+                        <h4>City Average Comparison</h4>
+                        <p>Know exactly if your area is 50% safer or 20% riskier than the city average. No surprises</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">🚓</div>
+                        <h4>Police & Hospital Distances</h4>
+                        <p>See how close emergency services are to your hotel. Important for peace of mind and safety</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">🔄</div>
+                        <h4>Police.uk API Integration</h4>
+                        <p>Official UK government crime statistics, updated regularly so you always have current information</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">📊</div>
+                        <h4>Safety Trend Analysis</h4>
+                        <p>See if neighborhoods are getting safer over time or if crime is increasing. Make informed choices</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Features -->
+            <div class="feature-section">
+                <div class="section-badge ai">🤖 AI-Powered Smart Recommendations</div>
+                <h3 class="section-heading">Intelligent Suggestions Personalized Just for You</h3>
+                
+                <div class="features-grid-alt">
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">💬</div>
+                        <h4>24/7 AI Chat Assistant</h4>
+                        <p>Ask any safety question anytime, day or night. Get instant intelligent answers from our AI assistant</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">🧠</div>
+                        <h4>Powered by Claude AI</h4>
+                        <p>Advanced language model trained on thousands of safety reviews and comprehensive crime data</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">🎯</div>
+                        <h4>Personalized Hotel Suggestions</h4>
+                        <p>Tell AI your budget, preferences, and specific safety concerns - get perfectly matched hotel recommendations</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">🗣️</div>
+                        <h4>Natural Conversations</h4>
+                        <p>Just say "I'm a solo female on a budget" and AI understands context to find safest affordable options</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">⚡</div>
+                        <h4>Instant Response Times</h4>
+                        <p>No waiting hours or days for answers. Get comprehensive safety information in just seconds</p>
+                    </div>
+
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large">📚</div>
+                        <h4>Continuously Learning</h4>
+                        <p>AI knowledge base grows with every new review and crime report added to our platform</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="features-cta">
+                <h2>✨ Experience the Difference</h2>
+                <p>See how SafeHotels.ai makes finding safe accommodation absolutely effortless</p>
+                <div class="cta-buttons">
+                    <a href="search.html" class="btn-cta-primary">Browse Safe Hotels Now</a>
+                    <button class="btn-cta-secondary" id="try-ai">Try AI Assistant Free</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safest Neighborhoods (Original Style - Colorful Cards) -->
+    <section class="neighborhoods-section">
+        <div class="container">
+            <h2 class="section-title">Safest London Neighborhoods</h2>
+            <p class="section-subtitle">Explore our top-rated safe areas with real crime data</p>
+            
+            <div class="neighborhoods-grid">
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image" style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);">
+                        <span class="image-placeholder">Richmond</span>
+                    </div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">98% Safe</div>
+                        <h3>Richmond upon Thames</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Leafy, affluent area with parks and riverside. Extremely low crime rate, perfect for families.</p>
+                        <a href="search.html?area=richmond" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image" style="background: linear-gradient(135deg, #8e44ad 0%, #c0392b 100%);">
+                        <span class="image-placeholder">Kensington</span>
+                    </div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">96% Safe</div>
+                        <h3>Kensington & Chelsea</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Upscale area with museums, shops, excellent security. Well-lit streets and high police presence.</p>
+                        <a href="search.html?area=kensington" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image" style="background: linear-gradient(135deg, #16a085 0%, #27ae60 100%);">
+                        <span class="image-placeholder">Greenwich</span>
+                    </div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">94% Safe</div>
+                        <h3>Greenwich</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Low</strong></p>
+                        <p class="description">Historic maritime area with parks and attractions. Safe, family-friendly with good transport.</p>
+                        <a href="search.html?area=greenwich" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image" style="background: linear-gradient(135deg, #d35400 0%, #e74c3c 100%);">
+                        <span class="image-placeholder">Hampstead</span>
+                    </div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">95% Safe</div>
+                        <h3>Hampstead</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Charming village feel with Hampstead Heath. Upscale residential area with minimal crime.</p>
+                        <a href="search.html?area=hampstead" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Teaser Section -->
+    <section style="padding:80px 0;background:#f8f9fb">
+        <div class="container">
+            <h2 class="section-title">📖 Hotel Safety Guides</h2>
+            <p class="section-subtitle">Data-driven articles to help you travel smarter and safer across the UK</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;max-width:1050px;margin:0 auto 36px">
+                <a href="blog/safest-areas-to-stay-in-london.html" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #ff751f" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+                    <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80&auto=format&fit=crop" alt="London skyline" style="width:100%;height:140px;object-fit:cover;display:block">
+                    <div style="padding:20px">
+                        <span style="background:#fff3e6;color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">London</span>
+                        <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin:10px 0 8px;line-height:1.4">The Safest Areas to Stay in London (2026)</h3>
+                        <p style="font-size:13px;color:#666;margin:0 0 12px;line-height:1.6">Official crime data reveals which neighbourhoods are truly safest for tourists.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+                <a href="blog/solo-female-travel-uk-hotel-safety-guide.html" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #8e44ad" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=600&q=80&auto=format&fit=crop" alt="Solo female traveller" style="width:100%;height:140px;object-fit:cover;display:block">
+                    <div style="padding:20px">
+                        <span style="background:#f3e8ff;color:#8e44ad;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">Solo Female</span>
+                        <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin:10px 0 8px;line-height:1.4">Ultimate Solo Female Travel Hotel Safety Guide</h3>
+                        <p style="font-size:13px;color:#666;margin:0 0 12px;line-height:1.6">What to look for in a hotel's security and the safest UK cities to visit alone.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+                <a href="blog/hotel-safety-tips-uk.html" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #f39c12" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&auto=format&fit=crop" alt="Hotel room" style="width:100%;height:140px;object-fit:cover;display:block">
+                    <div style="padding:20px">
+                        <span style="background:#fff3cd;color:#856404;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">Tips</span>
+                        <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin:10px 0 8px;line-height:1.4">10 Hotel Safety Tips Every Traveller Should Know</h3>
+                        <p style="font-size:13px;color:#666;margin:0 0 12px;line-height:1.6">Good habits that keep you safe regardless of which hotel you book.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align:center">
+                <a href="blog/" style="display:inline-block;border:2px solid #ff751f;color:#ff751f;padding:12px 28px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px">View all articles →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (Original Orange Style) -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>🚀 Start Your Safe London Adventure</h2>
+                <p>Find the perfect hotel in London's safest neighborhoods with real crime data and community reviews</p>
+                <a href="search.html" class="cta-btn">Search Safe Hotels Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.jpg" alt="SafeHotels.ai" height="36" style="border-radius: 6px;">
+                    </div>
+                    <p>Your trusted platform for safe hotel bookings across the UK.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="contact.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="submit-review.html">Submit Review</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="search.html">All Hotels</a></li>
+                        <li><a href="search.html?badge=solo-female">Solo Female Picks</a></li>
+                        <li><a href="search.html?badge=family">Family Hotels</a></li>
+                        <li><a href="search.html?badge=budget-safe">Budget Safe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="contact.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SafeHotels.ai • Live crime data: data.police.uk • <a href="privacy.html" style="color:#aaa;">Privacy</a> • <a href="terms.html" style="color:#aaa;">Terms</a> • <a href="contact.html" style="color:#aaa;">Contact</a></p>
+                <p style="font-size:11px;color:#888;margin-top:6px;">We may earn a commission when you book through our links, at no extra cost to you. Affiliate partnerships include Awin.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <div class="chat-header-left">
+                <div class="chat-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="white"/>
+                        <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="#ff751f" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="9" cy="9" r="1.5" fill="#ff751f"/>
+                        <circle cx="15" cy="9" r="1.5" fill="#ff751f"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="chat-title">SafeHotels AI Assistant</div>
+                    <div class="chat-status">
+                        <span class="status-dot"></span> Online
+                    </div>
+                </div>
+            </div>
+            <button class="chat-minimize" id="chatMinimize">−</button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="bot-message">
+                <div class="message-avatar">AI</div>
+                <div class="message-bubble">
+                    <p>👋 Hi! I'm your SafeHotels AI assistant powered by Claude.</p>
+                    <p>I can help you find the safest hotels using crime data and community reviews!</p>
+                    <p><strong>Where would you like to stay?</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask about safe hotels in London..." />
+            <button id="chatSend">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10L18 2L10 18L8.5 11.5L2 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Button -->
+    <button class="chat-button" id="chatButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 13.54 2.38 15 3.03 16.3L2 22L7.7 20.97C9 21.62 10.46 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="currentColor"/>
+        </svg>
+        <span class="chat-badge">AI</span>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+    function goToSearch() {
+        const loc = document.getElementById('location').value.trim();
+        const ci  = document.getElementById('checkin').value;
+        const co  = document.getElementById('checkout').value;
+        const g   = document.getElementById('guests').value;
+        const p   = new URLSearchParams();
+        if (loc) p.set('location', loc);
+        if (ci)  p.set('checkin', ci);
+        if (co)  p.set('checkout', co);
+        if (g)   p.set('guests', g.replace(/\D+/g, '') || '2');
+        window.location.href = 'search.html?' + p.toString();
+    }
+
+    // Set default dates on index page
+    (function() {
+        const ci = document.getElementById('checkin');
+        const co = document.getElementById('checkout');
+        if (!ci.value) {
+            const d1 = new Date(); d1.setDate(d1.getDate() + 1);
+            const d2 = new Date(); d2.setDate(d2.getDate() + 2);
+            ci.value = d1.toISOString().slice(0,10);
+            co.value = d2.toISOString().slice(0,10);
+        }
+    })();
+    </script>
+</body>
+</html>

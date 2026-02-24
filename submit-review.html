@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Safety Review | SafeHotels.ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="review-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="logo.jpg" alt="SafeHotels" height="44" style="border-radius: 8px;">
+                </a>
+                <nav class="nav-menu">
+                    <a href="index.html">Home</a>
+                    <a href="search.html">Search Hotels</a>
+                    <a href="community.html">Community</a>
+                    <a href="#" class="nav-chat-btn">Chat with AI</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Review Form Section -->
+    <section class="review-form-section">
+        <div class="container-narrow">
+            <div class="form-header">
+                <h1>📝 Share Your Safety Experience</h1>
+                <p>Help fellow travelers by rating the safety of your hotel stay</p>
+                <div class="why-review">
+                    <strong>Why your review matters:</strong> Your firsthand experience helps 10,000+ monthly travelers choose safe accommodations
+                </div>
+            </div>
+
+            <form class="review-form" id="reviewForm">
+                
+                <!-- Hotel Selection -->
+                <div class="form-section">
+                    <h2>🏨 Which hotel did you stay at?</h2>
+                    <div class="form-group">
+                        <label for="hotelSearch">Search for hotel *</label>
+                        <input type="text" id="hotelSearch" placeholder="Type hotel name or address..." required>
+                        <p class="form-hint">Can't find your hotel? <a href="#">Add it manually</a></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="stayDates">When did you stay? *</label>
+                        <input type="month" id="stayDates" required>
+                    </div>
+                </div>
+
+                <!-- Safety Ratings -->
+                <div class="form-section">
+                    <h2>🛡️ Rate the Safety</h2>
+                    
+                    <div class="rating-group">
+                        <label>Night Safety (walking after dark)</label>
+                        <div class="star-rating" data-rating="night-safety">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="night-safety" required>
+                        <p class="rating-desc">How safe did you feel walking in the area after dark?</p>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Street Safety (day & night)</label>
+                        <div class="star-rating" data-rating="street-safety">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="street-safety" required>
+                        <p class="rating-desc">How safe did the surrounding streets feel?</p>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Hotel Security Features</label>
+                        <div class="star-rating" data-rating="hotel-security">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="hotel-security" required>
+                        <p class="rating-desc">Keycard access, 24/7 reception, CCTV, room safes, etc.</p>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Area Cleanliness</label>
+                        <div class="star-rating" data-rating="cleanliness">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="cleanliness" required>
+                        <p class="rating-desc">How clean and well-maintained was the neighborhood?</p>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Emergency Services Access</label>
+                        <div class="star-rating" data-rating="emergency">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" name="emergency" required>
+                        <p class="rating-desc">Proximity to police, hospitals, pharmacies</p>
+                    </div>
+                </div>
+
+                <!-- Traveler Type -->
+                <div class="form-section">
+                    <h2>👤 Your Travel Type</h2>
+                    <div class="form-group">
+                        <label>I traveled as: *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="radio" name="traveler-type" value="solo-female" required>
+                                Solo Female Traveler
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="traveler-type" value="solo-male">
+                                Solo Male Traveler
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="traveler-type" value="couple">
+                                Couple
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="traveler-type" value="family">
+                                Family with Children
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="traveler-type" value="group">
+                                Group / Friends
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="radio" name="traveler-type" value="business">
+                                Business Traveler
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Experience -->
+                <div class="form-section">
+                    <h2>✍️ Your Safety Experience</h2>
+                    
+                    <div class="form-group">
+                        <label for="safetyExp">Describe your safety experience *</label>
+                        <textarea id="safetyExp" rows="5" placeholder="Tell us about your experience... Did you feel safe? Any incidents? What made you feel secure or concerned?" required></textarea>
+                        <p class="form-hint">Be specific! Mention street lighting, police presence, noise levels, etc.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="securityFeatures">Security features you noticed</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="keycard">
+                                Keycard room access
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="reception">
+                                24/7 reception desk
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="cctv">
+                                CCTV cameras
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="safe">
+                                In-room safe
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="security-guard">
+                                Security guard
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="well-lit">
+                                Well-lit entrance
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Would you recommend this hotel for solo travelers?</label>
+                        <div class="radio-group-inline">
+                            <label class="radio-label">
+                                <input type="radio" name="solo-recommend" value="yes">
+                                ✅ Yes, definitely
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="solo-recommend" value="maybe">
+                                🤔 Maybe, with caution
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="solo-recommend" value="no">
+                                ❌ No, not recommended
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="incidents">Did you experience or witness any safety incidents?</label>
+                        <textarea id="incidents" rows="3" placeholder="If yes, please describe (optional)"></textarea>
+                    </div>
+                </div>
+
+                <!-- Verification -->
+                <div class="form-section">
+                    <h2>✅ Verify Your Stay</h2>
+                    <p class="verification-note">Verified reviews are marked with a special badge and given priority in our rankings</p>
+                    
+                    <div class="form-group">
+                        <label for="email">Your email address *</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                        <p class="form-hint">We'll send you a verification link. Your email won't be public.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="displayName">Display name *</label>
+                        <input type="text" id="displayName" placeholder="e.g., Sarah M." required>
+                        <p class="form-hint">This is how your name will appear on the review</p>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="verify-booking" id="verifyBooking">
+                            I can provide booking confirmation (for verified badge)
+                        </label>
+                        <p class="form-hint">Upload screenshot or forward confirmation email after submission</p>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-section">
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            I confirm this review is based on my genuine experience and I agree to the <a href="#">Community Guidelines</a>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-submit">
+                    <button type="submit" class="btn-submit">Submit Safety Review</button>
+                    <p class="submit-note">Your review will be published after verification (usually within 24 hours)</p>
+                </div>
+
+            </form>
+
+            <!-- Why Reviews Matter -->
+            <div class="why-matter-box">
+                <h3>🌍 Why Your Review Matters</h3>
+                <div class="impact-stats">
+                    <div class="impact-stat">
+                        <div class="impact-number">2,847</div>
+                        <div class="impact-label">Community reviewers</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">10K+</div>
+                        <div class="impact-label">Travelers helped/month</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">98%</div>
+                        <div class="impact-label">Find reviews helpful</div>
+                    </div>
+                </div>
+                <p>Every review you write helps fellow travelers make safer choices. Thank you for contributing to our community!</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.jpg" alt="SafeHotels" height="36" style="border-radius: 6px;">
+                    </div>
+                    <p>Your trusted platform for safe hotel bookings worldwide.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="#">Safety Data</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>For Travelers</h4>
+                    <ul>
+                        <li><a href="submit-review.html">Submit Review</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">Travel Guides</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SafeHotels.ai • Making travel safer together</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="review-script.js"></script>
+</body>
+</html>

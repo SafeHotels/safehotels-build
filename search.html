@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Safe Hotels — SafeHotels.ai</title>
+    <meta name="description" content="Search hotels by safety — real UK crime data from data.police.uk overlaid on every result. Find your safest hotel.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3R56CJDZJ0');
+    </script>
+    <!-- Travelpayouts -->
+    <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+      (function () {
+          var script = document.createElement("script");
+          script.async = 1;
+          script.src = 'https://tp-em.com/NTAxMjQw.js?t=501240';
+          document.head.appendChild(script);
+      })();
+    </script>
+    <style>
+        /* ── Search page specific styles ── */
+        .search-hero {
+            background: linear-gradient(135deg, #ff751f 0%, #e55a00 100%);
+            padding: 32px 0 28px;
+            color: white;
+        }
+        .search-hero h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            background: white;
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .search-bar .sb-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 120px;
+        }
+        .search-bar .sb-group.wide { flex: 2; min-width: 180px; }
+        .search-bar label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .search-bar input,
+        .search-bar select {
+            border: 1.5px solid #e8e8e8;
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #1a1a2e;
+            background: #fafafa;
+            width: 100%;
+        }
+        .search-bar input:focus,
+        .search-bar select:focus {
+            outline: none;
+            border-color: #ff751f;
+            background: white;
+        }
+        .sb-btn {
+            background: linear-gradient(135deg, #ff751f, #e85d04);
+            color: white;
+            border: none;
+            padding: 11px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+        .sb-btn:hover { opacity: 0.9; }
+
+        /* ── Results area ── */
+        .results-page {
+            background: #f4f5f7;
+            min-height: 60vh;
+            padding: 32px 0 60px;
+        }
+        .results-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* ── Crime Sidebar ── */
+        .crime-sidebar {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 80px;
+        }
+        .crime-sidebar h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1a1a2e;
+        }
+        .crime-sidebar .area-name {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        .safety-meter {
+            margin-bottom: 20px;
+        }
+        .meter-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .meter-score {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ff751f;
+        }
+        .meter-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .badge-very-safe { background: #d4f5d4; color: #166534; }
+        .badge-safe { background: #d1fae5; color: #065f46; }
+        .badge-moderate { background: #fef3c7; color: #92400e; }
+        .badge-elevated { background: #fee2e2; color: #991b1b; }
+        .badge-high { background: #fecaca; color: #7f1d1d; }
+        .meter-bar-wrap {
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .meter-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            background: linear-gradient(90deg, #16a34a, #65a30d);
+        }
+        .meter-bar.moderate { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .meter-bar.elevated { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        .crime-stats-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 14px;
+        }
+        .crime-stats-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid #f8f8f8;
+        }
+        .crime-stats-list .cat { color: #555; }
+        .crime-stats-list .cnt { font-weight: 600; color: #1a1a2e; }
+        .crime-source {
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .filter-section {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .filter-section h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+        .filter-btn {
+            display: inline-block;
+            padding: 5px 11px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            margin: 3px 3px 3px 0;
+            transition: all 0.15s;
+            background: white;
+            color: #555;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            border-color: #ff751f;
+            color: #ff751f;
+            background: #fff5ef;
+        }
+
+        /* ── Hotel Cards ── */
+        .results-list { display: flex; flex-direction: column; gap: 16px; }
+        .hotel-card {
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 220px 1fr auto;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hotel-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+        }
+        .hotel-card-img {
+            background: linear-gradient(135deg, #1a1a2e, #2d3a8c);
+            position: relative;
+            min-height: 160px;
+        }
+        .hotel-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hotel-img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: rgba(255,255,255,0.3);
+            min-height: 160px;
+        }
+        .hotel-safety-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 8px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .hotel-safety-badge .score { font-size: 16px; color: #ff751f; }
+        .hotel-card-body {
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .hotel-card-body .stars { color: #f59e0b; font-size: 14px; letter-spacing: -1px; }
+        .hotel-card-body h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.3;
+        }
+        .hotel-card-body .area-tag {
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .hotel-card-body .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+        .rating-pill {
+            background: #1a1a2e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .safety-label-chip {
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .hotel-card-action {
+            padding: 18px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 10px;
+            border-left: 1px solid #f4f4f4;
+            min-width: 160px;
+        }
+        .price-from {
+            text-align: right;
+        }
+        .price-from .label { font-size: 11px; color: #888; }
+        .price-from .amount { font-size: 1.5rem; font-weight: 800; color: #1a1a2e; }
+        .price-from .per { font-size: 11px; color: #888; }
+        .book-btn {
+            background: linear-gradient(135deg, #ff751f, #e85d04);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            transition: opacity 0.2s;
+            width: 100%;
+        }
+        .book-btn:hover { opacity: 0.9; }
+        .affiliate-note {
+            font-size: 10px;
+            color: #bbb;
+            text-align: right;
+        }
+
+        /* ── State messages ── */
+        .state-box {
+            background: white;
+            border-radius: 14px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .state-box .emoji { font-size: 3rem; margin-bottom: 12px; }
+        .state-box h3 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+        .state-box p { color: #666; font-size: 15px; }
+
+        /* Loading spinner */
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #f0f0f0;
+            border-top-color: #ff751f;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Results meta bar */
+        .results-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .results-meta .count {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .results-meta .sort-select {
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #1a1a2e;
+        }
+
+        /* No API results — show static hotel cards */
+        .static-card-badge {
+            display: inline-block;
+            background: #fff3e6;
+            color: #ff751f;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .results-layout { grid-template-columns: 1fr; }
+            .crime-sidebar { position: static; }
+            .hotel-card { grid-template-columns: 180px 1fr; }
+            .hotel-card-action { display: none; }
+        }
+        @media (max-width: 600px) {
+            .hotel-card { grid-template-columns: 1fr; }
+            .hotel-card-img { min-height: 160px; }
+            .search-bar { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="logo.jpg" alt="SafeHotels.ai" height="44" style="border-radius:8px;">
+                </a>
+                <nav class="nav-menu">
+                    <a href="index.html">Home</a>
+                    <a href="search.html" style="color:#ff751f;font-weight:700;">Search Hotels</a>
+                    <a href="blog/">Blog</a>
+                    <a href="index.html#features">Our Features</a>
+                    <a href="submit-review.html">Submit Review</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#" class="nav-chat-btn">Chat with AI</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Hero -->
+    <section class="search-hero">
+        <div class="container">
+            <h1>🔍 Find Safe Hotels in the UK</h1>
+            <div class="search-bar">
+                <div class="sb-group wide">
+                    <label>📍 Destination</label>
+                    <input type="text" id="sb-location" placeholder="London, Manchester, Edinburgh..." />
+                </div>
+                <div class="sb-group">
+                    <label>📅 Check-in</label>
+                    <input type="date" id="sb-checkin" />
+                </div>
+                <div class="sb-group">
+                    <label>📅 Check-out</label>
+                    <input type="date" id="sb-checkout" />
+                </div>
+                <div class="sb-group">
+                    <label>👥 Guests</label>
+                    <select id="sb-guests">
+                        <option value="1">1 guest</option>
+                        <option value="2" selected>2 guests</option>
+                        <option value="3">3 guests</option>
+                        <option value="4">4 guests</option>
+                        <option value="5">5+ guests</option>
+                    </select>
+                </div>
+                <button class="sb-btn" id="sb-search-btn">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-page">
+        <div class="container">
+            <div class="results-layout" id="results-layout">
+                <!-- Sidebar -->
+                <aside class="crime-sidebar" id="crime-sidebar" style="display:none;">
+                    <h3>🛡️ Area Safety Data</h3>
+                    <div class="area-name" id="sidebar-location">—</div>
+                    <div class="safety-meter">
+                        <div class="meter-label">
+                            <span class="meter-score" id="meter-score">—</span>
+                            <span class="meter-badge" id="meter-badge">—</span>
+                        </div>
+                        <div class="meter-bar-wrap">
+                            <div class="meter-bar" id="meter-bar" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <ul class="crime-stats-list" id="crime-breakdown"></ul>
+                    <div class="crime-source">
+                        <span>📊</span>
+                        <span>Source: data.police.uk — last 3 months</span>
+                    </div>
+                    <!-- Filters -->
+                    <div class="filter-section">
+                        <h4>Filter by traveller type</h4>
+                        <span class="filter-btn active" data-filter="all">All</span>
+                        <span class="filter-btn" data-filter="solo-female">Solo Female</span>
+                        <span class="filter-btn" data-filter="family">Family</span>
+                        <span class="filter-btn" data-filter="budget">Budget</span>
+                        <span class="filter-btn" data-filter="luxury">Luxury</span>
+                    </div>
+                    <div class="filter-section">
+                        <h4>Star rating</h4>
+                        <span class="filter-btn active" data-stars="0">Any</span>
+                        <span class="filter-btn" data-stars="3">3★+</span>
+                        <span class="filter-btn" data-stars="4">4★+</span>
+                        <span class="filter-btn" data-stars="5">5★</span>
+                    </div>
+                </aside>
+
+                <!-- Main results panel -->
+                <main id="results-main">
+                    <!-- Initial state -->
+                    <div class="state-box" id="state-initial">
+                        <div class="emoji">🏨</div>
+                        <h3>Search for safe hotels</h3>
+                        <p>Enter a UK destination above and we'll show you hotels with real crime data from data.police.uk overlaid on every result.</p>
+                    </div>
+
+                    <!-- Loading state -->
+                    <div class="state-box" id="state-loading" style="display:none;">
+                        <div class="spinner"></div>
+                        <h3>Searching hotels & fetching crime data…</h3>
+                        <p>Pulling live results from Travelpayouts and data.police.uk</p>
+                    </div>
+
+                    <!-- Error state -->
+                    <div class="state-box" id="state-error" style="display:none;">
+                        <div class="emoji">⚠️</div>
+                        <h3 id="error-title">Something went wrong</h3>
+                        <p id="error-msg">Please try again with a different city name.</p>
+                    </div>
+
+                    <!-- Results state -->
+                    <div id="state-results" style="display:none;">
+                        <div class="results-meta">
+                            <span class="count" id="results-count"></span>
+                            <select class="sort-select" id="sort-select">
+                                <option value="safety">Sort by: Highest Safety</option>
+                                <option value="price-asc">Sort by: Price (low to high)</option>
+                                <option value="price-desc">Sort by: Price (high to low)</option>
+                                <option value="stars">Sort by: Stars</option>
+                                <option value="rating">Sort by: Rating</option>
+                            </select>
+                        </div>
+                        <div class="results-list" id="results-list"></div>
+                        <p style="text-align:center;font-size:12px;color:#bbb;margin-top:24px;">
+                            We may earn a commission if you book through our links, at no extra cost to you.
+                        </p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.jpg" alt="SafeHotels.ai" height="36" style="border-radius:6px;">
+                    </div>
+                    <p>Your trusted platform for safe hotel bookings across the UK.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="contact.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="submit-review.html">Submit Review</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="search.html">All Hotels</a></li>
+                        <li><a href="search.html?badge=solo-female">Solo Female Picks</a></li>
+                        <li><a href="search.html?badge=family">Family Hotels</a></li>
+                        <li><a href="search.html?badge=budget-safe">Budget Safe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="contact.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SafeHotels.ai • Live crime data: data.police.uk • <a href="privacy.html" style="color:#aaa;">Privacy</a> • <a href="terms.html" style="color:#aaa;">Terms</a></p>
+                <p style="font-size:11px;color:#888;margin-top:6px;">We may earn a commission when you book through our links, at no extra cost to you. Affiliate partnerships include Awin.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget (same as index) -->
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <div class="chat-header-left">
+                <div class="chat-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="white"/>
+                        <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="#ff751f" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="9" cy="9" r="1.5" fill="#ff751f"/>
+                        <circle cx="15" cy="9" r="1.5" fill="#ff751f"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="chat-title">SafeHotels AI Assistant</div>
+                    <div class="chat-status"><span class="status-dot"></span> Online</div>
+                </div>
+            </div>
+            <button class="chat-minimize" id="chatMinimize">−</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="bot-message">
+                <div class="message-avatar">AI</div>
+                <div class="message-bubble">
+                    <p>👋 Hi! I can help you find the safest hotels. Just search above!</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask about safe hotels..." />
+            <button id="chatSend">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10L18 2L10 18L8.5 11.5L2 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <button class="chat-button" id="chatButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 13.54 2.38 15 3.03 16.3L2 22L7.7 20.97C9 21.62 10.46 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="currentColor"/>
+        </svg>
+        <span class="chat-badge">AI</span>
+    </button>
+
+    <script src="hotels.js"></script>
+    <script src="script.js"></script>
+    <script>
+    // ============================================================
+    // SafeHotels.ai — Search Page JS
+    // ============================================================
+
+    // ── State ──────────────────────────────────────────────────
+    let allResults = [];     // full result set from API
+    let filteredResults = []; // filtered subset
+    let currentFilter = 'all';
+    let currentStars = 0;
+    let currentSort = 'safety';
+    let searchData = null;   // full API response
+
+    // ── DOM refs ────────────────────────────────────────────────
+    const sbLocation  = document.getElementById('sb-location');
+    const sbCheckin   = document.getElementById('sb-checkin');
+    const sbCheckout  = document.getElementById('sb-checkout');
+    const sbGuests    = document.getElementById('sb-guests');
+    const sbBtn       = document.getElementById('sb-search-btn');
+    const stateInitial = document.getElementById('state-initial');
+    const stateLoading = document.getElementById('state-loading');
+    const stateError   = document.getElementById('state-error');
+    const stateResults = document.getElementById('state-results');
+    const resultsList  = document.getElementById('results-list');
+    const resultsCount = document.getElementById('results-count');
+    const sidebar      = document.getElementById('crime-sidebar');
+    const sortSelect   = document.getElementById('sort-select');
+
+    // ── Init dates ─────────────────────────────────────────────
+    (function initDates() {
+        const today = new Date();
+        const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+        const dayAfter = new Date(today); dayAfter.setDate(today.getDate() + 2);
+        sbCheckin.value  = formatDate(tomorrow);
+        sbCheckout.value = formatDate(dayAfter);
+        sbCheckin.min    = formatDate(tomorrow);
+        sbCheckout.min   = formatDate(dayAfter);
+    })();
+
+    // Pre-fill from URL params (e.g. from index.html search box)
+    (function readUrlParams() {
+        const p = new URLSearchParams(window.location.search);
+        if (p.get('location')) sbLocation.value = p.get('location');
+        if (p.get('checkin'))  sbCheckin.value  = p.get('checkin');
+        if (p.get('checkout')) sbCheckout.value = p.get('checkout');
+        if (p.get('guests'))   sbGuests.value   = p.get('guests');
+        if (p.get('area'))     sbLocation.value = p.get('area');
+
+        // Auto-search if location pre-filled
+        if (sbLocation.value) {
+            setTimeout(doSearch, 300);
+        }
+    })();
+
+    // ── Event listeners ─────────────────────────────────────────
+    sbBtn.addEventListener('click', doSearch);
+    sbLocation.addEventListener('keypress', e => { if (e.key === 'Enter') doSearch(); });
+    sortSelect.addEventListener('change', () => { currentSort = sortSelect.value; renderResults(); });
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            applyFiltersAndRender();
+        });
+    });
+
+    document.querySelectorAll('.filter-btn[data-stars]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn[data-stars]').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentStars = parseInt(btn.dataset.stars);
+            applyFiltersAndRender();
+        });
+    });
+
+    // ── Main search ─────────────────────────────────────────────
+    async function doSearch() {
+        const loc = sbLocation.value.trim();
+        if (!loc) { sbLocation.focus(); return; }
+
+        showState('loading');
+        sidebar.style.display = 'none';
+
+        try {
+            const params = new URLSearchParams({
+                location: loc,
+                checkin:  sbCheckin.value  || '',
+                checkout: sbCheckout.value || '',
+                guests:   sbGuests.value   || '2',
+            });
+
+            const res = await fetch(`/.netlify/functions/hotel-search?${params}`);
+            const data = await res.json();
+
+            if (!res.ok || data.error) {
+                showError(data.error || 'Search failed');
+                return;
+            }
+
+            searchData = data;
+
+            // If Travelpayouts returned no hotels, fall back to our static data
+            if (!data.hotels || data.hotels.length === 0) {
+                allResults = getStaticFallback(loc, data.crime);
+            } else {
+                allResults = data.hotels;
+            }
+
+            renderSidebar(data);
+            sidebar.style.display = 'block';
+            applyFiltersAndRender();
+
+        } catch (err) {
+            console.error(err);
+            // Network error — show static results anyway with real crime sidebar
+            showError('Could not connect to search. Showing our curated hotels for this area instead.');
+            const fallback = getStaticFallback(loc, null);
+            allResults = fallback;
+            sidebar.style.display = 'none';
+            applyFiltersAndRender();
+        }
+    }
+
+    // ── Static fallback: use hotels.js data for location match ──
+    function getStaticFallback(locationQuery, crimeData) {
+        const q = locationQuery.toLowerCase();
+        let matched = HOTELS.filter(h =>
+            h.city.toLowerCase().includes(q) ||
+            h.area.toLowerCase().includes(q) ||
+            h.region.toLowerCase().includes(q) ||
+            q.includes(h.city.toLowerCase())
+        );
+
+        // If no city match, default to London
+        if (matched.length === 0) matched = HOTELS.filter(h => h.city === 'London').slice(0, 10);
+
+        // Enrich with safety score
+        const crimeScore = crimeData ? crimeData.score : null;
+        return matched.map(h => ({
+            id: h.id,
+            name: h.name,
+            stars: h.stars,
+            lat: h.lat,
+            lng: h.lng,
+            address: h.address,
+            priceMin: h.priceFrom,
+            currency: 'GBP',
+            rating: avgRating(h.communityRatings),
+            reviewCount: h.communityRatings.totalReviews,
+            photoUrl: null,
+            badges: h.badges,
+            description: h.description,
+            highlights: h.highlights,
+            featuredReview: h.featuredReview,
+            bookingUrl: h.bookingUrl,
+            safetyScore: crimeScore ? Math.min(99, Math.round(crimeScore + (h.stars * 1.5 - 3))) : calcSafetyScore(h),
+            safetyLabel: safetyLabelFromScore(calcSafetyScore(h)),
+            isStaticData: true,
+        }));
+    }
+
+    function avgRating(r) {
+        return ((r.nightSafety + r.streetSafety + r.hotelSecurity + r.cleanliness) / 4).toFixed(1);
+    }
+
+    function calcSafetyScore(hotel) {
+        const r = hotel.communityRatings;
+        const avg = (r.nightSafety + r.streetSafety + r.hotelSecurity + r.cleanliness) / 4;
+        return Math.round(avg * 20);
+    }
+
+    function safetyLabelFromScore(score) {
+        if (score >= 90) return 'Very Safe';
+        if (score >= 75) return 'Safe';
+        if (score >= 60) return 'Moderate';
+        return 'Check Area';
+    }
+
+    // ── Sidebar ──────────────────────────────────────────────────
+    function renderSidebar(data) {
+        document.getElementById('sidebar-location').textContent = `📍 ${data.location}`;
+        const score = data.crime.score;
+        const label = data.crime.label;
+        document.getElementById('meter-score').textContent = score;
+        const badgeEl = document.getElementById('meter-badge');
+        badgeEl.textContent = label;
+        badgeEl.className = 'meter-badge ' + labelToClass(label);
+        const bar = document.getElementById('meter-bar');
+        bar.style.width = score + '%';
+        if (score < 55) bar.className = 'meter-bar elevated';
+        else if (score < 75) bar.className = 'meter-bar moderate';
+        else bar.className = 'meter-bar';
+
+        const breakdownEl = document.getElementById('crime-breakdown');
+        breakdownEl.innerHTML = '';
+        const bd = data.crime.breakdown;
+        const total = data.crime.totalCrimes;
+        if (total > 0) {
+            const totalLi = document.createElement('li');
+            totalLi.innerHTML = `<span class="cat">Total crimes (3 months)</span><span class="cnt">${total}</span>`;
+            breakdownEl.appendChild(totalLi);
+            Object.entries(bd).forEach(([cat, cnt]) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="cat">${cat}</span><span class="cnt">${cnt}</span>`;
+                breakdownEl.appendChild(li);
+            });
+        } else {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="cat">No crime data available</span><span class="cnt">—</span>`;
+            breakdownEl.appendChild(li);
+        }
+    }
+
+    function labelToClass(label) {
+        const map = {
+            'Very Safe': 'badge-very-safe',
+            'Safe': 'badge-safe',
+            'Moderate': 'badge-moderate',
+            'Elevated': 'badge-elevated',
+            'High Crime': 'badge-high',
+        };
+        return map[label] || 'badge-safe';
+    }
+
+    // ── Filtering ────────────────────────────────────────────────
+    function applyFiltersAndRender() {
+        filteredResults = allResults.filter(h => {
+            // Badge/type filter
+            if (currentFilter !== 'all') {
+                const badges = h.badges || [];
+                if (currentFilter === 'solo-female' && !badges.includes('solo-female')) return false;
+                if (currentFilter === 'family' && !badges.includes('family')) return false;
+                if (currentFilter === 'budget' && !badges.includes('budget-safe') && (h.priceMin || 999) > 120) return false;
+                if (currentFilter === 'luxury' && (h.stars || 0) < 4) return false;
+            }
+            // Stars filter
+            if (currentStars > 0 && (h.stars || 0) < currentStars) return false;
+            return true;
+        });
+
+        renderResults();
+    }
+
+    // ── Rendering ─────────────────────────────────────────────────
+    function renderResults() {
+        // Sort
+        const sorted = [...filteredResults].sort((a, b) => {
+            if (currentSort === 'safety') return (b.safetyScore || 0) - (a.safetyScore || 0);
+            if (currentSort === 'price-asc') return (a.priceMin || 9999) - (b.priceMin || 9999);
+            if (currentSort === 'price-desc') return (b.priceMin || 0) - (a.priceMin || 0);
+            if (currentSort === 'stars') return (b.stars || 0) - (a.stars || 0);
+            if (currentSort === 'rating') return parseFloat(b.rating || 0) - parseFloat(a.rating || 0);
+            return 0;
+        });
+
+        resultsCount.textContent = `${sorted.length} hotel${sorted.length !== 1 ? 's' : ''} found`;
+        resultsList.innerHTML = '';
+
+        if (sorted.length === 0) {
+            resultsList.innerHTML = `<div class="state-box"><div class="emoji">🔎</div><h3>No hotels match your filters</h3><p>Try adjusting the filters in the sidebar.</p></div>`;
+        } else {
+            sorted.forEach(h => resultsList.appendChild(buildCard(h)));
+        }
+
+        showState('results');
+    }
+
+    // ── Card builder ─────────────────────────────────────────────
+    function buildCard(h) {
+        const card = document.createElement('div');
+        card.className = 'hotel-card';
+
+        // Safety colour
+        const score = h.safetyScore || 75;
+        const safetyColor = score >= 85 ? '#16a34a' : score >= 70 ? '#65a30d' : score >= 55 ? '#d97706' : '#dc2626';
+
+        // Stars
+        const starsHtml = '★'.repeat(h.stars || 3) + '☆'.repeat(Math.max(0, 5 - (h.stars || 3)));
+
+        // Price
+        const priceHtml = h.priceMin
+            ? `<div class="price-from"><div class="label">From</div><div class="amount">£${h.priceMin}</div><div class="per">per night</div></div>`
+            : `<div class="price-from"><div class="label">Check for</div><div class="amount">prices</div></div>`;
+
+        // Safety chip
+        const chipClass = score >= 85 ? 'badge-very-safe' : score >= 70 ? 'badge-safe' : score >= 55 ? 'badge-moderate' : 'badge-elevated';
+        const safetyChip = `<span class="safety-label-chip ${chipClass}">${h.safetyLabel || 'Safe'}</span>`;
+
+        // Rating
+        const ratingHtml = h.rating && h.rating > 0
+            ? `<span class="rating-pill">${h.rating}</span><span style="color:#888;font-size:12px;">${h.reviewCount ? h.reviewCount + ' reviews' : ''}</span>`
+            : '';
+
+        // Static data badge
+        const staticBadge = h.isStaticData ? `<div class="static-card-badge">⭐ Curated Pick</div>` : '';
+
+        // Description / highlights
+        const desc = h.description
+            ? `<p style="font-size:13px;color:#666;line-height:1.5;margin-top:4px;">${h.description.slice(0,120)}…</p>`
+            : '';
+
+        // Featured review snippet
+        const review = h.featuredReview
+            ? `<div style="font-size:11px;color:#888;font-style:italic;margin-top:4px;border-left:3px solid #ff751f;padding-left:8px;">"${h.featuredReview.text.slice(0,90)}…" — ${h.featuredReview.author}</div>`
+            : '';
+
+        card.innerHTML = `
+            <div class="hotel-card-img">
+                ${h.photoUrl
+                    ? `<img src="${h.photoUrl}" alt="${h.name}" loading="lazy">`
+                    : `<div class="hotel-img-placeholder">🏨</div>`
+                }
+                <div class="hotel-safety-badge">
+                    <span class="score" style="color:${safetyColor};">${score}</span>
+                    <span style="font-size:10px;color:#555;">/ 100</span>
+                </div>
+            </div>
+            <div class="hotel-card-body">
+                ${staticBadge}
+                <div class="stars">${starsHtml}</div>
+                <h3>${h.name}</h3>
+                <div class="area-tag">📍 ${h.address || 'UK'}</div>
+                <div class="rating-row">
+                    ${ratingHtml}
+                    ${safetyChip}
+                </div>
+                ${desc}
+                ${review}
+            </div>
+            <div class="hotel-card-action">
+                ${priceHtml}
+                <a href="${h.bookingUrl}" target="_blank" rel="noopener sponsored" class="book-btn">Book Now →</a>
+                <span class="affiliate-note">via our partner</span>
+            </div>
+        `;
+
+        return card;
+    }
+
+    // ── State helpers ────────────────────────────────────────────
+    function showState(state) {
+        stateInitial.style.display = state === 'initial' ? '' : 'none';
+        stateLoading.style.display = state === 'loading' ? '' : 'none';
+        stateError.style.display   = state === 'error'   ? '' : 'none';
+        stateResults.style.display = state === 'results' ? '' : 'none';
+    }
+
+    function showError(msg) {
+        document.getElementById('error-msg').textContent = msg;
+        showState('error');
+        sidebar.style.display = 'none';
+    }
+
+    // ── Date utils ───────────────────────────────────────────────
+    function formatDate(d) {
+        return d.toISOString().slice(0, 10);
+    }
+    </script>
+</body>
+</html>
