@@ -380,7 +380,7 @@ footer a { color:var(--brand); text-decoration:none; }
 <div class="scroll-bar" id="scrollBar"></div>
 
 <nav>
-  <a href="https://safehotels.ai" class="nav-logo"><strong>Safe</strong>Hotels.ai</a>
+  <a href="https://safehotels.ai" class="nav-logo"><img src="../logo.png" alt="SafeHotels.ai" height="36" style="border-radius:6px;display:block;"></a>
   <a href="https://safehotels.ai/search?city=manchester" class="nav-cta">Search Manchester Hotels →</a>
 </nav>
 
@@ -574,6 +574,15 @@ footer a { color:var(--brand); text-decoration:none; }
 </footer>
 
 <script>
+
+// Hide audio player on Android devices
+(function() {
+  if (/android/i.test(navigator.userAgent)) {
+    var player = document.querySelector('.audio-player');
+    if (player) player.style.display = 'none';
+  }
+})();
+
 // SCROLL BAR
 window.addEventListener('scroll', () => {
   const d = document.documentElement;
