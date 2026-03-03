@@ -67,14 +67,16 @@ exports.handler = async function (event, context) {
 
     let hotels = [];
     try {
+      console.log("Calling Travelpayouts:", tpUrl);
       const tpRes = await fetch(tpUrl, {
         headers: { "X-Access-Token": TRAVELPAYOUTS_TOKEN },
       });
       const tpData = await tpRes.json();
+      console.log("Travelpayouts response type:", typeof tpData, Array.isArray(tpData) ? "array len=" + tpData.length : JSON.stringify(tpData).slice(0, 200));
       hotels = extractHotels(tpData, lat, lng);
+      console.log("Hotels extracted:", hotels.length);
     } catch (tpErr) {
       console.error("Travelpayouts error:", tpErr.message);
-      // Fall through with empty hotels — crime data still works
     }
 
     // ── Step 3: Get crime data from data.police.uk ─────────────
@@ -122,53 +124,51 @@ exports.handler = async function (event, context) {
 
 // ── Travelpayouts URL builder ────────────────────────────────
 function buildTravelpayoutsUrl(lat, lng, checkin, checkout, adults) {
-  // Hotel Search API — returns hotels near a lat/lng point
-  const base = "https://engine.hotellook.com/api/v2/search/start.json";
+  // Cache API — returns instantly, no async polling needed
+  const base = "https://engine.hotellook.com/api/v2/cache.json";
   return (
     `${base}?token=${TRAVELPAYOUTS_TOKEN}` +
     `&marker=501240` +
     `&lat=${lat}&lon=${lng}` +
     `&checkIn=${checkin}&checkOut=${checkout}` +
-    `&adultsCount=${adults}&childrenCount=0&rooms=1` +
+    `&adultsCount=${adults}` +
     `&currency=gbp&lang=en-gb` +
-    `&waitForResult=0&limit=20`
+    `&limit=20&distance=3`
   );
 }
 
 // ── Extract & normalise hotels from Travelpayouts response ───
 function extractHotels(data, searchLat, searchLng) {
-  if (!data || !data.results) return [];
-
-  const results = data.results;
-  if (!Array.isArray(results)) return [];
+  // Cache API returns an array directly
+  const results = Array.isArray(data) ? data : (data?.results || data?.hotels || []);
+  if (!results || results.length === 0) return [];
 
   return results.slice(0, 15).map((h) => ({
     id: h.id || h.hotelId,
     name: h.hotelName || h.name || "Unknown Hotel",
     stars: h.stars || 3,
-    lat: h.location?.lat || searchLat,
-    lng: h.location?.lon || searchLng,
-    address: h.address || "",
+    lat: h.location?.lat || h.lat || searchLat,
+    lng: h.location?.lon || h.lon || searchLng,
+    address: h.address || h.location?.name || "",
     priceMin: h.priceFrom ? Math.round(h.priceFrom) : null,
     priceMax: h.priceTo ? Math.round(h.priceTo) : null,
     currency: "GBP",
     rating: h.rating ? parseFloat(h.rating).toFixed(1) : null,
     reviewCount: h.reviewCount || 0,
-    photoUrl: h.photoUrl || null,
-    bookingUrl: buildBookingUrl(h, h.checkIn, h.checkOut),
+    photoUrl: h.photoUrl ? `https://photo.hotellook.com/image_v2/limit/${h.photoUrl}/600/400.jpg` : null,
+    bookingUrl: null,
     source: "travelpayouts",
   }));
 }
 
 // ── Build affiliate deep-link to Booking.com ─────────────────
-function buildBookingUrl(hotel, checkin, checkout) {
-  const hotelId = hotel.id || hotel.hotelId || "";
-  // Travelpayouts affiliate redirect with marker
+function buildBookingUrl(hotel, checkin, checkout, adults) {
+  const q = encodeURIComponent((hotel.name || '') + ', UK');
   return (
-    `https://search.hotellook.com/?marker=501240` +
-    `&hotelId=${hotelId}` +
-    `&checkIn=${checkin}&checkOut=${checkout}` +
-    `&adultsCount=2&currency=gbp&lang=en-gb`
+    `https://www.booking.com/search.html?ss=${q}` +
+    `&aid=304142&label=safehotels-tp501240` +
+    `&checkin=${checkin}&checkout=${checkout}` +
+    `&group_adults=${adults || 2}&lang=en-gb`
   );
 }
 
@@ -271,7 +271,7 @@ function enrichHotel(hotel, crimeScore, crimeLabel, crimeCount, checkin, checkou
     safetyScore: finalScore,
     safetyLabel,
     crimeLabel,
-    bookingUrl: hotel.bookingUrl || buildFallbackUrl(hotel.name, checkin, checkout, adults),
+    bookingUrl: buildBookingUrl(hotel, checkin, checkout, adults),
   };
 }
 
@@ -281,7 +281,7 @@ function buildFallbackUrl(hotelName, checkin, checkout, adults) {
   return (
     `https://www.booking.com/search.html?ss=${q}` +
     `&checkin=${checkin}&checkout=${checkout}&group_adults=${adults}` +
-    `&aid=` // insert AID when available
+    `&aid=304142&label=safehotels-tp501240&lang=en-gb`
   );
 }
 
@@ -307,3 +307,11 @@ function parseGuests(guests) {
   const n = parseInt(guests);
   return isNaN(n) ? 2 : Math.max(1, Math.min(10, n));
 }
+
+
+
+
+
+
+
+
