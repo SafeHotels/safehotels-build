@@ -800,7 +800,7 @@
             description: h.description,
             highlights: h.highlights,
             featuredReview: h.featuredReview,
-            bookingUrl: h.bookingUrl,
+            bookingUrl: null, // generated dynamically by bookingUrl() function
             safetyScore: crimeScore ? Math.min(99, Math.round(crimeScore + (h.stars * 1.5 - 3))) : calcSafetyScore(h),
             safetyLabel: safetyLabelFromScore(calcSafetyScore(h)),
             isStaticData: true,
@@ -977,7 +977,7 @@
             </div>
             <div class="hotel-card-action">
                 ${priceHtml}
-                <a href="${h.bookingUrl}" target="_blank" rel="noopener sponsored" class="book-btn">Book Now →</a>
+                <a href="${bookingUrl(h, sbCheckin.value, sbCheckout.value, sbGuests.value)}" target="_blank" rel="noopener sponsored" class="book-btn">Book Now →</a>
                 <span class="affiliate-note">via our partner</span>
             </div>
         `;
