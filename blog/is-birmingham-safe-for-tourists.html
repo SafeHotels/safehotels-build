@@ -480,6 +480,12 @@ footer a:hover { color: var(--brand); }
   .bento { grid-template-columns: 1fr; }
   .bc.feat { grid-column: span 1; }
 }
+
+/* Hide audio player on Android - Web Speech API unreliable */
+.android-hide { display: block; }
+@media screen {
+  .audio-player { display: block; }
+}
 </style>
 </head>
 <body>
@@ -761,6 +767,15 @@ footer a:hover { color: var(--brand); }
 </footer>
 
 <script>
+
+// Hide audio player on Android devices
+(function() {
+  if (/android/i.test(navigator.userAgent)) {
+    var player = document.querySelector('.audio-player');
+    if (player) player.style.display = 'none';
+  }
+})();
+
 // SCROLL BAR
 window.addEventListener('scroll', () => {
   const d = document.documentElement;
