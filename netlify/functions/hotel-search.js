@@ -58,23 +58,40 @@ exports.handler = async function (event, context) {
     const locationName = geoData[0].display_name.split(",")[0];
 
     // ── Step 2: Call Travelpayouts Hotel API ───────────────────
-    // Using the Hotels Selections API (no check-in required for basic listings)
     const checkInDate = checkin || getTodayPlus(1);
     const checkOutDate = checkout || getTodayPlus(2);
     const adultsCount = parseGuests(guests);
 
-    const tpUrl = buildTravelpayoutsUrl(lat, lng, checkInDate, checkOutDate, adultsCount);
-
     let hotels = [];
     try {
-      console.log("Calling Travelpayouts:", tpUrl);
-      const tpRes = await fetch(tpUrl, {
-        headers: { "X-Access-Token": TRAVELPAYOUTS_TOKEN },
-      });
-      const tpData = await tpRes.json();
-      console.log("Travelpayouts response type:", typeof tpData, Array.isArray(tpData) ? "array len=" + tpData.length : JSON.stringify(tpData).slice(0, 200));
-      hotels = extractHotels(tpData, lat, lng);
-      console.log("Hotels extracted:", hotels.length);
+      // Step 2a: Get location ID from Travelpayouts
+      const locationUrl = `https://engine.hotellook.com/api/v2/lookup.json?query=${encodeURIComponent(location)}&lang=en&lookFor=city&limit=1&token=${TRAVELPAYOUTS_TOKEN}`;
+      console.log("Looking up location:", locationUrl);
+      const locationRes = await fetch(locationUrl);
+      const locationData = await locationRes.json();
+      console.log("Location data:", JSON.stringify(locationData).slice(0, 300));
+
+      const cityId = locationData?.results?.locations?.[0]?.id;
+      console.log("City ID:", cityId);
+
+      if (cityId) {
+        // Step 2b: Get hotels for that city
+        const hotelsUrl = `https://engine.hotellook.com/api/v2/cache.json?location=${cityId}&checkIn=${checkInDate}&checkOut=${checkOutDate}&adultsCount=${adultsCount}&currency=gbp&limit=20&token=${TRAVELPAYOUTS_TOKEN}`;
+        console.log("Fetching hotels:", hotelsUrl);
+        const hotelsRes = await fetch(hotelsUrl);
+        const hotelsData = await hotelsRes.json();
+        console.log("Hotels response:", Array.isArray(hotelsData) ? "array len=" + hotelsData.length : JSON.stringify(hotelsData).slice(0, 200));
+        hotels = extractHotels(hotelsData, lat, lng);
+        console.log("Hotels extracted:", hotels.length);
+      } else {
+        console.log("No city ID found, trying direct lat/lng cache call");
+        // Fallback: try with city name directly
+        const directUrl = `https://engine.hotellook.com/api/v2/cache.json?location=${encodeURIComponent(locationName)}&checkIn=${checkInDate}&checkOut=${checkOutDate}&adultsCount=${adultsCount}&currency=gbp&limit=20&token=${TRAVELPAYOUTS_TOKEN}`;
+        const directRes = await fetch(directUrl);
+        const directData = await directRes.json();
+        console.log("Direct response:", Array.isArray(directData) ? "array len=" + directData.length : JSON.stringify(directData).slice(0, 200));
+        hotels = extractHotels(directData, lat, lng);
+      }
     } catch (tpErr) {
       console.error("Travelpayouts error:", tpErr.message);
     }
@@ -307,11 +324,3 @@ function parseGuests(guests) {
   const n = parseInt(guests);
   return isNaN(n) ? 2 : Math.max(1, Math.min(10, n));
 }
-
-
-
-
-
-
-
-
