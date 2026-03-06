@@ -5,7 +5,7 @@
 /* ── FEATURES SHOWCASE ── */
 .features-showcase {
     padding: 80px 0;
-    background: white;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 .showcase-header {
     text-align: center;
@@ -14,12 +14,12 @@
 .showcase-header h2 {
     font-size: 2rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 .showcase-header p {
     font-size: 17px;
-    color: #666;
+    color: rgba(255,255,255,0.72);
     max-width: 640px;
     margin: 0 auto;
     line-height: 1.65;
@@ -30,10 +30,11 @@
     padding: 50px 0;
     border-radius: 20px;
     margin-bottom: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
 .feature-section.alt-bg {
-    background: #f8f9fb;
-    padding: 50px 32px;
+    background: transparent;
+    padding: 50px 0;
     border-radius: 20px;
 }
 
@@ -45,14 +46,14 @@
     font-weight: 700;
     margin-bottom: 14px;
 }
-.section-badge.community { background: #fff4ed; color: #ff751f; }
-.section-badge.crime { background: #fde8e8; color: #c0392b; }
-.section-badge.ai { background: #e8f0fe; color: #1a56db; }
+.section-badge.community { background: rgba(255,117,31,0.2); color: #ff9a5c; border: 1px solid rgba(255,117,31,0.3); }
+.section-badge.crime { background: rgba(255,117,31,0.2); color: #ff9a5c; border: 1px solid rgba(255,117,31,0.3); }
+.section-badge.ai { background: rgba(255,117,31,0.2); color: #ff9a5c; border: 1px solid rgba(255,117,31,0.3); }
 
 .section-heading {
     font-size: 1.5rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 28px;
 }
 
@@ -63,19 +64,22 @@
     gap: 20px;
 }
 .feature-card-alt {
-    background: white;
+    background: rgba(255,255,255,0.07);
     border-radius: 14px;
     padding: 24px;
-    box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
     transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(255,255,255,0.12);
     border-top: 3px solid #ff751f;
+    backdrop-filter: blur(10px);
 }
 .feature-card-alt:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(0,0,0,0.11);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+    background: rgba(255,255,255,0.12);
 }
 .feature-section.alt-bg .feature-card-alt {
-    background: white;
+    background: rgba(255,255,255,0.07);
 }
 .feature-icon-large {
     font-size: 2rem;
@@ -84,12 +88,12 @@
 .feature-card-alt h4 {
     font-size: 1rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: #ffffff;
     margin-bottom: 8px;
 }
 .feature-card-alt p {
     font-size: 14px;
-    color: #666;
+    color: rgba(255,255,255,0.72);
     line-height: 1.65;
 }
 
