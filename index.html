@@ -116,16 +116,30 @@
             padding-top: 0;
             margin-top: 0;
         }
-        .features-showcase .feature-card-alt {
+        .features-showcase .feature-card-alt,
+        .features-showcase .features-grid-alt .feature-card-alt,
+        section.features-showcase .feature-card-alt {
             background: rgba(255,255,255,0.07) !important;
             border: 1px solid rgba(255,255,255,0.12) !important;
-            backdrop-filter: blur(10px);
+            border-radius: 16px !important;
+            padding: 28px !important;
+            backdrop-filter: blur(10px) !important;
             box-shadow: 0 4px 24px rgba(0,0,0,0.3) !important;
-            transition: background 0.2s, transform 0.2s;
+            transition: background 0.2s, transform 0.2s !important;
+            color: white !important;
         }
-        .features-showcase .feature-card-alt:hover {
-            background: rgba(255,255,255,0.12) !important;
-            transform: translateY(-3px);
+        .features-showcase .feature-card-alt:hover,
+        .features-showcase .features-grid-alt .feature-card-alt:hover {
+            background: rgba(255,255,255,0.14) !important;
+            transform: translateY(-3px) !important;
+        }
+        .features-showcase .feature-card-alt h4,
+        .features-showcase .features-grid-alt .feature-card-alt h4 {
+            color: #ffffff !important;
+        }
+        .features-showcase .feature-card-alt p,
+        .features-showcase .features-grid-alt .feature-card-alt p {
+            color: rgba(255,255,255,0.72) !important;
         }
         .features-showcase .section-badge {
             background: rgba(255,117,31,0.2) !important;
