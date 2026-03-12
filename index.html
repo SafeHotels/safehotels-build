@@ -32,6 +32,7 @@
 </script>
 </head>
 <body>
+    <canvas id="pageGrid"></canvas>
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -51,9 +52,21 @@
         </div>
     </header>
     <style>
-        .hero {
+        body {
             position: relative;
-            overflow: visible;
+        }
+        #pageGrid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        header, section, footer, .chat-container, .chat-button {
+            position: relative;
+            z-index: 1;
         }
         .hero-mascot {
             position: absolute;
@@ -62,6 +75,10 @@
             width: 300px;
             height: auto;
             pointer-events: none;
+            z-index: 2;
+        }
+        .hero .container {
+            position: relative;
             z-index: 2;
         }
         @media (max-width: 1100px) {
@@ -80,11 +97,13 @@
         }
     </style>
     <section class="hero">
+        <canvas id="heroParticles" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
         <img src="Left-Photoroom.png" alt="SafeHotels mascot" class="hero-mascot">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Find Safe Hotels in London &amp; Worldwide</h1>
-                <p class="hero-subtitle">Book with confidence using real-time crime data, verified community reviews, and AI recommendations</p>
+            <div class="hero-content" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+                <h1 class="hero-title" style="background:linear-gradient(90deg,#ffffff 0%,#ffe0c8 30%,#ffffff 50%,#ffc49a 70%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;">Find Safe Hotels in London &amp; Worldwide</h1>
+                <style>@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}</style>
+                <p class="hero-subtitle" style="text-align:center;">Book with confidence using real-time crime data, verified community reviews, and AI recommendations</p>
                 <div class="search-card">
                     <div class="search-inputs">
                         <div class="input-group location-input">
@@ -465,6 +484,142 @@
         </svg>
         <span class="chat-badge">AI</span>
     </button>
+    <script>
+    (function() {
+        const canvas = document.getElementById('heroParticles');
+        const hero = canvas.parentElement;
+        const ctx = canvas.getContext('2d');
+        let mouse = { x: -9999, y: -9999 };
+        let particles = [];
+        const COUNT = 80;
+        const MAX_DIST = 140;
+        const MOUSE_DIST = 180;
+
+        function resize() {
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+        }
+
+        function Particle() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.r = Math.random() * 2 + 1;
+        }
+
+        Particle.prototype.update = function() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        };
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                ctx.beginPath();
+                ctx.arc(particles[i].x, particles[i].y, particles[i].r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,248,220,0.9)';
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < MAX_DIST) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255,248,220,${0.5 * (1 - dist / MAX_DIST)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+
+                const mdx = particles[i].x - mouse.x;
+                const mdy = particles[i].y - mouse.y;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < MOUSE_DIST) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(255,248,220,${0.8 * (1 - mdist / MOUSE_DIST)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        hero.addEventListener('mousemove', function(e) {
+            const rect = hero.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', function() {
+            mouse.x = -9999;
+            mouse.y = -9999;
+        });
+
+        window.addEventListener('resize', function() {
+            resize();
+            init();
+        });
+
+        resize();
+        init();
+        draw();
+    })();
+    </script>
+    <script>
+    (function() {
+        const canvas = document.getElementById('pageGrid');
+        const ctx = canvas.getContext('2d');
+        const SIZE = 48;
+        let offset = 0;
+
+        function resize() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            offset = (offset + 0.3) % SIZE;
+
+            ctx.strokeStyle = 'rgba(255,117,31,0.12)';
+            ctx.lineWidth = 1;
+
+            // horizontal lines
+            for (let y = (offset % SIZE); y < canvas.height; y += SIZE) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+            // vertical lines
+            for (let x = (offset % SIZE); x < canvas.width; x += SIZE) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+    })();
+    </script>
     <script src="script.js"></script>
     <script>
     function goToSearch() {
