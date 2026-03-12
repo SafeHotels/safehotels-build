@@ -32,6 +32,18 @@
 </script>
 </head>
 <body>
+    <div id="animGradient">
+        <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(255,117,31,0.5),transparent 70%);top:-100px;left:-100px;animation:blobMove1 18s ease-in-out infinite;"></div>
+        <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(15,52,96,0.8),transparent 70%);bottom:-80px;right:-80px;animation:blobMove2 22s ease-in-out infinite;"></div>
+        <div class="blob" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,117,31,0.3),transparent 70%);top:40%;left:40%;animation:blobMove3 26s ease-in-out infinite;"></div>
+        <div class="blob" style="width:350px;height:350px;background:radial-gradient(circle,rgba(22,33,62,0.9),transparent 70%);top:20%;right:10%;animation:blobMove4 20s ease-in-out infinite;"></div>
+    </div>
+    <style>
+        @keyframes blobMove1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(120px,80px)} 66%{transform:translate(-60px,140px)} }
+        @keyframes blobMove2 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-100px,-80px)} 66%{transform:translate(80px,-120px)} }
+        @keyframes blobMove3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-80px,60px)} 66%{transform:translate(100px,-80px)} }
+        @keyframes blobMove4 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(60px,100px)} 66%{transform:translate(-80px,40px)} }
+    </style>
     <canvas id="pageGrid"></canvas>
     <header class="header">
         <div class="container">
@@ -54,6 +66,21 @@
     <style>
         body {
             position: relative;
+            background: #080d1a;
+        }
+        #animGradient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        #animGradient .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.45;
+            mix-blend-mode: screen;
         }
         #pageGrid {
             position: fixed;
@@ -255,6 +282,15 @@
             <h2 class="section-title" style="color:#ffffff">Hotel Safety Guides</h2>
             <p class="section-subtitle" style="color:rgba(255,255,255,0.72)">Data-driven articles to help you travel smarter and safer across the UK</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1400px;margin:0 auto 36px">
+                <a href="blog/safest-areas-edinburgh" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #ff751f" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
+                    <img src="https://images.unsplash.com/photo-1506377585622-bedcbb5a6d1d?w=600&q=80&auto=format&fit=crop" alt="Edinburgh castle" style="width:100%;height:140px;object-fit:cover;display:block">
+                    <div style="padding:20px">
+                        <span style="background:#fff3e6;color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">Edinburgh · New</span>
+                        <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin:10px 0 8px;line-height:1.4">Safest Areas to Stay in Edinburgh (2026)</h3>
+                        <p style="font-size:13px;color:#666;margin:0 0 12px;line-height:1.6">Real Police Scotland crime data reveals the safest neighbourhoods for solo travellers.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
                 <a href="blog/safest-areas-to-stay-in-london.html" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #ff751f" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
                     <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80&auto=format&fit=crop" alt="London skyline" style="width:100%;height:140px;object-fit:cover;display:block">
                     <div style="padding:20px">
@@ -292,6 +328,9 @@
                         <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
                     </div>
                 </a>
+            </div>
+            <div style="height:32px;"></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1400px;margin:0 auto 36px">
                 <a href="blog/safest-cities-uk-solo-female.html" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #e91e8c" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
                     <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80&auto=format&fit=crop" alt="Solo female traveller UK" style="width:100%;height:140px;object-fit:cover;display:block">
                     <div style="padding:20px">
