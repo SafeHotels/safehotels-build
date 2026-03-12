@@ -33,10 +33,10 @@
 </head>
 <body>
     <div id="animGradient">
-        <div class="blob" style="width:700px;height:700px;background:radial-gradient(circle,rgba(255,117,31,0.35),transparent 70%);top:-150px;left:-150px;animation:blobMove1 18s ease-in-out infinite;"></div>
-        <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(15,52,96,0.6),transparent 70%);bottom:-100px;right:-100px;animation:blobMove2 22s ease-in-out infinite;"></div>
-        <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(255,117,31,0.2),transparent 70%);top:40%;left:30%;animation:blobMove3 26s ease-in-out infinite;"></div>
-        <div class="blob" style="width:450px;height:450px;background:radial-gradient(circle,rgba(22,33,62,0.7),transparent 70%);top:20%;right:5%;animation:blobMove4 20s ease-in-out infinite;"></div>
+        <div class="blob" style="width:700px;height:700px;background:radial-gradient(circle,rgba(255,117,31,0.55),transparent 70%);top:-150px;left:-150px;animation:blobMove1 18s ease-in-out infinite;"></div>
+        <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(15,52,96,0.8),transparent 70%);bottom:-100px;right:-100px;animation:blobMove2 22s ease-in-out infinite;"></div>
+        <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(255,117,31,0.4),transparent 70%);top:40%;left:30%;animation:blobMove3 26s ease-in-out infinite;"></div>
+        <div class="blob" style="width:450px;height:450px;background:radial-gradient(circle,rgba(30,50,100,0.85),transparent 70%);top:20%;right:5%;animation:blobMove4 20s ease-in-out infinite;"></div>
     </div>
     <style>
         @keyframes blobMove1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(120px,80px)} 66%{transform:translate(-60px,140px)} }
@@ -74,12 +74,13 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
+            isolation: isolate;
         }
         #animGradient .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.6;
+            filter: blur(80px);
+            opacity: 1;
         }
         #pageGrid {
             position: fixed;
@@ -282,13 +283,61 @@
                     </div>
                 </div>
             </div>
+            <section class="neighborhoods-section" style="margin:0 -9999px;padding:60px 9999px;background:transparent;">
+        <div class="container">
+            <h2 class="section-title" style="color:#fff">Safest London Neighbourhoods</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.72)">Explore our top-rated safe areas with real crime data</p>
+            <div class="neighborhoods-grid">
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80&auto=format&fit=crop" alt="Richmond upon Thames" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">98% Safe</div>
+                        <h3>Richmond upon Thames</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Leafy, affluent area with parks and riverside. Extremely low crime rate, perfect for solo travellers.</p>
+                        <a href="search.html?area=richmond" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1551634979-2b11f8c946fe?w=600&q=80&auto=format&fit=crop" alt="Kensington London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">96% Safe</div>
+                        <h3>Kensington &amp; Chelsea</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Upscale area with museums, shops, excellent security. Well-lit streets and high police presence.</p>
+                        <a href="search.html?area=kensington" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&q=80&auto=format&fit=crop" alt="Greenwich London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">94% Safe</div>
+                        <h3>Greenwich</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Low</strong></p>
+                        <p class="description">Historic maritime area with parks and attractions. Safe, welcoming with great transport links.</p>
+                        <a href="search.html?area=greenwich" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80&auto=format&fit=crop" alt="Hampstead London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">95% Safe</div>
+                        <h3>Hampstead</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Charming village feel with Hampstead Heath. Upscale residential area with minimal crime.</p>
+                        <a href="search.html?area=hampstead" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
             <div style="padding:60px 0;">
         <div class="container">
             <h2 class="section-title" style="color:#ffffff">Hotel Safety Guides</h2>
             <p class="section-subtitle" style="color:rgba(255,255,255,0.72)">Data-driven articles to help you travel smarter and safer across the UK</p>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;max-width:1400px;margin:0 auto 36px">
                 <a href="blog/safest-areas-edinburgh.html" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.07);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s;border-top:4px solid #ff751f" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='none'">
-                    <img src="https://images.unsplash.com/photo-1506377585622-bedcbb5a6d1d?w=600&q=80&auto=format&fit=crop" alt="Edinburgh castle" style="width:100%;height:140px;object-fit:cover;display:block">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Edinburgh castle" style="width:100%;height:140px;object-fit:cover;display:block">
                     <div style="padding:20px">
                         <span style="background:#fff3e6;color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">Edinburgh · New</span>
                         <h3 style="font-size:16px;font-weight:700;color:#1a1a2e;margin:10px 0 8px;line-height:1.4">Safest Areas to Stay in Edinburgh (2026)</h3>
@@ -385,55 +434,6 @@
                 </div>
             </div>
         </div>
-        </div>
-    </section>
-    
-    <section class="neighborhoods-section">
-        <div class="container">
-            <h2 class="section-title">Safest London Neighborhoods</h2>
-            <p class="section-subtitle">Explore our top-rated safe areas with real crime data</p>
-            <div class="neighborhoods-grid">
-                <div class="neighborhood-card">
-                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80&auto=format&fit=crop" alt="Richmond upon Thames" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-                    <div class="neighborhood-content">
-                        <div class="safety-badge excellent">98% Safe</div>
-                        <h3>Richmond upon Thames</h3>
-                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
-                        <p class="description">Leafy, affluent area with parks and riverside. Extremely low crime rate, perfect for families.</p>
-                        <a href="search.html?area=richmond" class="view-hotels-btn">View Hotels →</a>
-                    </div>
-                </div>
-                <div class="neighborhood-card">
-                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1551634979-2b11f8c946fe?w=600&q=80&auto=format&fit=crop" alt="Kensington London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-                    <div class="neighborhood-content">
-                        <div class="safety-badge excellent">96% Safe</div>
-                        <h3>Kensington &amp; Chelsea</h3>
-                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
-                        <p class="description">Upscale area with museums, shops, excellent security. Well-lit streets and high police presence.</p>
-                        <a href="search.html?area=kensington" class="view-hotels-btn">View Hotels →</a>
-                    </div>
-                </div>
-                <div class="neighborhood-card">
-                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&q=80&auto=format&fit=crop" alt="Greenwich London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-                    <div class="neighborhood-content">
-                        <div class="safety-badge excellent">94% Safe</div>
-                        <h3>Greenwich</h3>
-                        <p class="crime-stat">Crime Rate: <strong>Low</strong></p>
-                        <p class="description">Historic maritime area with parks and attractions. Safe, family-friendly with good transport.</p>
-                        <a href="search.html?area=greenwich" class="view-hotels-btn">View Hotels →</a>
-                    </div>
-                </div>
-                <div class="neighborhood-card">
-                    <div class="neighborhood-image"><img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80&auto=format&fit=crop" alt="Hampstead London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-                    <div class="neighborhood-content">
-                        <div class="safety-badge excellent">95% Safe</div>
-                        <h3>Hampstead</h3>
-                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
-                        <p class="description">Charming village feel with Hampstead Heath. Upscale residential area with minimal crime.</p>
-                        <a href="search.html?area=hampstead" class="view-hotels-btn">View Hotels →</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     
