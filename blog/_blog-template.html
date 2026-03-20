@@ -42,14 +42,17 @@ body {
   overflow-x: hidden;
 }
 
-body::before {
-  content: '';
+/* BLOB BACKGROUND */
+#blogBlobs {
   position: fixed; inset: 0;
-  background:
-    radial-gradient(ellipse 55% 35% at 85% 5%, rgba(255,117,31,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 5% 90%, rgba(14,184,160,0.04) 0%, transparent 60%);
-  pointer-events: none; z-index: 0;
+  z-index: 0; pointer-events: none; overflow: hidden;
 }
+#blogBlobs .blob {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 1;
+}
+@keyframes blobMove1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(120px,80px)} 66%{transform:translate(-60px,140px)} }
+@keyframes blobMove2 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-100px,-80px)} 66%{transform:translate(80px,-120px)} }
+@keyframes blobMove3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-80px,60px)} 66%{transform:translate(100px,-80px)} }
 
 /* NAV */
 nav {
@@ -109,12 +112,18 @@ h1 {
   font-weight: 700;
   font-size: clamp(1.75rem, 3.8vw, 2.6rem);
   line-height: 1.18;
-  color: #fff;
   letter-spacing: -0.02em;
   margin-bottom: 1.1rem;
   max-width: 640px;
+  background: linear-gradient(90deg,#ffffff 0%,#ffe0c8 30%,#ffffff 50%,#ffc49a 70%,#ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
 }
-h1 em { font-style: normal; color: var(--brand); }
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+h1 em { font-style: normal; -webkit-text-fill-color: #ff751f; color: #ff751f; }
 
 .hero-meta {
   display: flex; flex-wrap: wrap; gap: 1.2rem;
@@ -342,6 +351,16 @@ p strong { color: var(--text); font-weight: 500; }
 .tip-title { font-family:var(--font-display); font-weight:600; font-size:0.88rem; color:#fff; margin-bottom:0.35rem; }
 .tip p { font-size:0.8rem; margin:0; line-height:1.5; }
 
+/* FAQ */
+.faq { margin: 2.5rem 0; }
+.faq-item { border: 1px solid var(--navy-border); border-radius: 12px; margin-bottom: 0.6rem; overflow: hidden; }
+.faq-q { width: 100%; background: var(--navy-card); border: none; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; padding: 1rem 1.25rem; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transition: background 0.2s; }
+.faq-q:hover { background: rgba(255,255,255,0.05); }
+.faq-q::after { content: '+'; font-size: 1.3rem; color: var(--brand); flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { display: none; padding: 0 1.25rem 1rem; background: var(--navy-card); font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
+
 /* FOOTER CTA */
 .footer-cta { text-align:center; padding:4rem 2rem 4.5rem; border-top:1px solid var(--navy-border); position:relative; z-index:1; }
 .footer-cta h2 { font-size:1.65rem; margin-bottom:0.6rem; justify-content:center; }
@@ -376,6 +395,11 @@ footer a { color:var(--brand); text-decoration:none; }
 </style>
 </head>
 <body>
+<div id="blogBlobs">
+  <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(255,117,31,0.45),transparent 70%);top:-150px;left:-150px;animation:blobMove1 18s ease-in-out infinite;"></div>
+  <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(15,52,96,0.7),transparent 70%);bottom:-100px;right:-100px;animation:blobMove2 22s ease-in-out infinite;"></div>
+  <div class="blob" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,117,31,0.25),transparent 70%);top:40%;left:30%;animation:blobMove3 26s ease-in-out infinite;"></div>
+</div>
 
 <div class="scroll-bar" id="scrollBar"></div>
 
@@ -525,6 +549,21 @@ footer a { color:var(--brand); text-decoration:none; }
     <a href="https://safehotels.ai/search?city=manchester" class="mid-btn">Search Safe Hotels in Manchester →</a>
   </div>
 
+  <h2>Map of Safe Areas</h2>
+  <p>Use this map to get your bearings before you book. The safest neighbourhoods are clustered around the city centre — staying within these areas gives you the best combination of safety, transport links, and hotel choice.</p>
+  <div style="border-radius:14px;overflow:hidden;border:1px solid var(--navy-border);margin:1.75rem 0;">
+    <iframe
+      title="Safe areas map"
+      width="100%"
+      height="380"
+      style="border:0;display:block;"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=safe+hotels+Manchester+city+centre&zoom=13">
+    </iframe>
+  </div>
+
   <h2>Areas to Approach with Caution</h2>
 
   <p><strong>Piccadilly Gardens</strong> remains one of our lowest-scoring areas in Manchester — high anti-social behaviour and theft incidents make it an area we advise solo travellers to avoid staying in, though passing through during daylight is fine. <strong>Parts of Hulme</strong> and areas immediately north of Victoria Station show elevated crime rates relative to the city centre. Safer alternatives exist at comparable price points.</p>
@@ -550,9 +589,70 @@ footer a { color:var(--brand); text-decoration:none; }
 
   <p>Every hotel on SafeHotels.ai is scored across four categories: Night Safety, Street Safety, Hotel Security, and Area Cleanliness — drawn from Police.uk crime data updated weekly and community reviews from verified stays. <strong>A hotel that scores well on booking sites but sits in a high-crime postcode will show a lower SafeHotels.ai score than its star rating suggests.</strong> That's exactly the point.</p>
 
-  <p>Our "Solo Female Approved" badge requires a community Night Safety rating above 8.0 combined with a strong overall score. It's earned through data and real reviews — not marketing.</p>
+  <!-- ══ FAQ SECTION — update questions and answers for each city ══ -->
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq" id="faqSection">
+    <div class="faq-item">
+      <button class="faq-q">Is Manchester safe for solo travellers?</button>
+      <div class="faq-a">Yes — large parts of Manchester are safe for solo travellers, particularly Spinningfields, Ancoats, and Castlefield. As with any major city, where you stay makes a significant difference. Our safety scores are based on real Police.uk crime data so you can compare areas before booking.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Which area of Manchester has the lowest crime rate?</button>
+      <div class="faq-a">Spinningfields (M3) consistently records the lowest crime rates in central Manchester according to Police.uk data. It scores 8.9 on our safety index and is our top recommendation for solo travellers and business professionals.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is the Northern Quarter safe at night?</button>
+      <div class="faq-a">The Northern Quarter is safe during the day but has moderate night safety scores due to its active bar scene. We rate it 7.4 overall. If you stay there, choose a hotel on a quieter residential street rather than directly on the main nightlife strips.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is Manchester safe for solo female travellers?</button>
+      <div class="faq-a">Yes — Spinningfields and Castlefield both carry our Solo Female Approved badge, awarded to areas where solo female travellers have rated night safety above 8.0 in verified community reviews. Both areas have a professional, residential character that makes them calmer after dark.</div>
+    </div>
+  </div>
 
 </main>
+
+<!-- ══ FAQ SCHEMA MARKUP — update to match FAQ questions above ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Manchester safe for solo travellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — large parts of Manchester are safe for solo travellers, particularly Spinningfields, Ancoats, and Castlefield. Our safety scores are based on real Police.uk crime data so you can compare areas before booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which area of Manchester has the lowest crime rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spinningfields (M3) consistently records the lowest crime rates in central Manchester. It scores 8.9 on our safety index and is our top recommendation for solo travellers and business professionals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Northern Quarter safe at night?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Northern Quarter is safe during the day but has moderate night safety scores due to its active bar scene. We rate it 7.4 overall. Choose a hotel on a quieter residential street rather than on the main nightlife strips."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Manchester safe for solo female travellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Spinningfields and Castlefield both carry our Solo Female Approved badge, awarded to areas where solo female travellers have rated night safety above 8.0 in verified community reviews."
+      }
+    }
+  ]
+}
+</script>
 
 <div class="footer-cta">
   <h2>Search Safe Hotels in Manchester</h2>
@@ -562,12 +662,44 @@ footer a { color:var(--brand); text-decoration:none; }
 
 <section class="related">
   <h2>Related Guides</h2>
-  <div class="rel-grid">
-    <a href="https://safehotels.ai/blog/safest-areas-london" class="rel-card"><div class="rel-tag">London</div><div class="rel-title">Safest Areas to Stay in London (2026) — Real Crime Data</div></a>
-    <a href="https://safehotels.ai/blog/solo-female-travel-uk" class="rel-card"><div class="rel-tag">Solo Female Travel</div><div class="rel-title">The Complete Solo Female Travel UK Safety Guide</div></a>
-    <a href="https://safehotels.ai/blog/safest-areas-edinburgh" class="rel-card"><div class="rel-tag">Edinburgh</div><div class="rel-title">Safest Areas to Stay in Edinburgh (2026) — Crime Data</div></a>
-  </div>
+  <div class="rel-grid" id="relatedGrid"></div>
 </section>
+
+<script>
+// ── RANDOM RELATED ARTICLES ──
+(function() {
+  var allArticles = [
+    { url: '../blog/safest-areas-to-stay-in-london.html', tag: 'London', title: 'Safest Areas to Stay in London (2026) — Real Crime Data' },
+    { url: '../blog/safest-cities-uk-solo-female.html', tag: 'Solo Female', title: '10 Safest UK Cities for Solo Female Travellers (2026)' },
+    { url: '../blog/safest-areas-manchester.html', tag: 'Manchester', title: 'Safest Areas to Stay in Manchester (2026) — Real Crime Data' },
+    { url: '../blog/safest-areas-edinburgh.html', tag: 'Edinburgh', title: 'Safest Areas to Stay in Edinburgh (2026) — Real Crime Data' },
+    { url: '../blog/is-birmingham-safe-for-tourists.html', tag: 'Birmingham', title: 'Is Birmingham Safe for Tourists? (Honest 2026 Review)' },
+    { url: '../blog/solo-female-travel-uk-hotel-safety-guide.html', tag: 'Solo Female', title: 'The Ultimate Solo Female Travel Hotel Safety Guide — UK' },
+    { url: '../blog/hotel-safety-tips-uk.html', tag: 'Safety Tips', title: '10 Hotel Safety Tips Every Traveller Should Know' },
+  ];
+
+  // Get current page filename to exclude it from results
+  var current = window.location.pathname.split('/').pop();
+
+  // Filter out current article then shuffle
+  var pool = allArticles.filter(function(a) {
+    return a.url.split('/').pop() !== current;
+  });
+
+  // Shuffle array
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = pool[i]; pool[i] = pool[j]; pool[j] = temp;
+  }
+
+  // Pick first 3
+  var picks = pool.slice(0, 3);
+  var grid = document.getElementById('relatedGrid');
+  picks.forEach(function(a) {
+    grid.innerHTML += '<a href="' + a.url + '" class="rel-card"><div class="rel-tag">' + a.tag + '</div><div class="rel-title">' + a.title + '</div></a>';
+  });
+})();
+</script>
 
 <footer>
   <p>© 2026 SafeHotels.ai · <a href="https://safehotels.ai/privacy">Privacy Policy</a> · Crime data sourced from <a href="https://data.police.uk" target="_blank">Police.uk</a> · Affiliate partnerships include Awin</p>
@@ -755,6 +887,16 @@ function seekTo(e) {
     speak(getArticleText(), pct);
   }
 }
+
+// ── FAQ TOGGLE ──
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = this.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
 
 window.addEventListener('beforeunload', () => { if (synth) synth.cancel(); });
 </script>
