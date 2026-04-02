@@ -338,10 +338,19 @@
             <p class="section-subtitle" style="color:rgba(255,255,255,0.72)">Data-driven articles to help you travel smarter and safer across the UK</p>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto 36px">
 
-                <a href="blog/is-birmingham-safe-for-solo-female-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
-                    <img src="/images/birmingham.jpg" alt="Birmingham Victoria Square" style="width:100%;height:150px;object-fit:cover;display:block">
+                <a href="blog/safe-hotels-heathrow.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/heathrow.jpg" alt="London Heathrow Airport" style="width:100%;height:150px;object-fit:cover;display:block">
                     <div style="padding:16px;display:flex;flex-direction:column;flex:1">
-                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Birmingham · New</span>
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Heathrow · New</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near Heathrow Airport (2026)</h3>
+                        <span style="color:#ff751f;font-size:13px;font-weight:600">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-birmingham-safe-for-solo-female-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/birmingham-solo-female.jpg" alt="Birmingham Victoria Square" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Birmingham · Solo Female</span>
                         <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Birmingham Safe for Solo Female Travellers? (2026)</h3>
                         <span style="color:#ff751f;font-size:13px;font-weight:600">Read guide →</span>
                     </div>
@@ -350,7 +359,7 @@
                 <a href="blog/safest-areas-edinburgh.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
                     <img src="/images/edinburgh.jpg" alt="Edinburgh Old Town" style="width:100%;height:150px;object-fit:cover;display:block">
                     <div style="padding:18px;flex:1;display:flex;flex-direction:column">
-                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Edinburgh · New</span>
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Edinburgh</span>
                         <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Edinburgh (2026)</h3>
                         <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police Scotland crime data reveals the safest neighbourhoods for solo travellers.</p>
                         <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
@@ -654,14 +663,12 @@
             ctx.strokeStyle = 'rgba(255,117,31,0.07)';
             ctx.lineWidth = 1;
 
-            // horizontal lines
             for (let y = (offset % SIZE); y < canvas.height; y += SIZE) {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
                 ctx.lineTo(canvas.width, y);
                 ctx.stroke();
             }
-            // vertical lines
             for (let x = (offset % SIZE); x < canvas.width; x += SIZE) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
