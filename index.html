@@ -30,6 +30,36 @@
       document.head.appendChild(script);
   })();
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://safehotels.ai/#organization",
+      "name": "SafeHotels.ai",
+      "url": "https://safehotels.ai/",
+      "logo": "https://safehotels.ai/logo.png",
+      "description": "SafeHotels.ai helps solo travellers and business professionals find safe hotels across the UK using real Police.uk crime data, neighbourhood safety scores and community reviews."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://safehotels.ai/#website",
+      "url": "https://safehotels.ai/",
+      "name": "SafeHotels.ai",
+      "publisher": { "@id": "https://safehotels.ai/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://safehotels.ai/search.html?location={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
     <div id="animGradient">
@@ -166,9 +196,9 @@
                     <button class="search-btn" id="main-search" onclick="goToSearch()">Search Safe Hotels</button>
                 </div>
                 <div class="quick-stats">
-                    <div class="stat-item"><strong>2,847</strong><span>Community Reviews</span></div>
-                    <div class="stat-item"><strong>95%</strong><span>Avg Safety Score</span></div>
-                    <div class="stat-item"><strong>24/7</strong><span>AI Support</span></div>
+                    <div class="stat-item"><strong>Police.uk</strong><span>Official Crime Data</span></div>
+                    <div class="stat-item"><strong>Weekly</strong><span>Guides Updated</span></div>
+                    <div class="stat-item"><strong>Free</strong><span>No Hidden Fees</span></div>
                 </div>
             </div>
         </div>
@@ -567,7 +597,7 @@
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="contact.html">About Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="submit-review.html">Submit Review</a></li>
                     </ul>
@@ -586,6 +616,7 @@
                     <ul>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
                         <li><a href="contact.html">Cookie Policy</a></li>
                     </ul>
                 </div>

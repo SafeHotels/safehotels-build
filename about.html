@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About SafeHotels.ai — Real Crime Data for Safer Hotel Stays</title>
+<meta name="description" content="SafeHotels.ai helps solo travellers and business professionals book safe hotels across the UK using real Police.uk crime data, neighbourhood safety scores and community reviews.">
+<link rel="canonical" href="https://safehotels.ai/about">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3R56CJDZZ0');</script>
+<style>
+:root {
+  --brand: #ff751f;
+  --brand-dim: rgba(255,117,31,0.12);
+  --brand-glow: rgba(255,117,31,0.35);
+  --navy: #080d1a;
+  --navy-mid: #0d1424;
+  --navy-card: #111828;
+  --navy-border: rgba(255,255,255,0.07);
+  --glass: rgba(255,255,255,0.035);
+  --text: #dde2f0;
+  --text-muted: #7a85a0;
+  --text-dim: #4a5370;
+  --green: #27ae60;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--text); font-family: var(--font-body); font-size: 17px; line-height: 1.8; overflow-x: hidden; }
+body::before { content:''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 55% 35% at 85% 5%, rgba(255,117,31,0.05) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 5% 90%, rgba(14,184,160,0.04) 0%, transparent 60%); }
+
+nav { position: sticky; top: 0; z-index: 100; background: rgba(8,13,26,0.9); backdrop-filter: blur(24px); border-bottom: 1px solid var(--navy-border); padding: 0 2rem; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { color: var(--text); text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 1.6rem; }
+.nav-links a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--brand); }
+.nav-cta { background: var(--brand); color: #fff; font-weight: 500; font-size: 0.82rem; padding: 0.45rem 1.1rem; border-radius: 6px; text-decoration: none; transition: background 0.2s, box-shadow 0.2s; }
+.nav-cta:hover { background: #ff8c3a; box-shadow: 0 0 20px var(--brand-glow); }
+@media(max-width:768px){ .nav-links{ display:none; } }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+.hero { padding: 64px 0 28px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 0.45rem; background: var(--brand-dim); border: 1px solid rgba(255,117,31,0.22); color: var(--brand); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1.3rem; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.15; letter-spacing: -0.02em; color: #fff; margin-bottom: 1rem; }
+h1 em { font-style: normal; color: var(--brand); }
+.lead { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; }
+
+.content { padding: 1rem 0 3rem; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: #fff; margin: 2.4rem 0 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+h2::before { content:''; display:block; width:3px; height:1.1em; flex-shrink:0; background: var(--brand); border-radius:2px; }
+p { color: var(--text-muted); margin-bottom: 1.1rem; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+a.inline { color: var(--brand); text-decoration: none; }
+a.inline:hover { text-decoration: underline; }
+
+.card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: 14px; padding: 1.4rem 1.6rem; margin: 1.6rem 0; }
+.card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #fff; margin-bottom: 0.5rem; }
+.card p { margin: 0; font-size: 0.92rem; }
+
+.steps { display: grid; gap: 0.85rem; margin: 1.5rem 0; }
+.step { background: var(--glass); border: 1px solid var(--navy-border); border-radius: 12px; padding: 1.1rem 1.3rem; }
+.step .n { font-family: var(--font-display); font-weight: 700; color: var(--brand); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.step p { margin: 0; font-size: 0.9rem; }
+
+.callout { border-left: 2px solid var(--brand); background: var(--brand-dim); border-radius: 0 10px 10px 0; padding: 1rem 1.4rem; margin: 1.75rem 0; }
+.callout p { margin: 0; font-size: 0.92rem; color: var(--text); }
+
+.cta-box { text-align: center; padding: 2.5rem 1.5rem; border: 1px solid rgba(255,117,31,0.2); background: linear-gradient(135deg, rgba(255,117,31,0.1), rgba(17,24,40,0.5)); border-radius: 16px; margin: 2.5rem 0 1rem; }
+.cta-box h2 { justify-content: center; }
+.cta-box h2::before { display: none; }
+.cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--brand); color: #fff; font-weight: 500; font-size: 1rem; padding: 0.8rem 2rem; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 30px var(--brand-glow); transition: background 0.2s, transform 0.2s; margin-top: 0.5rem; }
+.cta-btn:hover { background: #ff8c3a; transform: translateY(-2px); }
+
+footer { background: var(--navy-mid); border-top: 1px solid var(--navy-border); padding: 2.5rem 2rem 1.75rem; position: relative; z-index: 1; margin-top: 2rem; }
+.footer-inner { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; font-size: 0.8rem; }
+.footer-inner a { color: var(--text-muted); text-decoration: none; }
+.footer-inner a:hover { color: var(--brand); }
+.footer-bottom { max-width: 760px; margin: 1.5rem auto 0; padding-top: 1.2rem; border-top: 1px solid var(--navy-border); font-size: 0.72rem; color: var(--text-dim); }
+.footer-bottom a { color: var(--brand); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><img src="logo.png" alt="SafeHotels.ai" height="36" style="border-radius:6px;display:block;"></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="search.html">Search Hotels</a>
+    <a href="blog/">Blog</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="search.html" class="nav-cta">Search Hotels →</a>
+</nav>
+
+<section class="hero wrap">
+  <div class="hero-tag">About SafeHotels.ai</div>
+  <h1>Booking a hotel shouldn't be a <em>gamble</em> on safety</h1>
+  <p class="lead">SafeHotels.ai helps solo travellers and business professionals across the UK choose where to stay using real crime data — not guesswork, and not marketing copy.</p>
+</section>
+
+<main class="content wrap">
+
+  <h2>What We Do</h2>
+  <p>Most hotel sites rank rooms by price, star rating and review score. None of them tell you what's happening on the street outside. We do. SafeHotels.ai layers <strong>official Police.uk crime data</strong> over every area, so you can see how safe a hotel's postcode actually is before you book.</p>
+  <p>We focus on the UK, and we publish a new city safety guide every week — each one built on real data rather than opinion.</p>
+
+  <h2>Why We Built It</h2>
+  <p>Travelling alone changes how you think about where you stay. The walk back to the hotel at night, the quiet street the booking photos never show, the difference one postcode makes — these are real concerns, and they're rarely answered honestly online. We built SafeHotels.ai to put that missing information in one place, in plain language, for the people who need it most: <strong>solo female travellers and business travellers</strong>.</p>
+
+  <h2>How Our Safety Scores Work</h2>
+  <div class="steps">
+    <div class="step"><div class="n">Step 1 · Data</div><p>We pull rolling 12-month crime statistics from the Police.uk API — and Police Scotland for Scottish cities — for each area.</p></div>
+    <div class="step"><div class="n">Step 2 · Weighting</div><p>Crimes are weighted by category severity and normalised per 1,000 residents, so busy city centres aren't unfairly penalised for footfall.</p></div>
+    <div class="step"><div class="n">Step 3 · Score</div><p>Each area gets a clear safety score across night safety, street safety, hotel security and cleanliness. Higher is safer. Updated weekly.</p></div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Important:</strong> Our scores reflect the wider postcode area, not the quality of any individual hotel. A higher-crime area doesn't mean a bad hotel — it means worth knowing before you book.</p>
+  </div>
+
+  <h2>Who It's For</h2>
+  <p>We built this for solo travellers, solo female travellers and business professionals who'd rather make an informed choice than hope for the best. If safety is the first thing you check when you book, you're who we had in mind.</p>
+
+  <h2>Our Promise</h2>
+  <div class="card">
+    <h3>Independent by design</h3>
+    <p>We earn a commission when you book through our partner links, at no extra cost to you. But our safety data is drawn from official police records — it is never influenced by which hotels we earn from. The crime figures are what they are. You can read the full detail on our <a class="inline" href="affiliate-disclosure.html">affiliate disclosure page</a>.</p>
+  </div>
+
+  <div class="cta-box">
+    <h2>Find a safe place to stay</h2>
+    <p>Search UK hotels ranked by real safety data, or browse our weekly city guides.</p>
+    <a href="search.html" class="cta-btn">🔍 Search Safe Hotels</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/">Home</a>
+    <a href="search.html">Search Hotels</a>
+    <a href="blog/">Blog</a>
+    <a href="about.html">About</a>
+    <a href="affiliate-disclosure.html">Affiliate Disclosure</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-bottom">
+    © 2026 SafeHotels.ai · Crime data sourced from <a href="https://data.police.uk" target="_blank">Police.uk</a> · We may earn a commission when you book through our links, at no extra cost to you.
+  </div>
+</footer>
+
+</body>
+</html>
