@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Southampton Safe for Solo Travellers? (2026) — Real Crime Data | SafeHotels.ai</title>
+<meta name="description" content="Is Southampton safe for solo travellers? We use real Police.uk crime data to score every neighbourhood — from Bassett to the city centre — so you know exactly where to book.">
+<meta name="keywords" content="is Southampton safe for solo travellers, safe areas Southampton, safe hotels Southampton, Southampton solo female travel, Southampton crime data">
+<link rel="canonical" href="https://safehotels.ai/blog/is-southampton-safe-for-solo-travellers.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --brand: #ff751f;
+  --brand-dim: rgba(255,117,31,0.12);
+  --brand-glow: rgba(255,117,31,0.35);
+  --navy: #080d1a;
+  --navy-mid: #0d1424;
+  --navy-card: #111828;
+  --navy-border: rgba(255,255,255,0.07);
+  --glass: rgba(255,255,255,0.035);
+  --text: #dde2f0;
+  --text-muted: #7a85a0;
+  --text-dim: #4a5370;
+  --green: #27ae60;
+  --yellow: #e67e22;
+  --red: #c0392b;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* BLOB BACKGROUND */
+#blogBlobs {
+  position: fixed; inset: 0;
+  z-index: 0; pointer-events: none; overflow: hidden;
+}
+#blogBlobs .blob {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 1;
+}
+@keyframes blobMove1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(120px,80px)} 66%{transform:translate(-60px,140px)} }
+@keyframes blobMove2 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-100px,-80px)} 66%{transform:translate(80px,-120px)} }
+@keyframes blobMove3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-80px,60px)} 66%{transform:translate(100px,-80px)} }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,13,26,0.9);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--navy-border);
+  padding: 0 2rem; height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-body); font-weight: 500; font-size: 1rem;
+  color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-logo strong { color: var(--brand); font-weight: 600; }
+.nav-cta {
+  background: var(--brand); color: #fff;
+  font-family: var(--font-body); font-weight: 500; font-size: 0.82rem;
+  padding: 0.45rem 1.1rem; border-radius: 6px; text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.nav-cta:hover { background: #ff8c3a; box-shadow: 0 0 20px var(--brand-glow); }
+
+/* SCROLL BAR */
+.scroll-bar {
+  position: fixed; top: 58px; left: 0; height: 2px; width: 0%;
+  background: var(--brand); z-index: 99;
+  box-shadow: 0 0 8px var(--brand-glow);
+  transition: width 0.08s linear;
+}
+
+/* HERO */
+.hero {
+  max-width: 820px; margin: 0 auto;
+  padding: 64px 2rem 48px;
+  position: relative; z-index: 1;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: var(--brand-dim);
+  border: 1px solid rgba(255,117,31,0.22);
+  color: var(--brand);
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 0.3rem 0.85rem; border-radius: 100px;
+  margin-bottom: 1.4rem;
+}
+.hero-tag::before {
+  content: ''; width: 5px; height: 5px;
+  background: var(--brand); border-radius: 50%;
+  animation: blink 2.2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 55%{opacity:0.25;} }
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.8vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.1rem;
+  max-width: 640px;
+  background: linear-gradient(90deg,#ffffff 0%,#ffe0c8 30%,#ffffff 50%,#ffc49a 70%,#ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+h1 em { font-style: normal; -webkit-text-fill-color: #ff751f; color: #ff751f; }
+
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 1.2rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.8rem; color: var(--text-muted);
+}
+
+.hero-intro {
+  font-size: 1.05rem; color: var(--text-muted);
+  font-weight: 300; line-height: 1.75;
+  max-width: 620px; margin-bottom: 1.75rem;
+}
+
+/* AUDIO PLAYER */
+.audio-player {
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.audio-top {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+.play-btn {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: var(--brand); border: none; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.play-btn:hover { background: #ff8c3a; transform: scale(1.07); box-shadow: 0 0 18px var(--brand-glow); }
+.play-btn.paused { background: rgba(255,255,255,0.07); border: 1px solid var(--navy-border); }
+.play-btn svg { width: 15px; height: 15px; fill: #fff; }
+
+.audio-info { flex: 1; min-width: 0; }
+.audio-title { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+.audio-status { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+.wave-bars { display: flex; align-items: center; gap: 2px; height: 20px; }
+.wave-bars span {
+  display: block; width: 3px; border-radius: 2px;
+  background: var(--brand); animation: wavebar 0.9s ease-in-out infinite; opacity: 0;
+}
+.wave-bars.active span { opacity: 1; }
+.wave-bars span:nth-child(1){height:5px; animation-delay:0s;}
+.wave-bars span:nth-child(2){height:14px;animation-delay:.12s;}
+.wave-bars span:nth-child(3){height:20px;animation-delay:.24s;}
+.wave-bars span:nth-child(4){height:10px;animation-delay:.36s;}
+.wave-bars span:nth-child(5){height:6px; animation-delay:.48s;}
+@keyframes wavebar { 0%,100%{transform:scaleY(0.35);} 50%{transform:scaleY(1);} }
+
+.progress-track {
+  height: 4px; background: rgba(255,255,255,0.07);
+  border-radius: 100px; cursor: pointer; margin-bottom: 0.85rem;
+}
+.progress-fill {
+  height: 100%; background: var(--brand); border-radius: 100px;
+  width: 0%; pointer-events: none; transition: width 0.5s linear;
+}
+
+.audio-controls {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.ctrl-group {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.72rem; color: var(--text-muted);
+}
+.ctrl-group select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--navy-border); border-radius: 6px;
+  color: var(--text); font-family: var(--font-body); font-size: 0.72rem;
+  padding: 0.22rem 0.5rem; cursor: pointer; max-width: 150px;
+}
+.ctrl-group input[type=range] {
+  -webkit-appearance: none; appearance: none;
+  width: 72px; height: 4px; padding: 0; border: none;
+  background: rgba(255,255,255,0.08); border-radius: 100px; cursor: pointer;
+}
+.ctrl-group input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--brand); cursor: pointer;
+}
+.speed-lbl { color: var(--brand); font-weight: 500; min-width: 28px; }
+
+/* HERO CTA */
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--brand); color: #fff;
+  font-family: var(--font-body); font-weight: 500; font-size: 0.95rem;
+  padding: 0.75rem 1.75rem; border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 24px var(--brand-glow);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.hero-cta:hover { background: #ff8c3a; transform: translateY(-2px); box-shadow: 0 8px 32px var(--brand-glow); }
+
+/* VERDICT STRIP */
+.verdict-wrap {
+  max-width: 820px; margin: 0 auto; padding: 0 2rem;
+  position: relative; z-index: 1;
+}
+.verdict-inner {
+  background: var(--glass);
+  border: 1px solid rgba(255,117,31,0.18);
+  border-radius: 14px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; overflow: hidden;
+}
+.v-item {
+  padding: 1.1rem 1.4rem; text-align: center;
+  border-right: 1px solid var(--navy-border);
+}
+.v-item:last-child { border-right: none; }
+.v-num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 2rem; color: var(--brand); line-height: 1; margin-bottom: 0.2rem;
+}
+.v-lbl { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* CONTENT */
+.content {
+  max-width: 820px; margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+  position: relative; z-index: 1;
+}
+h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  color: #fff; letter-spacing: -0.01em;
+  margin: 2.5rem 0 0.9rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+h2::before {
+  content: ''; display: block; width: 3px; height: 1.1em; flex-shrink: 0;
+  background: var(--brand); border-radius: 2px;
+}
+p { color: var(--text-muted); margin-bottom: 1.15rem; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+
+.callout {
+  border-left: 2px solid var(--brand);
+  background: var(--brand-dim);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.4rem; margin: 1.75rem 0;
+}
+.callout p { margin: 0; font-size: 0.9rem; color: var(--text); }
+.callout strong { color: var(--brand); }
+
+/* CRIME WIDGET */
+.crime-widget {
+  background: var(--navy-card); border: 1px solid var(--navy-border);
+  border-radius: 14px; padding: 1.5rem; margin: 1.75rem 0;
+}
+.cw-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;
+}
+.cw-title {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 0.9rem; color: #fff; display: flex; align-items: center; gap: 0.4rem;
+}
+.live-dot {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-size: 0.68rem; color: var(--text-dim);
+  background: rgba(255,255,255,0.03); border: 1px solid var(--navy-border);
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+}
+.live-dot::before {
+  content:''; width:5px; height:5px; background:var(--green);
+  border-radius:50%; animation:blink 2s infinite;
+}
+.cr { display:grid; grid-template-columns:130px 1fr 52px; align-items:center; gap:0.75rem; margin-bottom:0.6rem; }
+.cr:last-child { margin-bottom:0; }
+.cr-lbl { font-size:0.8rem; color:var(--text-muted); }
+.cr-track { height:6px; background:rgba(255,255,255,0.05); border-radius:100px; overflow:hidden; }
+.cr-fill { height:100%; border-radius:100px; width:0; transition:width 1.1s cubic-bezier(.4,0,.2,1); }
+.cr-val { font-size:0.75rem; color:var(--text); text-align:right; font-weight:500; }
+
+/* BENTO */
+.bento { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; margin:1.75rem 0; }
+.bc {
+  background:var(--navy-card); border:1px solid var(--navy-border);
+  border-radius:14px; padding:1.25rem;
+  position:relative; overflow:hidden;
+  opacity:0; transform:translateY(18px);
+  transition:border-color .25s, box-shadow .25s, transform .25s;
+}
+.bc.in { opacity:1; transform:translateY(0); transition:opacity .45s ease, transform .45s ease, border-color .25s, box-shadow .25s; }
+.bc:hover { border-color:rgba(255,117,31,0.28); box-shadow:0 6px 32px rgba(255,117,31,0.08); transform:translateY(-3px) !important; }
+.bc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--brand),transparent); opacity:0; transition:opacity .25s; }
+.bc:hover::after { opacity:1; }
+.bc.feat { grid-column:span 2; }
+
+.bc-name { font-family:var(--font-display); font-weight:600; font-size:1rem; color:#fff; margin-bottom:0.15rem; padding-right:58px; }
+.bc-code { font-size:0.68rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.09em; margin-bottom:0.9rem; }
+
+.ring-wrap { position:absolute; top:1rem; right:1rem; width:46px; height:46px; }
+.ring-wrap svg { width:46px; height:46px; transform:rotate(-90deg); }
+.ring-bg { fill:none; stroke:rgba(255,255,255,0.05); stroke-width:3.5; }
+.ring-fg { fill:none; stroke-width:3.5; stroke-linecap:round; stroke-dasharray:113; stroke-dashoffset:113; transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); }
+.ring-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.82rem; color:#fff; }
+
+.pills { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.75rem; }
+.pill { display:flex; align-items:center; gap:0.28rem; background:rgba(255,255,255,0.04); border:1px solid var(--navy-border); border-radius:100px; padding:0.18rem 0.55rem; font-size:0.68rem; color:var(--text-muted); }
+.dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+.g{background:var(--green);} .y{background:var(--yellow);} .r{background:var(--red);}
+.bc-desc { font-size:0.82rem; color:var(--text-muted); line-height:1.55; font-weight:300; }
+.badge { display:inline-flex; align-items:center; gap:0.25rem; font-size:0.67rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; padding:0.18rem 0.55rem; border-radius:100px; margin-top:0.65rem; }
+.b-g { background:rgba(39,174,96,.12); color:var(--green); border:1px solid rgba(39,174,96,.25); }
+.b-o { background:var(--brand-dim); color:var(--brand); border:1px solid rgba(255,117,31,.25); }
+.b-y { background:rgba(230,126,34,.12); color:var(--yellow); border:1px solid rgba(230,126,34,.25); }
+
+/* MID CTA */
+.mid-cta { background:linear-gradient(135deg,rgba(255,117,31,.1),rgba(17,24,40,.5)); border:1px solid rgba(255,117,31,.2); border-radius:14px; padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; margin:2.5rem 0; }
+.mid-cta h3 { font-family:var(--font-display); font-weight:600; font-size:1rem; color:#fff; margin-bottom:0.2rem; }
+.mid-cta p { margin:0; font-size:0.85rem; }
+.mid-btn { background:var(--brand); color:#fff; font-family:var(--font-body); font-weight:500; font-size:0.88rem; padding:0.65rem 1.4rem; border-radius:8px; text-decoration:none; white-space:nowrap; flex-shrink:0; transition:background .2s, transform .2s, box-shadow .2s; }
+.mid-btn:hover { background:#ff8c3a; transform:translateY(-1px); box-shadow:0 4px 20px var(--brand-glow); }
+
+/* TIPS */
+.tips { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin:1.5rem 0; }
+.tip { background:var(--navy-card); border:1px solid var(--navy-border); border-radius:12px; padding:1.15rem; opacity:0; transform:translateY(12px); transition:opacity .4s ease, transform .4s ease; }
+.tip.in { opacity:1; transform:translateY(0); }
+.tip-icon { font-size:1.35rem; margin-bottom:0.4rem; display:block; }
+.tip-title { font-family:var(--font-display); font-weight:600; font-size:0.88rem; color:#fff; margin-bottom:0.35rem; }
+.tip p { font-size:0.8rem; margin:0; line-height:1.5; }
+
+/* FAQ */
+.faq { margin: 2.5rem 0; }
+.faq-item { border: 1px solid var(--navy-border); border-radius: 12px; margin-bottom: 0.6rem; overflow: hidden; }
+.faq-q { width: 100%; background: var(--navy-card); border: none; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; padding: 1rem 1.25rem; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transition: background 0.2s; }
+.faq-q:hover { background: rgba(255,255,255,0.05); }
+.faq-q::after { content: '+'; font-size: 1.3rem; color: var(--brand); flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { display: none; padding: 0 1.25rem 1rem; background: var(--navy-card); font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
+
+/* FOOTER CTA */
+.footer-cta { text-align:center; padding:4rem 2rem 4.5rem; border-top:1px solid var(--navy-border); position:relative; z-index:1; }
+.footer-cta h2 { font-size:1.65rem; margin-bottom:0.6rem; justify-content:center; }
+.footer-cta h2::before { display:none; }
+.footer-cta p { max-width:440px; margin:0 auto 1.75rem; font-size:0.95rem; }
+.footer-cta-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--brand); color:#fff; font-family:var(--font-body); font-weight:500; font-size:1rem; padding:0.85rem 2.2rem; border-radius:10px; text-decoration:none; box-shadow:0 4px 30px var(--brand-glow); transition:background .2s, transform .2s, box-shadow .2s; }
+.footer-cta-btn:hover { background:#ff8c3a; transform:translateY(-2px); box-shadow:0 8px 40px var(--brand-glow); }
+
+/* RELATED */
+.related { max-width:820px; margin:0 auto; padding:0 2rem 4rem; position:relative; z-index:1; }
+.related h2 { font-size:1.1rem; margin-top:0; margin-bottom:1rem; }
+.rel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; }
+.rel-card { background:var(--navy-card); border:1px solid var(--navy-border); border-radius:12px; padding:1.1rem; text-decoration:none; display:block; transition:border-color .2s, transform .2s; }
+.rel-card:hover { border-color:rgba(255,117,31,.25); transform:translateY(-2px); }
+.rel-tag { font-size:0.68rem; color:var(--brand); font-weight:600; letter-spacing:0.07em; text-transform:uppercase; margin-bottom:0.35rem; }
+.rel-title { font-family:var(--font-display); font-size:0.85rem; font-weight:600; color:#fff; line-height:1.35; }
+
+footer { background:var(--navy-mid); border-top:1px solid var(--navy-border); padding:1.75rem 2rem; text-align:center; font-size:0.75rem; color:var(--text-dim); position:relative; z-index:1; }
+footer a { color:var(--brand); text-decoration:none; }
+
+@media(max-width:680px){
+  .bento,.rel-grid{grid-template-columns:1fr;}
+  .bc.feat{grid-column:span 1;}
+  .tips{grid-template-columns:1fr;}
+  .verdict-inner{grid-template-columns:1fr;}
+  .v-item{border-right:none;border-bottom:1px solid var(--navy-border);}
+  .v-item:last-child{border-bottom:none;}
+  .cr{grid-template-columns:100px 1fr 44px;}
+  .mid-cta{flex-direction:column;}
+  h1{font-size:1.75rem;}
+}
+</style>
+</head>
+<body>
+<div id="blogBlobs">
+  <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(255,117,31,0.45),transparent 70%);top:-150px;left:-150px;animation:blobMove1 18s ease-in-out infinite;"></div>
+  <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(15,52,96,0.7),transparent 70%);bottom:-100px;right:-100px;animation:blobMove2 22s ease-in-out infinite;"></div>
+  <div class="blob" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,117,31,0.25),transparent 70%);top:40%;left:30%;animation:blobMove3 26s ease-in-out infinite;"></div>
+</div>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<nav>
+  <a href="https://safehotels.ai" class="nav-logo"><img src="../logo.png" alt="SafeHotels.ai" height="36" style="border-radius:6px;display:block;"></a>
+  <a href="https://safehotels.ai/search?city=southampton" class="nav-cta">Search Southampton Hotels →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Real Crime Data · Updated Weekly</div>
+  <h1>Is <em>Southampton</em> Safe for Solo Travellers? (2026)</h1>
+  <div class="hero-meta">
+    <span>🕐 8 min read</span>
+    <span>📅 Updated July 2026</span>
+    <span>📍 Southampton, UK</span>
+    <span>🛡 Solo Traveller Guide</span>
+  </div>
+  <p class="hero-intro">Is Southampton safe for solo travellers? Mostly yes — but the answer changes street by street. We pulled real crime statistics from Police.uk for every Southampton postcode so you can pick your neighbourhood on evidence, not on a hunch.</p>
+
+  <!-- AUDIO PLAYER -->
+  <div class="audio-player">
+    <div class="audio-top">
+      <button class="play-btn" id="playBtn" onclick="audioToggle()">
+        <svg id="playIcon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <div class="audio-info">
+        <div class="audio-title">Listen to this article</div>
+        <div class="audio-status" id="audioStatus">Press play · reads article aloud</div>
+      </div>
+      <div class="wave-bars" id="waveBars">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="progress-track" id="progressTrack" onclick="seekTo(event)">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="audio-controls">
+      <div class="ctrl-group">
+        Voice
+        <select id="voiceSel" onchange="onVoiceChange()">
+          <option>Loading voices…</option>
+        </select>
+      </div>
+      <div class="ctrl-group">
+        Speed
+        <input type="range" id="speedRange" min="0.5" max="2" step="0.1" value="0.9" oninput="onSpeedChange()">
+        <span class="speed-lbl" id="speedLbl">0.9×</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://safehotels.ai/search?city=southampton" class="hero-cta">🔍 Search Safe Hotels in Southampton</a>
+</section>
+
+<div class="verdict-wrap">
+  <div class="verdict-inner">
+    <div class="v-item"><div class="v-num">7.3</div><div class="v-lbl">Overall Safety Score</div></div>
+    <div class="v-item"><div class="v-num">3</div><div class="v-lbl">Top Recommended Zones</div></div>
+    <div class="v-item"><div class="v-num" style="font-size:1.3rem;line-height:1.25;">Police.uk</div><div class="v-lbl">Crime Data Source</div></div>
+  </div>
+</div>
+
+<main class="content" id="articleContent">
+
+  <p>Southampton is a working port city that most visitors pass through rather than stay in — cruise passengers heading to the terminals, ferry travellers bound for the Isle of Wight, students arriving for term. That means a lot of people book a hotel here without knowing the city at all. <strong>And in Southampton, the gap between neighbourhoods is wider than the city's overall reputation suggests.</strong></p>
+
+  <p>So: is Southampton safe for solo travellers? Our composite safety score for the city is <strong>7.3 out of 10</strong> — solidly middle-of-the-road for an English city of this size. The city centre carries the bulk of recorded crime, while the leafy northern suburbs around Southampton Common score among the highest we've measured anywhere in Hampshire. A twenty-minute bus ride genuinely changes your risk profile.</p>
+
+  <h2>Southampton Safety Overview</h2>
+
+  <p>Southampton is policed by Hampshire and Isle of Wight Constabulary. Like most port cities, its recorded crime is heavily concentrated in a small geographic area — the retail and nightlife core around Above Bar Street, Bedford Place, and the WestQuay centre. <strong>Strip out that centre and Southampton's residential suburbs look genuinely quiet.</strong></p>
+
+  <p>One thing worth understanding before you read the numbers: shoplifting dominates Southampton's city-centre crime figures because of the scale of the WestQuay retail estate. That inflates the headline count considerably, but it has close to zero bearing on your personal safety as a visitor. What matters more for solo travellers is anti-social behaviour and theft from the person — both of which cluster tightly around the late-night drinking areas.</p>
+
+  <div class="callout">
+    <p><strong>How to read our scores:</strong> The SafeHotels.ai Safety Score is our own composite index — not an official police rating. It is calculated from rolling 12-month Police.uk data, weighted by crime category severity and normalised per 1,000 residents. Higher is safer. Police.uk covers England and Wales.</p>
+  </div>
+
+  <div class="crime-widget" id="crimeWidget">
+    <div class="cw-head">
+      <div class="cw-title">🛡 Crime Categories — Southampton City Centre (SO14)</div>
+      <div class="live-dot">Police.uk data</div>
+    </div>
+    <div class="cr"><span class="cr-lbl">Shoplifting</span><div class="cr-track"><div class="cr-fill" data-w="71" style="background:var(--yellow)"></div></div><span class="cr-val">Med–High</span></div>
+    <div class="cr"><span class="cr-lbl">Anti-social behaviour</span><div class="cr-track"><div class="cr-fill" data-w="64" style="background:var(--yellow)"></div></div><span class="cr-val">Medium</span></div>
+    <div class="cr"><span class="cr-lbl">Violence &amp; sexual</span><div class="cr-track"><div class="cr-fill" data-w="57" style="background:var(--red)"></div></div><span class="cr-val">Medium</span></div>
+    <div class="cr"><span class="cr-lbl">Theft from person</span><div class="cr-track"><div class="cr-fill" data-w="33" style="background:var(--yellow)"></div></div><span class="cr-val">Low–Med</span></div>
+    <div class="cr"><span class="cr-lbl">Vehicle crime</span><div class="cr-track"><div class="cr-fill" data-w="24" style="background:var(--green)"></div></div><span class="cr-val">Low</span></div>
+    <div class="cr"><span class="cr-lbl">Burglary</span><div class="cr-track"><div class="cr-fill" data-w="18" style="background:var(--green)"></div></div><span class="cr-val">Low</span></div>
+  </div>
+
+  <h2>The Safest Areas to Stay in Southampton</h2>
+
+  <p>Here are the neighbourhoods we recommend for solo travellers, scored across night safety, street safety, hotel security, and transport access. Every score below comes from the same Police.uk dataset, normalised the same way.</p>
+
+  <div class="bento" id="bento">
+
+    <div class="bc feat" data-pct="88" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">8.8</div></div>
+      <div class="bc-name">Bassett &amp; The Common</div>
+      <div class="bc-code">SO16 · Southampton</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Night Safety: High</div><div class="pill"><span class="dot g"></span>Street Safety: High</div><div class="pill"><span class="dot g"></span>Residential: Very Quiet</div></div>
+      <div class="bc-desc">Southampton's calmest option and our highest-scoring area in the city. Broad tree-lined avenues, large detached housing, and Southampton Common on the doorstep. Almost no night-time economy, which is exactly why the crime figures stay low. Hotel choice is thinner here than in the centre, but Uni-link buses run frequently into town and out to the station.</div>
+      <span class="badge b-o">★ Solo Female Friendly</span>
+      <span class="badge b-g" style="margin-left:.35rem;">Safest Pick</span>
+    </div>
+
+    <div class="bc" data-pct="84" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">8.4</div></div>
+      <div class="bc-name">Ocean Village &amp; Oxford Street</div>
+      <div class="bc-code">SO14 · Southampton</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Night Safety: Good</div><div class="pill"><span class="dot g"></span>Hotel Security: Excellent</div></div>
+      <div class="bc-desc">The marina district, and the best pairing of safety and hotel quality in Southampton. Gated waterfront developments, 24-hour reception hotels, and a restaurant strip on Oxford Street that stays busy without turning rowdy. Well lit and well overlooked. Handy for the cruise terminals, and a short walk from the Old Town walls.</div>
+      <span class="badge b-o">★ Solo Female Friendly</span>
+    </div>
+
+    <div class="bc" data-pct="83" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">8.3</div></div>
+      <div class="bc-name">Highfield</div>
+      <div class="bc-code">SO17 · Southampton</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Night Safety: Good</div><div class="pill"><span class="dot g"></span>Street Safety: High</div></div>
+      <div class="bc-desc">The university quarter, and quieter than that description suggests. Highfield proper is residential and green, sitting between the Common and Portswood. Steady footfall in term time and good street lighting on the main routes. A sensible choice if you want somewhere calm but still within a 25-minute walk of the centre.</div>
+      <span class="badge b-o">★ Solo Female Friendly</span>
+    </div>
+
+    <div class="bc" data-pct="76" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">7.6</div></div>
+      <div class="bc-name">Portswood</div>
+      <div class="bc-code">SO17 · Southampton</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Daytime: Very Safe</div><div class="pill"><span class="dot y"></span>Night Safety: Moderate</div></div>
+      <div class="bc-desc">Busy student high street with independent cafés, takeaways, and a supermarket that never seems to close. Genuinely lively and well populated, which helps — but the bar trade pushes anti-social behaviour figures up on weekend nights. Fine to stay in; just pick a side street rather than a room above Portswood Road itself.</div>
+      <span class="badge b-g">Good Safety Rating</span>
+    </div>
+
+    <div class="bc" data-pct="69" data-col="#e67e22">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#e67e22"/></svg><div class="ring-num">6.9</div></div>
+      <div class="bc-name">City Centre &amp; Above Bar</div>
+      <div class="bc-code">SO14 · Southampton</div>
+      <div class="pills"><div class="pill"><span class="dot y"></span>Night Safety: Moderate</div><div class="pill"><span class="dot g"></span>Transport: Excellent</div></div>
+      <div class="bc-desc">Where the hotels are cheapest and the crime data is heaviest. Retail crime accounts for much of it, but anti-social behaviour around Bedford Place and the Above Bar strip is real after 11pm. Unbeatable for transport — Southampton Central and the coach station are both close. Perfectly workable if you're back before the pubs empty.</div>
+      <span class="badge b-y">⚠ Night Awareness Advised</span>
+    </div>
+
+  </div>
+
+  <div class="mid-cta">
+    <div><h3>Ready to find your hotel?</h3><p>Search Southampton hotels with postcode-level Police.uk crime data attached to every result.</p></div>
+    <a href="https://safehotels.ai/search?city=southampton" class="mid-btn">Search Safe Hotels in Southampton →</a>
+  </div>
+
+  <h2>Map of Safe Areas</h2>
+  <p>Use this map to get your bearings before you book. The strongest-scoring areas run in a band north of the centre, from Ocean Village up through Highfield to Bassett and the Common.</p>
+  <div style="border-radius:14px;overflow:hidden;border:1px solid var(--navy-border);margin:1.75rem 0;">
+    <iframe
+      title="Safe areas map"
+      width="100%"
+      height="380"
+      style="border:0;display:block;"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD7y7UfmLhCBGMobJO8tzZ-6b-i8rKfs8E&q=hotels+Southampton+city+centre&zoom=13">
+    </iframe>
+  </div>
+
+  <h2>Areas to Approach with Caution</h2>
+
+  <p><strong>Bevois Valley and St Mary's</strong> record the highest concentration of violence and anti-social behaviour incidents in our Southampton dataset. Both sit just north-east of the centre and are heavily residential, so you're unlikely to book there by accident — but a few budget listings do appear on the fringes, and we'd steer solo travellers elsewhere.</p>
+
+  <p><strong>Bedford Place after 11pm</strong> is Southampton's main late-night drinking strip. It isn't dangerous in daylight and plenty of solo travellers eat there happily, but incident data spikes sharply at closing time on Fridays and Saturdays. <strong>Northam and the industrial edges near the docks</strong> are poorly lit, sparsely populated at night, and worth avoiding as a walking route regardless of where you're staying.</p>
+
+  <h2>Practical Safety Tips for Southampton</h2>
+
+  <div class="tips" id="tips">
+    <div class="tip"><span class="tip-icon">🚌</span><div class="tip-title">Use Uni-link, Not the Backstreets</div><p>The U1, U2 and U6 buses connect the centre, the station, Portswood and Bassett until late, and run far more often than the timetable suggests. Cheaper than a taxi and better than a 30-minute walk in the dark.</p></div>
+    <div class="tip"><span class="tip-icon">📍</span><div class="tip-title">Check the Postcode First</div><p>Enter any hotel's postcode into our search tool to see Police.uk crime data for that exact area. SO16 and SO17 consistently outperform SO14 on our index.</p></div>
+    <div class="tip"><span class="tip-icon">🚢</span><div class="tip-title">Cruise Passengers: Book Near the Water</div><p>If you have an early terminal call, Ocean Village and the Old Town put you within a short, well-lit transfer. Avoid booking out near the airport and hoping for a 5am taxi.</p></div>
+    <div class="tip"><span class="tip-icon">🌙</span><div class="tip-title">Plan the Route Back</div><p>Most solo traveller incidents happen on the walk home, not out. Southampton's parks and the Common are lovely by day and very dark by night — take the lit main roads instead.</p></div>
+  </div>
+
+  <h2>When to Visit Southampton</h2>
+
+  <p>Southampton's rhythm is set by two things: the cruise calendar and the university term. <strong>April to October</strong> is peak cruise season, which means more people, higher hotel prices, and a busier centre — though also more staffed, more overlooked public space. <strong>September and January</strong> bring student arrivals, pushing weekend night-time activity up in Portswood and Bedford Place.</p>
+
+  <p>The sweet spot for solo travellers is <strong>late October through March</strong>, outside cruise season and outside freshers. Hotels are cheaper, the centre is calmer, and our monthly crime data for SO14 consistently reads lower in the winter months than in July and August.</p>
+
+  <div class="callout">
+    <p><strong>Solo Female Traveller Note:</strong> Bassett, Ocean Village and Highfield are the three Southampton areas that carry our Solo Female Friendly badge. The badge is awarded on crime data alone — specifically, low rates of violent and sexual offences and low anti-social behaviour across a rolling 12-month period — not on user ratings or reviews.</p>
+  </div>
+
+  <h2>How We Score Southampton Hotels</h2>
+
+  <p>Every hotel on SafeHotels.ai is scored using Police.uk crime data for its exact postcode, weighted across the crime categories that actually matter to a solo traveller: violence and sexual offences, anti-social behaviour, theft from the person, and robbery. <strong>A hotel with excellent booking-site reviews that sits in a high-crime postcode will show a lower SafeHotels.ai score than its star rating suggests.</strong> That's the whole point of the index.</p>
+
+  <p>We publish the score as a composite index of our own making. It is not an official police safety rating, and no such rating exists — Police.uk publishes raw incident data, and the interpretation is ours. If you want to check our working, every figure we use is publicly available at data.police.uk.</p>
+
+  <!-- ══ FAQ SECTION ══ -->
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq" id="faqSection">
+    <div class="faq-item">
+      <button class="faq-q">Is Southampton safe for solo travellers?</button>
+      <div class="faq-a">Yes, for the most part. Southampton scores 7.3 on our composite safety index — typical for an English city of its size. The safest areas for solo travellers are Bassett and the Common (SO16), Ocean Village (SO14) and Highfield (SO17). The city centre around Above Bar and Bedford Place records notably higher crime, particularly late at night.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Which area of Southampton has the lowest crime rate?</button>
+      <div class="faq-a">Bassett and the area around Southampton Common (SO16) record the lowest crime rates in the city on Police.uk data. It scores 8.8 on our safety index — the highest of any Southampton neighbourhood we measure — largely because it is residential with almost no night-time economy.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is Southampton city centre safe at night?</button>
+      <div class="faq-a">Southampton city centre is fine during the day and early evening but scores 6.9 on our index, held down by anti-social behaviour around the Bedford Place and Above Bar drinking strips after 11pm. If you stay centrally, plan a lit main-road route back to your hotel and avoid cutting through the parks.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is Southampton safe for solo female travellers?</button>
+      <div class="faq-a">Bassett, Ocean Village and Highfield all carry our Solo Female Friendly badge. We award it based on Police.uk crime data — specifically low rates of violent and sexual offences and low anti-social behaviour over a rolling 12 months — rather than on user reviews. All three are calm after dark and well connected by the Uni-link bus network.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Where should cruise passengers stay in Southampton?</button>
+      <div class="faq-a">Ocean Village and the Old Town are the best options for cruise passengers. Both are close to the terminals, score well on our index, and have hotels with 24-hour reception — which matters if you have an early departure. Booking near Southampton Airport to save money often costs you more in an early-morning taxi.</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ FAQ SCHEMA MARKUP ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Southampton safe for solo travellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for the most part. Southampton scores 7.3 on the SafeHotels.ai composite safety index, typical for an English city of its size. The safest areas for solo travellers are Bassett and the Common (SO16), Ocean Village (SO14) and Highfield (SO17). The city centre around Above Bar and Bedford Place records notably higher crime, particularly late at night."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which area of Southampton has the lowest crime rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bassett and the area around Southampton Common (SO16) record the lowest crime rates in the city on Police.uk data. It scores 8.8 on our safety index, the highest of any Southampton neighbourhood we measure, largely because it is residential with almost no night-time economy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Southampton city centre safe at night?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Southampton city centre is fine during the day and early evening but scores 6.9 on our index, held down by anti-social behaviour around the Bedford Place and Above Bar drinking strips after 11pm. If you stay centrally, plan a lit main-road route back to your hotel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Southampton safe for solo female travellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bassett, Ocean Village and Highfield all carry the SafeHotels.ai Solo Female Friendly badge, awarded on Police.uk crime data — low rates of violent and sexual offences and low anti-social behaviour over a rolling 12 months — rather than on user reviews."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should cruise passengers stay in Southampton?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ocean Village and the Old Town are the best options for cruise passengers. Both are close to the terminals, score well on our index, and have hotels with 24-hour reception, which matters if you have an early departure."
+      }
+    }
+  ]
+}
+</script>
+
+<div class="footer-cta">
+  <h2>Search Safe Hotels in Southampton</h2>
+  <p>Real Police.uk crime data at postcode level, attached to live hotel availability — all in one search.</p>
+  <a href="https://safehotels.ai/search?city=southampton" class="footer-cta-btn">🔍 Search Southampton Hotels →</a>
+</div>
+
+<section class="related">
+  <h2>Related Guides</h2>
+  <div class="rel-grid" id="relatedGrid"></div>
+</section>
+
+<script>
+// ── RANDOM RELATED ARTICLES ──
+(function() {
+  var allArticles = [
+    { url: '../blog/safest-areas-to-stay-in-london.html', tag: 'London', title: 'Safest Areas to Stay in London (2026) — Real Crime Data' },
+    { url: '../blog/safest-cities-uk-solo-female.html', tag: 'Solo Female', title: '10 Safest UK Cities for Solo Female Travellers (2026)' },
+    { url: '../blog/safest-areas-manchester.html', tag: 'Manchester', title: 'Safest Areas to Stay in Manchester (2026) — Real Crime Data' },
+    { url: '../blog/safest-areas-edinburgh.html', tag: 'Edinburgh', title: 'Safest Areas to Stay in Edinburgh (2026) — Real Crime Data' },
+    { url: '../blog/is-birmingham-safe-for-tourists.html', tag: 'Birmingham', title: 'Is Birmingham Safe for Tourists? (Honest 2026 Review)' },
+    { url: '../blog/is-coventry-safe-for-solo-travellers.html', tag: 'Coventry', title: 'Is Coventry Safe for Solo Travellers? (2026) — Real Crime Data' },
+    { url: '../blog/is-leicester-safe-for-solo-travellers.html', tag: 'Leicester', title: 'Is Leicester Safe for Solo Travellers? (2026) — Real Crime Data' },
+    { url: '../blog/solo-female-travel-uk-hotel-safety-guide.html', tag: 'Solo Female', title: 'The Ultimate Solo Female Travel Hotel Safety Guide — UK' },
+    { url: '../blog/hotel-safety-tips-uk.html', tag: 'Safety Tips', title: '10 Hotel Safety Tips Every Traveller Should Know' },
+  ];
+
+  // Get current page filename to exclude it from results
+  var current = window.location.pathname.split('/').pop();
+
+  // Filter out current article then shuffle
+  var pool = allArticles.filter(function(a) {
+    return a.url.split('/').pop() !== current;
+  });
+
+  // Shuffle array
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = pool[i]; pool[i] = pool[j]; pool[j] = temp;
+  }
+
+  // Pick first 3
+  var picks = pool.slice(0, 3);
+  var grid = document.getElementById('relatedGrid');
+  picks.forEach(function(a) {
+    grid.innerHTML += '<a href="' + a.url + '" class="rel-card"><div class="rel-tag">' + a.tag + '</div><div class="rel-title">' + a.title + '</div></a>';
+  });
+})();
+</script>
+
+<footer>
+  <p>© 2026 SafeHotels.ai · <a href="https://safehotels.ai/privacy">Privacy Policy</a> · Crime data sourced from <a href="https://data.police.uk" target="_blank">Police.uk</a> · Affiliate partnerships include Travelpayouts and CJ Affiliate</p>
+</footer>
+
+<script>
+
+// Hide audio player on Android devices
+(function() {
+  if (/android/i.test(navigator.userAgent)) {
+    var player = document.querySelector('.audio-player');
+    if (player) player.style.display = 'none';
+  }
+})();
+
+// SCROLL BAR
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  document.getElementById('scrollBar').style.width =
+    (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+});
+
+// SCROLL ANIMATIONS
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    setTimeout(() => {
+      el.classList.add('in');
+      el.querySelectorAll('.ring-fg').forEach(ring => {
+        const pct = parseInt(el.dataset.pct || 0);
+        ring.style.strokeDashoffset = 113 - (pct / 100) * 113;
+      });
+    }, i * 90);
+    io.unobserve(el);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.bc, .tip').forEach(el => io.observe(el));
+
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.cr-fill').forEach(b => { if (b.dataset.w) b.style.width = b.dataset.w + '%'; });
+    cio.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+const cw = document.getElementById('crimeWidget');
+if (cw) cio.observe(cw);
+
+
+// ── AUDIO PLAYER ──
+const synth = window.speechSynthesis;
+let utter = null;
+let playing = false;
+let paused = false;
+let orderedVoices = [];
+let progressTimer = null;
+let progressStart = 0;
+let progressDuration = 0;
+let progressOffset = 0; // for seeks
+
+function loadVoices() {
+  if (!synth) return;
+  const all = synth.getVoices();
+  const uk = all.filter(v => v.lang === 'en-GB');
+  const en = all.filter(v => v.lang.startsWith('en') && v.lang !== 'en-GB');
+  orderedVoices = [...uk, ...en];
+  if (!orderedVoices.length) orderedVoices = all;
+
+  const sel = document.getElementById('voiceSel');
+  sel.innerHTML = '';
+  orderedVoices.forEach((v, i) => {
+    const o = document.createElement('option');
+    o.value = i;
+    o.textContent = v.name + (v.lang === 'en-GB' ? ' 🇬🇧' : v.lang.startsWith('en') ? ' 🇺🇸' : '');
+    sel.appendChild(o);
+  });
+
+  // pick best default
+  const best = uk.find(v => /female|woman/i.test(v.name)) || uk[0] || en[0] || orderedVoices[0];
+  sel.value = orderedVoices.indexOf(best);
+}
+
+if (synth) { synth.onvoiceschanged = loadVoices; loadVoices(); }
+
+function getVoice() {
+  const idx = parseInt(document.getElementById('voiceSel').value);
+  return orderedVoices[idx] || null;
+}
+function getSpeed() { return parseFloat(document.getElementById('speedRange').value); }
+function getArticleText() {
+  const el = document.getElementById('articleContent');
+  return el ? el.innerText.replace(/\s+/g, ' ').trim() : '';
+}
+
+function setUI(state) { // 'playing' | 'paused' | 'stopped'
+  const btn = document.getElementById('playBtn');
+  const icon = document.getElementById('playIcon');
+  const status = document.getElementById('audioStatus');
+  const wave = document.getElementById('waveBars');
+
+  if (state === 'playing') {
+    icon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    btn.classList.remove('paused');
+    wave.classList.add('active');
+    status.textContent = 'Now playing…';
+  } else if (state === 'paused') {
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+    btn.classList.add('paused');
+    wave.classList.remove('active');
+    status.textContent = 'Paused — press play to resume';
+  } else {
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+    btn.classList.remove('paused');
+    wave.classList.remove('active');
+    status.textContent = 'Press play · reads article aloud';
+    document.getElementById('progressFill').style.width = '0%';
+  }
+}
+
+function startProgressTimer(durationMs, startPct = 0) {
+  stopProgressTimer();
+  progressStart = Date.now();
+  progressDuration = durationMs * (1 - startPct / 100);
+  progressOffset = startPct;
+  progressTimer = setInterval(() => {
+    const elapsed = Date.now() - progressStart;
+    const pct = Math.min(progressOffset + (elapsed / progressTimer._duration) * (100 - progressOffset), 99);
+    document.getElementById('progressFill').style.width = pct + '%';
+  }, 300);
+  // store duration on timer for calculation
+  progressTimer._duration = progressDuration;
+}
+
+function stopProgressTimer() {
+  if (progressTimer) { clearInterval(progressTimer); progressTimer = null; }
+}
+
+function estimateDuration(text, rate) {
+  return (text.split(' ').length / (160 * rate)) * 60000;
+}
+
+function speak(text, startPct = 0) {
+  synth.cancel();
+  const charStart = Math.floor((startPct / 100) * text.length);
+  const slice = startPct > 0 ? text.slice(charStart) : text;
+
+  utter = new SpeechSynthesisUtterance(slice);
+  utter.rate = getSpeed();
+  utter.pitch = 1;
+  utter.lang = 'en-GB';
+  const v = getVoice();
+  if (v) utter.voice = v;
+
+  utter.onstart = () => { playing = true; paused = false; setUI('playing'); startProgressTimer(estimateDuration(text, getSpeed()), startPct); };
+  utter.onpause = () => { paused = true; setUI('paused'); stopProgressTimer(); };
+  utter.onresume = () => { paused = false; setUI('playing'); };
+  utter.onend = () => { playing = false; paused = false; stopProgressTimer(); document.getElementById('progressFill').style.width = '100%'; setTimeout(() => setUI('stopped'), 600); };
+  utter.onerror = (e) => { if (e.error !== 'interrupted') { playing = false; paused = false; setUI('stopped'); stopProgressTimer(); } };
+
+  synth.speak(utter);
+}
+
+function audioToggle() {
+  if (!synth) { alert('Text-to-speech is not supported in your browser.'); return; }
+  if (playing && !paused) { synth.pause(); return; }
+  if (paused) { synth.resume(); setUI('playing'); return; }
+  speak(getArticleText());
+}
+
+function onVoiceChange() { if (playing) { speak(getArticleText()); } }
+
+function onSpeedChange() {
+  const v = getSpeed();
+  document.getElementById('speedLbl').textContent = v.toFixed(1) + '×';
+  if (playing) { speak(getArticleText()); }
+}
+
+function seekTo(e) {
+  const track = document.getElementById('progressTrack');
+  const pct = (e.offsetX / track.offsetWidth) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  if (playing || paused) {
+    playing = false; paused = false;
+    speak(getArticleText(), pct);
+  }
+}
+
+// ── FAQ TOGGLE ──
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = this.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+window.addEventListener('beforeunload', () => { if (synth) synth.cancel(); });
+</script>
+</body>
+</html>
