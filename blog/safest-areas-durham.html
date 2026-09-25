@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safest Areas to Stay in Durham (2026) — Real Crime Data | SafeHotels.ai</title>
+<meta name="description" content="The safest areas to stay in Durham for solo travellers, based on real Police.uk crime data — top neighbourhoods, night safety, and honest advice for solo female visitors.">
+<meta name="keywords" content="safest areas Durham, safe hotels Durham, Durham solo female travel, safest areas to stay Durham, Durham crime data, is Durham safe">
+<link rel="canonical" href="https://safehotels.ai/blog/safest-areas-durham">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --brand: #ff751f;
+  --brand-dim: rgba(255,117,31,0.12);
+  --brand-glow: rgba(255,117,31,0.35);
+  --navy: #080d1a;
+  --navy-mid: #0d1424;
+  --navy-card: #111828;
+  --navy-border: rgba(255,255,255,0.07);
+  --glass: rgba(255,255,255,0.035);
+  --text: #dde2f0;
+  --text-muted: #7a85a0;
+  --text-dim: #4a5370;
+  --green: #27ae60;
+  --yellow: #e67e22;
+  --red: #c0392b;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* BLOB BACKGROUND */
+#blogBlobs {
+  position: fixed; inset: 0;
+  z-index: 0; pointer-events: none; overflow: hidden;
+}
+#blogBlobs .blob {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 1;
+}
+@keyframes blobMove1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(120px,80px)} 66%{transform:translate(-60px,140px)} }
+@keyframes blobMove2 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-100px,-80px)} 66%{transform:translate(80px,-120px)} }
+@keyframes blobMove3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-80px,60px)} 66%{transform:translate(100px,-80px)} }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,13,26,0.9);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--navy-border);
+  padding: 0 2rem; height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-body); font-weight: 500; font-size: 1rem;
+  color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-logo strong { color: var(--brand); font-weight: 600; }
+.nav-cta {
+  background: var(--brand); color: #fff;
+  font-family: var(--font-body); font-weight: 500; font-size: 0.82rem;
+  padding: 0.45rem 1.1rem; border-radius: 6px; text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.nav-cta:hover { background: #ff8c3a; box-shadow: 0 0 20px var(--brand-glow); }
+
+/* SCROLL BAR */
+.scroll-bar {
+  position: fixed; top: 58px; left: 0; height: 2px; width: 0%;
+  background: var(--brand); z-index: 99;
+  box-shadow: 0 0 8px var(--brand-glow);
+  transition: width 0.08s linear;
+}
+
+/* HERO */
+.hero {
+  max-width: 820px; margin: 0 auto;
+  padding: 64px 2rem 48px;
+  position: relative; z-index: 1;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: var(--brand-dim);
+  border: 1px solid rgba(255,117,31,0.22);
+  color: var(--brand);
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 0.3rem 0.85rem; border-radius: 100px;
+  margin-bottom: 1.4rem;
+}
+.hero-tag::before {
+  content: ''; width: 5px; height: 5px;
+  background: var(--brand); border-radius: 50%;
+  animation: blink 2.2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 55%{opacity:0.25;} }
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.8vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.1rem;
+  max-width: 640px;
+  background: linear-gradient(90deg,#ffffff 0%,#ffe0c8 30%,#ffffff 50%,#ffc49a 70%,#ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+h1 em { font-style: normal; -webkit-text-fill-color: #ff751f; color: #ff751f; }
+
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 1.2rem;
+  margin-bottom: 1.4rem;
+  font-size: 0.8rem; color: var(--text-muted);
+}
+
+.hero-intro {
+  font-size: 1.05rem; color: var(--text-muted);
+  font-weight: 300; line-height: 1.75;
+  max-width: 620px; margin-bottom: 1.75rem;
+}
+
+/* AUDIO PLAYER */
+.audio-player {
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.audio-top {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+.play-btn {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: var(--brand); border: none; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.play-btn:hover { background: #ff8c3a; transform: scale(1.07); box-shadow: 0 0 18px var(--brand-glow); }
+.play-btn.paused { background: rgba(255,255,255,0.07); border: 1px solid var(--navy-border); }
+.play-btn svg { width: 15px; height: 15px; fill: #fff; }
+
+.audio-info { flex: 1; min-width: 0; }
+.audio-title { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+.audio-status { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+.wave-bars { display: flex; align-items: center; gap: 2px; height: 20px; }
+.wave-bars span {
+  display: block; width: 3px; border-radius: 2px;
+  background: var(--brand); animation: wavebar 0.9s ease-in-out infinite; opacity: 0;
+}
+.wave-bars.active span { opacity: 1; }
+.wave-bars span:nth-child(1){height:5px; animation-delay:0s;}
+.wave-bars span:nth-child(2){height:14px;animation-delay:.12s;}
+.wave-bars span:nth-child(3){height:20px;animation-delay:.24s;}
+.wave-bars span:nth-child(4){height:10px;animation-delay:.36s;}
+.wave-bars span:nth-child(5){height:6px; animation-delay:.48s;}
+@keyframes wavebar { 0%,100%{transform:scaleY(0.35);} 50%{transform:scaleY(1);} }
+
+.progress-track {
+  height: 4px; background: rgba(255,255,255,0.07);
+  border-radius: 100px; cursor: pointer; margin-bottom: 0.85rem;
+}
+.progress-fill {
+  height: 100%; background: var(--brand); border-radius: 100px;
+  width: 0%; pointer-events: none; transition: width 0.5s linear;
+}
+
+.audio-controls {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.ctrl-group {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.72rem; color: var(--text-muted);
+}
+.ctrl-group select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--navy-border); border-radius: 6px;
+  color: var(--text); font-family: var(--font-body); font-size: 0.72rem;
+  padding: 0.22rem 0.5rem; cursor: pointer; max-width: 150px;
+}
+.ctrl-group input[type=range] {
+  -webkit-appearance: none; appearance: none;
+  width: 72px; height: 4px; padding: 0; border: none;
+  background: rgba(255,255,255,0.08); border-radius: 100px; cursor: pointer;
+}
+.ctrl-group input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--brand); cursor: pointer;
+}
+.speed-lbl { color: var(--brand); font-weight: 500; min-width: 28px; }
+
+/* HERO CTA */
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--brand); color: #fff;
+  font-family: var(--font-body); font-weight: 500; font-size: 0.95rem;
+  padding: 0.75rem 1.75rem; border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 24px var(--brand-glow);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.hero-cta:hover { background: #ff8c3a; transform: translateY(-2px); box-shadow: 0 8px 32px var(--brand-glow); }
+
+/* VERDICT STRIP */
+.verdict-wrap {
+  max-width: 820px; margin: 0 auto; padding: 0 2rem;
+  position: relative; z-index: 1;
+}
+.verdict-inner {
+  background: var(--glass);
+  border: 1px solid rgba(255,117,31,0.18);
+  border-radius: 14px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; overflow: hidden;
+}
+.v-item {
+  padding: 1.1rem 1.4rem; text-align: center;
+  border-right: 1px solid var(--navy-border);
+}
+.v-item:last-child { border-right: none; }
+.v-num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 2rem; color: var(--brand); line-height: 1; margin-bottom: 0.2rem;
+}
+.v-lbl { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* CONTENT */
+.content {
+  max-width: 820px; margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+  position: relative; z-index: 1;
+}
+h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  color: #fff; letter-spacing: -0.01em;
+  margin: 2.5rem 0 0.9rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+h2::before {
+  content: ''; display: block; width: 3px; height: 1.1em; flex-shrink: 0;
+  background: var(--brand); border-radius: 2px;
+}
+p { color: var(--text-muted); margin-bottom: 1.15rem; font-weight: 300; }
+p strong { color: var(--text); font-weight: 500; }
+
+.callout {
+  border-left: 2px solid var(--brand);
+  background: var(--brand-dim);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.4rem; margin: 1.75rem 0;
+}
+.callout p { margin: 0; font-size: 0.9rem; color: var(--text); }
+.callout strong { color: var(--brand); }
+
+/* CRIME WIDGET */
+.crime-widget {
+  background: var(--navy-card); border: 1px solid var(--navy-border);
+  border-radius: 14px; padding: 1.5rem; margin: 1.75rem 0;
+}
+.cw-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;
+}
+.cw-title {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 0.9rem; color: #fff; display: flex; align-items: center; gap: 0.4rem;
+}
+.live-dot {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-size: 0.68rem; color: var(--text-dim);
+  background: rgba(255,255,255,0.03); border: 1px solid var(--navy-border);
+  padding: 0.2rem 0.6rem; border-radius: 100px;
+}
+.live-dot::before {
+  content:''; width:5px; height:5px; background:var(--green);
+  border-radius:50%; animation:blink 2s infinite;
+}
+.cr { display:grid; grid-template-columns:130px 1fr 62px; align-items:center; gap:0.75rem; margin-bottom:0.6rem; }
+.cr:last-child { margin-bottom:0; }
+.cr-lbl { font-size:0.8rem; color:var(--text-muted); }
+.cr-track { height:6px; background:rgba(255,255,255,0.05); border-radius:100px; overflow:hidden; }
+.cr-fill { height:100%; border-radius:100px; width:0; transition:width 1.1s cubic-bezier(.4,0,.2,1); }
+.cr-val { font-size:0.75rem; color:var(--text); text-align:right; font-weight:500; }
+
+/* BENTO */
+.bento { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; margin:1.75rem 0; }
+.bc {
+  background:var(--navy-card); border:1px solid var(--navy-border);
+  border-radius:14px; padding:1.25rem;
+  position:relative; overflow:hidden;
+  opacity:0; transform:translateY(18px);
+  transition:border-color .25s, box-shadow .25s, transform .25s;
+}
+.bc.in { opacity:1; transform:translateY(0); transition:opacity .45s ease, transform .45s ease, border-color .25s, box-shadow .25s; }
+.bc:hover { border-color:rgba(255,117,31,0.28); box-shadow:0 6px 32px rgba(255,117,31,0.08); transform:translateY(-3px) !important; }
+.bc::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--brand),transparent); opacity:0; transition:opacity .25s; }
+.bc:hover::after { opacity:1; }
+.bc.feat { grid-column:span 2; }
+
+.bc-name { font-family:var(--font-display); font-weight:600; font-size:1rem; color:#fff; margin-bottom:0.15rem; padding-right:58px; }
+.bc-code { font-size:0.68rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.09em; margin-bottom:0.9rem; }
+
+.ring-wrap { position:absolute; top:1rem; right:1rem; width:46px; height:46px; }
+.ring-wrap svg { width:46px; height:46px; transform:rotate(-90deg); }
+.ring-bg { fill:none; stroke:rgba(255,255,255,0.05); stroke-width:3.5; }
+.ring-fg { fill:none; stroke-width:3.5; stroke-linecap:round; stroke-dasharray:113; stroke-dashoffset:113; transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); }
+.ring-num { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:0.82rem; color:#fff; }
+
+.pills { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.75rem; }
+.pill { display:flex; align-items:center; gap:0.28rem; background:rgba(255,255,255,0.04); border:1px solid var(--navy-border); border-radius:100px; padding:0.18rem 0.55rem; font-size:0.68rem; color:var(--text-muted); }
+.dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+.g{background:var(--green);} .y{background:var(--yellow);} .r{background:var(--red);}
+.bc-desc { font-size:0.82rem; color:var(--text-muted); line-height:1.55; font-weight:300; }
+.badge { display:inline-flex; align-items:center; gap:0.25rem; font-size:0.67rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; padding:0.18rem 0.55rem; border-radius:100px; margin-top:0.65rem; }
+.b-g { background:rgba(39,174,96,.12); color:var(--green); border:1px solid rgba(39,174,96,.25); }
+.b-o { background:var(--brand-dim); color:var(--brand); border:1px solid rgba(255,117,31,.25); }
+.b-y { background:rgba(230,126,34,.12); color:var(--yellow); border:1px solid rgba(230,126,34,.25); }
+
+/* MID CTA */
+.mid-cta { background:linear-gradient(135deg,rgba(255,117,31,.1),rgba(17,24,40,.5)); border:1px solid rgba(255,117,31,.2); border-radius:14px; padding:1.75rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; margin:2.5rem 0; }
+.mid-cta h3 { font-family:var(--font-display); font-weight:600; font-size:1rem; color:#fff; margin-bottom:0.2rem; }
+.mid-cta p { margin:0; font-size:0.85rem; }
+.mid-btn { background:var(--brand); color:#fff; font-family:var(--font-body); font-weight:500; font-size:0.88rem; padding:0.65rem 1.4rem; border-radius:8px; text-decoration:none; white-space:nowrap; flex-shrink:0; transition:background .2s, transform .2s, box-shadow .2s; }
+.mid-btn:hover { background:#ff8c3a; transform:translateY(-1px); box-shadow:0 4px 20px var(--brand-glow); }
+
+/* TIPS */
+.tips { display:grid; grid-template-columns:1fr 1fr; gap:0.85rem; margin:1.5rem 0; }
+.tip { background:var(--navy-card); border:1px solid var(--navy-border); border-radius:12px; padding:1.15rem; opacity:0; transform:translateY(12px); transition:opacity .4s ease, transform .4s ease; }
+.tip.in { opacity:1; transform:translateY(0); }
+.tip-icon { font-size:1.35rem; margin-bottom:0.4rem; display:block; }
+.tip-title { font-family:var(--font-display); font-weight:600; font-size:0.88rem; color:#fff; margin-bottom:0.35rem; }
+.tip p { font-size:0.8rem; margin:0; line-height:1.5; }
+
+/* FAQ */
+.faq { margin: 2.5rem 0; }
+.faq-item { border: 1px solid var(--navy-border); border-radius: 12px; margin-bottom: 0.6rem; overflow: hidden; }
+.faq-q { width: 100%; background: var(--navy-card); border: none; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; padding: 1rem 1.25rem; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transition: background 0.2s; }
+.faq-q:hover { background: rgba(255,255,255,0.05); }
+.faq-q::after { content: '+'; font-size: 1.3rem; color: var(--brand); flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { display: none; padding: 0 1.25rem 1rem; background: var(--navy-card); font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
+
+/* FOOTER CTA */
+.footer-cta { text-align:center; padding:4rem 2rem 4.5rem; border-top:1px solid var(--navy-border); position:relative; z-index:1; }
+.footer-cta h2 { font-size:1.65rem; margin-bottom:0.6rem; justify-content:center; }
+.footer-cta h2::before { display:none; }
+.footer-cta p { max-width:440px; margin:0 auto 1.75rem; font-size:0.95rem; }
+.footer-cta-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--brand); color:#fff; font-family:var(--font-body); font-weight:500; font-size:1rem; padding:0.85rem 2.2rem; border-radius:10px; text-decoration:none; box-shadow:0 4px 30px var(--brand-glow); transition:background .2s, transform .2s, box-shadow .2s; }
+.footer-cta-btn:hover { background:#ff8c3a; transform:translateY(-2px); box-shadow:0 8px 40px var(--brand-glow); }
+
+/* RELATED */
+.related { max-width:820px; margin:0 auto; padding:0 2rem 4rem; position:relative; z-index:1; }
+.related h2 { font-size:1.1rem; margin-top:0; margin-bottom:1rem; }
+.rel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; }
+.rel-card { background:var(--navy-card); border:1px solid var(--navy-border); border-radius:12px; padding:1.1rem; text-decoration:none; display:block; transition:border-color .2s, transform .2s; }
+.rel-card:hover { border-color:rgba(255,117,31,.25); transform:translateY(-2px); }
+.rel-tag { font-size:0.68rem; color:var(--brand); font-weight:600; letter-spacing:0.07em; text-transform:uppercase; margin-bottom:0.35rem; }
+.rel-title { font-family:var(--font-display); font-size:0.85rem; font-weight:600; color:#fff; line-height:1.35; }
+
+footer { background:var(--navy-mid); border-top:1px solid var(--navy-border); padding:1.75rem 2rem; text-align:center; font-size:0.75rem; color:var(--text-dim); position:relative; z-index:1; }
+footer a { color:var(--brand); text-decoration:none; }
+
+@media(max-width:680px){
+  .bento,.rel-grid{grid-template-columns:1fr;}
+  .bc.feat{grid-column:span 1;}
+  .tips{grid-template-columns:1fr;}
+  .verdict-inner{grid-template-columns:1fr;}
+  .v-item{border-right:none;border-bottom:1px solid var(--navy-border);}
+  .v-item:last-child{border-bottom:none;}
+  .cr{grid-template-columns:100px 1fr 52px;}
+  .mid-cta{flex-direction:column;}
+  h1{font-size:1.75rem;}
+}
+</style>
+</head>
+<body>
+<div id="blogBlobs">
+  <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(255,117,31,0.45),transparent 70%);top:-150px;left:-150px;animation:blobMove1 18s ease-in-out infinite;"></div>
+  <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(15,52,96,0.7),transparent 70%);bottom:-100px;right:-100px;animation:blobMove2 22s ease-in-out infinite;"></div>
+  <div class="blob" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,117,31,0.25),transparent 70%);top:40%;left:30%;animation:blobMove3 26s ease-in-out infinite;"></div>
+</div>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<nav>
+  <a href="https://safehotels.ai" class="nav-logo"><img src="../logo.png" alt="SafeHotels.ai" height="36" style="border-radius:6px;display:block;"></a>
+  <a href="https://safehotels.ai/search?city=durham" class="nav-cta">Search Durham Hotels →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Real Crime Data · Updated Weekly</div>
+  <h1>Safest Areas to Stay in <em>Durham</em> (2026)</h1>
+  <div class="hero-meta">
+    <span>🕐 8 min read</span>
+    <span>📅 Updated September 2026</span>
+    <span>📍 Durham, County Durham</span>
+    <span>🛡 Solo Traveller Guide</span>
+  </div>
+  <p class="hero-intro">Durham is one of England's smallest cities and one of its most striking — a cathedral, a castle and a university wrapped around a single loop of the River Wear. It has a reputation as a calm, walkable place to visit, and the crime data broadly backs that up. But Durham is also a working city with its own retail core and a lively student nightlife scene, and the picture shifts a lot between streets. We use real Police.uk data — the same source that powers our live safety scores — to show you exactly where to stay.</p>
+
+  <!-- AUDIO PLAYER -->
+  <div class="audio-player">
+    <div class="audio-top">
+      <button class="play-btn" id="playBtn" onclick="audioToggle()">
+        <svg id="playIcon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <div class="audio-info">
+        <div class="audio-title">Listen to this article</div>
+        <div class="audio-status" id="audioStatus">Press play · reads article aloud</div>
+      </div>
+      <div class="wave-bars" id="waveBars">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="progress-track" id="progressTrack" onclick="seekTo(event)">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="audio-controls">
+      <div class="ctrl-group">
+        Voice
+        <select id="voiceSel" onchange="onVoiceChange()">
+          <option>Loading voices…</option>
+        </select>
+      </div>
+      <div class="ctrl-group">
+        Speed
+        <input type="range" id="speedRange" min="0.5" max="2" step="0.1" value="0.9" oninput="onSpeedChange()">
+        <span class="speed-lbl" id="speedLbl">0.9×</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://safehotels.ai/search?city=durham" class="hero-cta">🔍 Search Safe Hotels in Durham</a>
+</section>
+
+<div class="verdict-wrap">
+  <div class="verdict-inner">
+    <div class="v-item"><div class="v-num">7.7</div><div class="v-lbl">Overall Safety Score</div></div>
+    <div class="v-item"><div class="v-num">3</div><div class="v-lbl">Top Recommended Zones</div></div>
+    <div class="v-item"><div class="v-num" style="font-size:1.3rem;line-height:1.25;">Police.uk</div><div class="v-lbl">Verified Crime Data</div></div>
+  </div>
+</div>
+
+<main class="content" id="articleContent">
+
+  <p>Durham rarely appears on any list of the UK's higher-crime cities, and visitors tend to describe it as one of England's calmest and most relaxed city breaks — a UNESCO World Heritage cathedral and castle on a wooded peninsula, small enough to cross on foot in fifteen minutes. <strong>That reputation holds up under the data</strong>, though it isn't quite the whole picture.</p>
+
+  <p>Durham is a small city that carries an outsized share of County Durham's retail and nightlife activity, plus a large student population that swells well beyond the official headcount during term time. That combination shows up clearly in the crime figures, even though the risk to an aware visitor staying in the right area remains low. This guide uses real Police.uk data — the same source behind our live safety scores — to show you exactly where to base yourself and where to keep your wits about you.</p>
+
+  <h2>Durham Safety Overview</h2>
+
+  <p>Durham is policed by Durham Constabulary, and Durham City records around <strong>85 crimes per 1,000 people</strong> in the most recent 12 months of Police.uk data — about 18% above the England and Wales average, though actually <strong>below the wider County Durham rate of roughly 93 per 1,000</strong>. In other words, the city that gives the county its name isn't what's pushing the county's figures upward.</p>
+
+  <p>The breakdown matters more than the headline number. <strong>Shoplifting is Durham's biggest outlier</strong>, running at more than two and a half times the national rate, concentrated almost entirely in the Milburngate and Prince Bishops shopping centres along North Road rather than in residential streets or around hotels. <strong>Violence and sexual offences are the single largest category by volume</strong>, but the rate itself sits only marginally above the national average. For visitors, the more useful numbers are the low ones: <strong>theft from the person and vehicle crime both run at well under half the national rate</strong>, meaning opportunistic street theft aimed at tourists is genuinely uncommon.</p>
+
+  <div class="callout">
+    <p><strong>Our methodology:</strong> Safety scores are SafeHotels.ai's own composite index, calculated from rolling 12-month Police.uk data, weighted by crime category severity and normalised per 1,000 residents. Updated weekly. Higher is safer.</p>
+  </div>
+
+  <div class="crime-widget" id="crimeWidget">
+    <div class="cw-head">
+      <div class="cw-title">🛡 Crime Categories — Durham City Centre (DH1)</div>
+      <div class="live-dot">Live · Police.uk</div>
+    </div>
+    <div class="cr"><span class="cr-lbl">Shoplifting</span><div class="cr-track"><div class="cr-fill" data-w="68" style="background:var(--yellow)"></div></div><span class="cr-val">High</span></div>
+    <div class="cr"><span class="cr-lbl">Public order</span><div class="cr-track"><div class="cr-fill" data-w="46" style="background:var(--yellow)"></div></div><span class="cr-val">Medium</span></div>
+    <div class="cr"><span class="cr-lbl">Anti-social behaviour</span><div class="cr-track"><div class="cr-fill" data-w="42" style="background:var(--yellow)"></div></div><span class="cr-val">Medium</span></div>
+    <div class="cr"><span class="cr-lbl">Vehicle crime</span><div class="cr-track"><div class="cr-fill" data-w="16" style="background:var(--green)"></div></div><span class="cr-val">Low</span></div>
+    <div class="cr"><span class="cr-lbl">Theft from person</span><div class="cr-track"><div class="cr-fill" data-w="10" style="background:var(--green)"></div></div><span class="cr-val">Low</span></div>
+  </div>
+
+  <p>The takeaway for a solo traveller: Durham's "above average" headline is almost entirely a retail-crime and city-centre nightlife story, not a threat to visitors going about their trip with normal awareness. Keep your bag zipped in the shopping streets and you've covered the bulk of it.</p>
+
+  <h2>The Safest Areas to Stay in Durham</h2>
+
+  <p>Based on our crime data analysis — scored across night safety, street safety, hotel security and area cleanliness — here are the neighbourhoods we recommend for solo travellers and business professionals.</p>
+
+  <div class="bento" id="bento">
+
+    <div class="bc feat" data-pct="89" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">8.9</div></div>
+      <div class="bc-name">The Bailey &amp; Palace Green</div>
+      <div class="bc-code">DH1 3 · The Peninsula</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Night Safety: High</div><div class="pill"><span class="dot g"></span>Street Safety: High</div><div class="pill"><span class="dot g"></span>Hotel Security: Excellent</div></div>
+      <div class="bc-desc">Durham's UNESCO World Heritage core — the Cathedral, Castle and cobbled Bailey wrapped inside a loop of the River Wear. Much of the peninsula sits within Durham University's college grounds, with restricted vehicle access and limited through-traffic. It's consistently the calmest part of the city after dark and the obvious first choice if you want to stay inside the postcard.</div>
+      <span class="badge b-o">★ Solo Female Friendly</span>
+      <span class="badge b-g" style="margin-left:.35rem;">Safest Pick</span>
+    </div>
+
+    <div class="bc" data-pct="84" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">8.4</div></div>
+      <div class="bc-name">Neville's Cross &amp; Crossgate Moor</div>
+      <div class="bc-code">DH1 4 · Southwest Durham</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Night Safety: High</div><div class="pill"><span class="dot g"></span>Street Safety: Good</div></div>
+      <div class="bc-desc">Durham's most sought-after residential district — leafy Victorian and Edwardian terraces about a mile southwest of the centre, popular with academics and professionals. Independent cafés and a slower pace give it a settled, low-crime character, with a straightforward 20-minute walk or short bus ride into the centre along well-lit main roads.</div>
+      <span class="badge b-o">★ Solo Female Friendly</span>
+    </div>
+
+    <div class="bc" data-pct="78" data-col="#27ae60">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#27ae60"/></svg><div class="ring-num">7.8</div></div>
+      <div class="bc-name">Old Elvet</div>
+      <div class="bc-code">DH1 3 · Riverside</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Night Safety: Good</div><div class="pill"><span class="dot g"></span>Transport: Excellent</div></div>
+      <div class="bc-desc">Across Elvet Bridge from the Peninsula, Old Elvet mixes some of the city's best-known hotels — including the Durham Marriott Royal County — with university and court buildings around a wide, tree-lined street. Central and well-lit, though New Elvet and Walkergate just beyond it pick up more of the weekend bar crowd.</div>
+      <span class="badge b-g">Good Safety Rating</span>
+    </div>
+
+    <div class="bc" data-pct="71" data-col="#e67e22">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#e67e22"/></svg><div class="ring-num">7.1</div></div>
+      <div class="bc-name">Framwellgate &amp; Milburngate</div>
+      <div class="bc-code">DH1 1 · West Bank</div>
+      <div class="pills"><div class="pill"><span class="dot g"></span>Daytime: Safe</div><div class="pill"><span class="dot y"></span>Retail Crime: Elevated</div></div>
+      <div class="bc-desc">The newer riverside development around Milburngate — cinema, restaurants and the Prince Bishops shopping centre — sits right across the river from the Peninsula. Central and convenient, but this is also where Durham's shoplifting figures concentrate, so it's a bag-awareness point in the shops rather than a personal safety concern.</div>
+      <span class="badge b-y">⚠ Retail Crime Hotspot</span>
+    </div>
+
+    <div class="bc" data-pct="63" data-col="#e67e22">
+      <div class="ring-wrap"><svg viewBox="0 0 46 46"><circle class="ring-bg" cx="23" cy="23" r="18"/><circle class="ring-fg" cx="23" cy="23" r="18" stroke="#e67e22"/></svg><div class="ring-num">6.3</div></div>
+      <div class="bc-name">Station Approach &amp; Wharton Park</div>
+      <div class="bc-code">DH1 4 · The Viaduct</div>
+      <div class="pills"><div class="pill"><span class="dot y"></span>Night Safety: Moderate</div><div class="pill"><span class="dot g"></span>Daytime: Safe</div></div>
+      <div class="bc-desc">Durham railway station sits on the hillside above the city, and the footpath down through Wharton Park is the most direct route into the centre. It's a pleasant walk by day but records the city's highest concentration of anti-social behaviour incidents and is poorly lit after dark — arriving late, take the road route via North Road or a taxi instead.</div>
+      <span class="badge b-y">⚠ Night Awareness Advised</span>
+    </div>
+
+  </div>
+
+  <div class="mid-cta">
+    <div><h3>Ready to find your hotel?</h3><p>Search Durham hotels with live safety scores and real crime data.</p></div>
+    <a href="https://safehotels.ai/search?city=durham" class="mid-btn">Search Safe Hotels in Durham →</a>
+  </div>
+
+  <h2>Map of Safe Areas</h2>
+  <p>Use this map to get your bearings before you book. The safest bases cluster tightly around the Peninsula and Old Elvet, with Neville's Cross a short walk further out for a quieter, residential stay.</p>
+  <div style="border-radius:14px;overflow:hidden;border:1px solid var(--navy-border);margin:1.75rem 0;">
+    <iframe
+      title="Safe areas map Durham"
+      width="100%"
+      height="380"
+      style="border:0;display:block;"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD7y7UfmLhCBGMobJO8tzZ-6b-i8rKfs8E&q=hotels+Durham+Bailey+Old+Elvet&zoom=15">
+    </iframe>
+  </div>
+
+  <h2>Is Durham Safe for Solo Female Travellers?</h2>
+
+  <p>Yes. Durham's combination of a small, compact centre, heavy footfall around the university estate, and very low theft-from-person figures make it one of the more reassuring English cities for a woman travelling alone. The Bailey and Neville's Cross both carry our <strong>Solo Female Friendly</strong> badge, reflecting consistently low night-time incident rates in the crime data for those postcodes.</p>
+
+  <p>The honest counterweight is the one that applies to most UK university cities: <strong>the New Elvet and Walkergate bar strip gets busy and boisterous on weekend nights</strong>, particularly during term time and graduation week in the summer. It's a high-footfall, well-policed area rather than a genuinely risky one, but a quieter base a short walk away in Old Elvet or the Bailey keeps you clear of the loudest end of the evening.</p>
+
+  <div class="callout">
+    <p><strong>Solo Female Traveller Note:</strong> The Bailey is our top pick for women travelling alone in Durham. Much of the peninsula sits within Durham University's college grounds, which means restricted vehicle access and a genuinely quiet, watched-over feel after dark that's hard to find elsewhere in a city centre this central.</p>
+  </div>
+
+  <h2>Areas to Approach with Caution</h2>
+
+  <p><strong>The Wharton Park footpath from the railway station</strong> is the one route we'd actively steer travellers away from after dark — it's unlit, quiet, and sits at the top of Durham's anti-social behaviour figures. Take the road route down North Road instead, or a taxi if you're arriving late in the evening. <strong>North Road and the Milburngate/Prince Bishops shopping core</strong> record the city's shoplifting hotspot; it's a daytime retail-crime story rather than a threat to visitors, but it's worth keeping bags zipped while you're browsing. Beyond the centre, <strong>Gilesgate</strong> is a largely residential area with little to offer a visitor — there are simply better, more central options at comparable prices.</p>
+
+  <h2>Practical Safety Tips for Durham</h2>
+
+  <div class="tips" id="tips">
+    <div class="tip"><span class="tip-icon">🚶</span><div class="tip-title">Stay Inside the Loop</div><p>Durham's historic core sits inside a single bend of the River Wear, and almost everything you'll want — the Cathedral, Castle, Bailey, Elvet and the Market Place — is within a 10-minute walk of it. Staying inside or right on the loop keeps your evening walks short and well populated.</p></div>
+    <div class="tip"><span class="tip-icon">📍</span><div class="tip-title">Check the Postcode First</div><p>Enter any hotel's postcode into our search tool to see live crime data for that exact area. DH1 3 (the Bailey and Old Elvet side) is the sweet spot for safe, central stays.</p></div>
+    <div class="tip"><span class="tip-icon">🌙</span><div class="tip-title">Skip the Station Footpath After Dark</div><p>Arriving by train in the evening, take North Road rather than the Wharton Park footpath down into the city — it's better lit and far busier.</p></div>
+    <div class="tip"><span class="tip-icon">🎓</span><div class="tip-title">Watch the University Calendar</div><p>Graduation week and the Durham Miners' Gala both fall in July and bring large crowds, with a livelier Elvet and Walkergate in the evenings. Book hotels early and expect busier nights around those dates.</p></div>
+  </div>
+
+  <h2>When to Visit Durham</h2>
+
+  <p><strong>Spring and early summer (April–June)</strong> are the easiest months for a solo visit — Durham University is still in term, giving the city a lived-in, busy-but-safe feel, and long evenings mean you're rarely walking in the dark. <strong>July</strong> brings the Durham Miners' Gala and graduation ceremonies, both wonderful to see but genuinely crowded — book well ahead and expect the Peninsula and Elvet to be livelier than usual, in a good way.</p>
+
+  <p><strong>Late autumn and winter</strong> are quieter and cheaper, with the Cathedral's Christmas events adding some evening buzz to an otherwise calm off-season city. The trade-off is more of your day happening after dark, so lean on the well-lit central routes around the Bailey and Old Elvet rather than the Wharton Park approach.</p>
+
+  <h2>How We Score Durham Hotels</h2>
+
+  <p>Every hotel on SafeHotels.ai is scored across four categories — Night Safety, Street Safety, Hotel Security and Area Cleanliness — calculated from Police.uk crime data for the surrounding postcode, updated weekly. <strong>A hotel a few minutes' walk from the Bailey can sit in a meaningfully different crime environment to one near the station or the Milburngate retail core</strong>, even though every part of Durham feels walkable. That's exactly the distinction our score is built to surface before you book.</p>
+
+  <!-- ══ FAQ SECTION ══ -->
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq" id="faqSection">
+    <div class="faq-item">
+      <button class="faq-q">Is Durham safe for solo travellers?</button>
+      <div class="faq-a">Yes — Durham is a small, compact cathedral city that most solo travellers find easy and reassuring to navigate. Its crime rate looks elevated next to the England and Wales average, but that's driven mainly by shoplifting in the retail core and city-centre nightlife, not crime aimed at visitors. Stay on or near the Bailey, keep normal city awareness, and you'll be fine.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Which is the safest area of Durham to stay in?</button>
+      <div class="faq-a">The Bailey and Palace Green — Durham's UNESCO World Heritage peninsula around the Cathedral and Castle — is our top pick. Much of it sits inside Durham University's college grounds, giving it a quiet, watched-over feel after dark. It scores 8.9 on our safety index. Neville's Cross and Crossgate Moor are a close second for a quieter residential base.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is Durham safe for solo female travellers?</button>
+      <div class="faq-a">Generally yes. Durham's theft-from-person rate is well under half the national average, and the compact centre means short, well-lit walks between anywhere you'd want to be. The main thing to plan around is the New Elvet and Walkergate bar strip on weekend nights, particularly during graduation week — a base in the Bailey or Old Elvet keeps you a short, calm walk from the busiest end of the evening.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Which area of Durham should I avoid staying in?</button>
+      <div class="faq-a">There isn't a residential area of central Durham we'd tell visitors to avoid outright — the city is small and its safest zones cluster right around the centre. The one specific spot to avoid is the Wharton Park footpath from the railway station after dark; it's unlit and records the city's highest concentration of anti-social behaviour. Use the road route via North Road, or a taxi, instead.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Does Durham have a high crime rate?</button>
+      <div class="faq-a">Durham City records around 85 crimes per 1,000 people, about 18% above the England and Wales average but below the wider County Durham rate of roughly 93 per 1,000. The gap versus the national average is driven mainly by shoplifting in the Milburngate and Prince Bishops shopping centres, running at more than double the national rate, rather than by crime targeting visitors. Theft from the person is well under half the national average, which is why we still rate the city 7.7 for solo travellers.</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ FAQ SCHEMA MARKUP ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Durham safe for solo travellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Durham is a small, compact cathedral city that most solo travellers find easy and reassuring to navigate. Its crime rate looks elevated next to the England and Wales average, but that's driven mainly by shoplifting in the retail core and city-centre nightlife, not crime aimed at visitors. Stay on or near the Bailey, keep normal city awareness, and you'll be fine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which is the safest area of Durham to stay in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Bailey and Palace Green — Durham's UNESCO World Heritage peninsula around the Cathedral and Castle — is our top pick. Much of it sits inside Durham University's college grounds, giving it a quiet, watched-over feel after dark. It scores 8.9 on our safety index. Neville's Cross and Crossgate Moor are a close second for a quieter residential base."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Durham safe for solo female travellers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally yes. Durham's theft-from-person rate is well under half the national average, and the compact centre means short, well-lit walks between anywhere you'd want to be. The main thing to plan around is the New Elvet and Walkergate bar strip on weekend nights, particularly during graduation week — a base in the Bailey or Old Elvet keeps you a short, calm walk from the busiest end of the evening."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which area of Durham should I avoid staying in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There isn't a residential area of central Durham we'd tell visitors to avoid outright — the city is small and its safest zones cluster right around the centre. The one specific spot to avoid is the Wharton Park footpath from the railway station after dark; it's unlit and records the city's highest concentration of anti-social behaviour. Use the road route via North Road, or a taxi, instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Durham have a high crime rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Durham City records around 85 crimes per 1,000 people, about 18% above the England and Wales average but below the wider County Durham rate of roughly 93 per 1,000. The gap versus the national average is driven mainly by shoplifting in the Milburngate and Prince Bishops shopping centres, running at more than double the national rate, rather than by crime targeting visitors. Theft from the person is well under half the national average."
+      }
+    }
+  ]
+}
+</script>
+
+<div class="footer-cta">
+  <h2>Search Safe Hotels in Durham</h2>
+  <p>Real crime data and live hotel availability — all in one search.</p>
+  <a href="https://safehotels.ai/search?city=durham" class="footer-cta-btn">🔍 Search Durham Hotels →</a>
+</div>
+
+<section class="related">
+  <h2>Related Guides</h2>
+  <div class="rel-grid" id="relatedGrid"></div>
+</section>
+
+<script>
+// ── RANDOM RELATED ARTICLES ──
+(function() {
+  var allArticles = [
+    { url: '../blog/safest-areas-to-stay-in-london.html', tag: 'London', title: 'Safest Areas to Stay in London (2026) — Real Crime Data' },
+    { url: '../blog/safest-cities-uk-solo-female.html', tag: 'Solo Female', title: '10 Safest UK Cities for Solo Female Travellers (2026)' },
+    { url: '../blog/safest-areas-manchester.html', tag: 'Manchester', title: 'Safest Areas to Stay in Manchester (2026) — Real Crime Data' },
+    { url: '../blog/safest-areas-edinburgh.html', tag: 'Edinburgh', title: 'Safest Areas to Stay in Edinburgh (2026) — Real Crime Data' },
+    { url: '../blog/safest-areas-norwich.html', tag: 'Norwich', title: 'Safest Areas to Stay in Norwich (2026) — Real Crime Data' },
+    { url: '../blog/is-dundee-safe-for-solo-travellers.html', tag: 'Dundee', title: 'Is Dundee Safe for Solo Travellers? (2026 Police Scotland Data)' },
+    { url: '../blog/is-birmingham-safe-for-tourists.html', tag: 'Birmingham', title: 'Is Birmingham Safe for Tourists? (Honest 2026 Review)' },
+    { url: '../blog/solo-female-travel-uk-hotel-safety-guide.html', tag: 'Solo Female', title: 'The Ultimate Solo Female Travel Hotel Safety Guide — UK' },
+    { url: '../blog/hotel-safety-tips-uk.html', tag: 'Safety Tips', title: '10 Hotel Safety Tips Every Traveller Should Know' },
+  ];
+
+  // Get current page filename to exclude it from results
+  var current = window.location.pathname.split('/').pop();
+
+  // Filter out current article then shuffle
+  var pool = allArticles.filter(function(a) {
+    return a.url.split('/').pop() !== current;
+  });
+
+  // Shuffle array
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = pool[i]; pool[i] = pool[j]; pool[j] = temp;
+  }
+
+  // Pick first 3
+  var picks = pool.slice(0, 3);
+  var grid = document.getElementById('relatedGrid');
+  picks.forEach(function(a) {
+    grid.innerHTML += '<a href="' + a.url + '" class="rel-card"><div class="rel-tag">' + a.tag + '</div><div class="rel-title">' + a.title + '</div></a>';
+  });
+})();
+</script>
+
+<footer>
+  <p>© 2026 SafeHotels.ai · <a href="https://safehotels.ai/privacy">Privacy Policy</a> · Crime data sourced from <a href="https://data.police.uk" target="_blank">Police.uk</a> · Affiliate partnerships include Travelpayouts and CJ Affiliate</p>
+</footer>
+
+<script>
+
+// Hide audio player on Android devices
+(function() {
+  if (/android/i.test(navigator.userAgent)) {
+    var player = document.querySelector('.audio-player');
+    if (player) player.style.display = 'none';
+  }
+})();
+
+// SCROLL BAR
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  document.getElementById('scrollBar').style.width =
+    (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+});
+
+// SCROLL ANIMATIONS
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    setTimeout(() => {
+      el.classList.add('in');
+      el.querySelectorAll('.ring-fg').forEach(ring => {
+        const pct = parseInt(el.dataset.pct || 0);
+        ring.style.strokeDashoffset = 113 - (pct / 100) * 113;
+      });
+    }, i * 90);
+    io.unobserve(el);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.bc, .tip').forEach(el => io.observe(el));
+
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.cr-fill').forEach(b => { if (b.dataset.w) b.style.width = b.dataset.w + '%'; });
+    cio.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+const cw = document.getElementById('crimeWidget');
+if (cw) cio.observe(cw);
+
+
+// ── AUDIO PLAYER ──
+const synth = window.speechSynthesis;
+let utter = null;
+let playing = false;
+let paused = false;
+let orderedVoices = [];
+let progressTimer = null;
+let progressStart = 0;
+let progressDuration = 0;
+let progressOffset = 0; // for seeks
+
+function loadVoices() {
+  if (!synth) return;
+  const all = synth.getVoices();
+  const uk = all.filter(v => v.lang === 'en-GB');
+  const en = all.filter(v => v.lang.startsWith('en') && v.lang !== 'en-GB');
+  orderedVoices = [...uk, ...en];
+  if (!orderedVoices.length) orderedVoices = all;
+
+  const sel = document.getElementById('voiceSel');
+  sel.innerHTML = '';
+  orderedVoices.forEach((v, i) => {
+    const o = document.createElement('option');
+    o.value = i;
+    o.textContent = v.name + (v.lang === 'en-GB' ? ' 🇬🇧' : v.lang.startsWith('en') ? ' 🇺🇸' : '');
+    sel.appendChild(o);
+  });
+
+  // pick best default
+  const best = uk.find(v => /female|woman/i.test(v.name)) || uk[0] || en[0] || orderedVoices[0];
+  sel.value = orderedVoices.indexOf(best);
+}
+
+if (synth) { synth.onvoiceschanged = loadVoices; loadVoices(); }
+
+function getVoice() {
+  const idx = parseInt(document.getElementById('voiceSel').value);
+  return orderedVoices[idx] || null;
+}
+function getSpeed() { return parseFloat(document.getElementById('speedRange').value); }
+function getArticleText() {
+  const el = document.getElementById('articleContent');
+  return el ? el.innerText.replace(/\s+/g, ' ').trim() : '';
+}
+
+function setUI(state) { // 'playing' | 'paused' | 'stopped'
+  const btn = document.getElementById('playBtn');
+  const icon = document.getElementById('playIcon');
+  const status = document.getElementById('audioStatus');
+  const wave = document.getElementById('waveBars');
+
+  if (state === 'playing') {
+    icon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    btn.classList.remove('paused');
+    wave.classList.add('active');
+    status.textContent = 'Now playing…';
+  } else if (state === 'paused') {
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+    btn.classList.add('paused');
+    wave.classList.remove('active');
+    status.textContent = 'Paused — press play to resume';
+  } else {
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+    btn.classList.remove('paused');
+    wave.classList.remove('active');
+    status.textContent = 'Press play · reads article aloud';
+    document.getElementById('progressFill').style.width = '0%';
+  }
+}
+
+function startProgressTimer(durationMs, startPct = 0) {
+  stopProgressTimer();
+  progressStart = Date.now();
+  progressDuration = durationMs * (1 - startPct / 100);
+  progressOffset = startPct;
+  progressTimer = setInterval(() => {
+    const elapsed = Date.now() - progressStart;
+    const pct = Math.min(progressOffset + (elapsed / progressTimer._duration) * (100 - progressOffset), 99);
+    document.getElementById('progressFill').style.width = pct + '%';
+  }, 300);
+  // store duration on timer for calculation
+  progressTimer._duration = progressDuration;
+}
+
+function stopProgressTimer() {
+  if (progressTimer) { clearInterval(progressTimer); progressTimer = null; }
+}
+
+function estimateDuration(text, rate) {
+  return (text.split(' ').length / (160 * rate)) * 60000;
+}
+
+function speak(text, startPct = 0) {
+  synth.cancel();
+  const charStart = Math.floor((startPct / 100) * text.length);
+  const slice = startPct > 0 ? text.slice(charStart) : text;
+
+  utter = new SpeechSynthesisUtterance(slice);
+  utter.rate = getSpeed();
+  utter.pitch = 1;
+  utter.lang = 'en-GB';
+  const v = getVoice();
+  if (v) utter.voice = v;
+
+  utter.onstart = () => { playing = true; paused = false; setUI('playing'); startProgressTimer(estimateDuration(text, getSpeed()), startPct); };
+  utter.onpause = () => { paused = true; setUI('paused'); stopProgressTimer(); };
+  utter.onresume = () => { paused = false; setUI('playing'); };
+  utter.onend = () => { playing = false; paused = false; stopProgressTimer(); document.getElementById('progressFill').style.width = '100%'; setTimeout(() => setUI('stopped'), 600); };
+  utter.onerror = (e) => { if (e.error !== 'interrupted') { playing = false; paused = false; setUI('stopped'); stopProgressTimer(); } };
+
+  synth.speak(utter);
+}
+
+function audioToggle() {
+  if (!synth) { alert('Text-to-speech is not supported in your browser.'); return; }
+  if (playing && !paused) { synth.pause(); return; }
+  if (paused) { synth.resume(); setUI('playing'); return; }
+  speak(getArticleText());
+}
+
+function onVoiceChange() { if (playing) { speak(getArticleText()); } }
+
+function onSpeedChange() {
+  const v = getSpeed();
+  document.getElementById('speedLbl').textContent = v.toFixed(1) + '×';
+  if (playing) { speak(getArticleText()); }
+}
+
+function seekTo(e) {
+  const track = document.getElementById('progressTrack');
+  const pct = (e.offsetX / track.offsetWidth) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  if (playing || paused) {
+    playing = false; paused = false;
+    speak(getArticleText(), pct);
+  }
+}
+
+// ── FAQ TOGGLE ──
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = this.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+window.addEventListener('beforeunload', () => { if (synth) synth.cancel(); });
+</script>
+</body>
+</html>
