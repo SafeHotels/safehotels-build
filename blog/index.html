@@ -1,595 +1,1053 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hotel Safety Blog | SafeHotels.ai — UK Travel Safety Guides</title>
-<meta name="description" content="Expert guides on hotel safety across the UK. Find the safest areas to stay, tips for solo female travellers, and city-by-city safety breakdowns powered by real Police.uk crime data.">
-<link rel="canonical" href="https://safehotels.ai/blog/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://safehotels.ai/" />
+    <meta name="description" content="Book safe hotels across the UK using real Police.uk crime data, neighbourhood safety scores, and honest city-by-city safety guides. Built for solo travellers and business professionals." />
+    <title>SafeHotels.ai - Book Safe Hotels Worldwide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3R56CJDZZ0');</script>
-<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">(function(){var s=document.createElement("script");s.async=1;s.src='https://tp-em.com/NTAxMjQw.js?t=501240';document.head.appendChild(s);})();</script>
-
-<style>
-:root {
-  --brand: #ff751f;
-  --brand-dim: rgba(255,117,31,0.12);
-  --brand-glow: rgba(255,117,31,0.35);
-  --navy: #080d1a;
-  --navy-mid: #0d1424;
-  --navy-card: #111828;
-  --navy-border: rgba(255,255,255,0.07);
-  --glass: rgba(255,255,255,0.035);
-  --text: #dde2f0;
-  --text-muted: #7a85a0;
-  --text-dim: #4a5370;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3R56CJDZZ0');
+</script>
+<!-- Travelpayouts Verification -->
+<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
+  (function () {
+      var script = document.createElement("script");
+      script.async = 1;
+      script.src = 'https://tp-em.com/NTAxMjQw.js?t=501240';
+      document.head.appendChild(script);
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://safehotels.ai/#organization",
+      "name": "SafeHotels.ai",
+      "url": "https://safehotels.ai/",
+      "logo": "https://safehotels.ai/logo.png",
+      "description": "SafeHotels.ai helps solo travellers and business professionals find safe hotels across the UK using real Police.uk crime data, neighbourhood safety scores and honest city-by-city safety guides."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://safehotels.ai/#website",
+      "url": "https://safehotels.ai/",
+      "name": "SafeHotels.ai",
+      "publisher": { "@id": "https://safehotels.ai/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://safehotels.ai/search.html?location={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--navy);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.8;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background:
-    radial-gradient(ellipse 55% 35% at 85% 5%, rgba(255,117,31,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 5% 90%, rgba(14,184,160,0.04) 0%, transparent 60%);
-  pointer-events: none; z-index: 0;
-}
-
-/* NAV */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(8,13,26,0.9);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--navy-border);
-  padding: 0 2rem; height: 58px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo { font-family: var(--font-body); font-weight: 500; font-size: 1rem; color: var(--text); text-decoration: none; letter-spacing: -0.01em; }
-.nav-logo strong { color: var(--brand); font-weight: 600; }
-.nav-links { display: flex; align-items: center; gap: 2rem; }
-.nav-links a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--text); }
-.nav-links a.active { color: var(--brand); font-weight: 500; }
-.nav-cta { background: var(--brand); color: #fff; font-family: var(--font-body); font-weight: 500; font-size: 0.82rem; padding: 0.45rem 1.1rem; border-radius: 6px; text-decoration: none; transition: background 0.2s, box-shadow 0.2s; }
-.nav-cta:hover { background: #ff8c3a; box-shadow: 0 0 20px var(--brand-glow); }
-
-/* HERO */
-.hero { max-width: 900px; margin: 0 auto; padding: 64px 2rem 40px; position: relative; z-index: 1; }
-.hero-tag { display: inline-flex; align-items: center; gap: 0.45rem; background: var(--brand-dim); border: 1px solid rgba(255,117,31,0.22); color: var(--brand); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px; margin-bottom: 1.2rem; }
-.hero-tag::before { content: ''; width: 5px; height: 5px; background: var(--brand); border-radius: 50%; animation: blink 2.2s infinite; }
-@keyframes blink { 0%,100%{opacity:1;} 55%{opacity:0.25;} }
-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.75rem, 3.5vw, 2.4rem); line-height: 1.18; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.85rem; max-width: 560px; }
-h1 em { font-style: normal; color: var(--brand); }
-.hero-sub { font-size: 1rem; color: var(--text-muted); font-weight: 300; max-width: 500px; }
-
-/* BLOG SECTION */
-.blog-section { max-width: 900px; margin: 0 auto; padding: 0 2rem 5rem; position: relative; z-index: 1; }
-
-.section-label { font-size: 0.7rem; color: var(--brand); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.75rem; }
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--navy-border); }
-
-/* FEATURED CARD */
-.card-featured { background: var(--navy-card); border: 1px solid rgba(255,117,31,0.2); border-radius: 16px; padding: 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; text-decoration: none; margin-bottom: 1rem; position: relative; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; }
-.card-featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--brand), transparent); }
-.card-featured:hover { border-color: rgba(255,117,31,0.4); box-shadow: 0 8px 40px rgba(255,117,31,0.1); transform: translateY(-2px); }
-.cf-new { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--brand-dim); border: 1px solid rgba(255,117,31,0.3); color: var(--brand); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.75rem; }
-.cf-new::before { content: ''; width: 5px; height: 5px; background: var(--brand); border-radius: 50%; animation: blink 2s infinite; }
-.cf-tag { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
-.cf-title { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: #fff; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 0.65rem; }
-.cf-desc { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; margin-bottom: 1rem; max-width: 500px; }
-.cf-meta { font-size: 0.75rem; color: var(--text-dim); display: flex; gap: 1rem; }
-.cf-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--brand); color: #fff; font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; padding: 0.65rem 1.4rem; border-radius: 8px; white-space: nowrap; flex-shrink: 0; transition: background 0.2s, box-shadow 0.2s; }
-.cf-btn:hover { background: #ff8c3a; box-shadow: 0 4px 20px var(--brand-glow); }
-
-/* GRID */
-.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 0.5rem; }
-
-.blog-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: 14px; padding: 1.4rem; text-decoration: none; display: block; position: relative; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; }
-.blog-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--brand), transparent); opacity: 0; transition: opacity 0.25s; }
-.blog-card:hover { border-color: rgba(255,117,31,0.25); box-shadow: 0 6px 32px rgba(255,117,31,0.08); transform: translateY(-3px); }
-.blog-card:hover::after { opacity: 1; }
-
-.bc-tag { font-size: 0.68rem; color: var(--brand); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
-.bc-title { font-family: var(--font-display); font-weight: 600; font-size: 0.93rem; color: #fff; line-height: 1.35; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
-.bc-desc { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; line-height: 1.55; margin-bottom: 0.85rem; }
-.bc-meta { font-size: 0.72rem; color: var(--text-dim); display: flex; gap: 0.85rem; }
-.bc-arrow { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--brand); font-weight: 500; margin-top: 0.75rem; }
-
-.search-card { background: linear-gradient(135deg, rgba(255,117,31,0.1), rgba(17,24,40,0.5)); border: 1px solid rgba(255,117,31,0.2); border-radius: 14px; padding: 1.4rem; text-decoration: none; display: flex; flex-direction: column; justify-content: center; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; }
-.search-card:hover { border-color: rgba(255,117,31,0.4); box-shadow: 0 6px 32px rgba(255,117,31,0.12); transform: translateY(-3px); }
-.search-card .bc-title { color: var(--brand); }
-
-/* FOOTER */
-.site-footer { background: var(--navy-mid); border-top: 1px solid var(--navy-border); padding: 3rem 2rem 2rem; position: relative; z-index: 1; }
-.footer-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-.footer-logo { font-family: var(--font-body); font-weight: 500; font-size: 1rem; color: var(--text); text-decoration: none; display: block; margin-bottom: 0.75rem; }
-.footer-logo strong { color: var(--brand); }
-.footer-tagline { font-size: 0.82rem; color: var(--text-dim); font-weight: 300; line-height: 1.6; }
-.footer-col h4 { font-family: var(--font-display); font-weight: 600; font-size: 0.78rem; color: var(--text); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.85rem; }
-.footer-col ul { list-style: none; }
-.footer-col ul li { margin-bottom: 0.5rem; }
-.footer-col ul li a { font-size: 0.82rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
-.footer-col ul li a:hover { color: var(--brand); }
-.footer-bottom { max-width: 900px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid var(--navy-border); font-size: 0.75rem; color: var(--text-dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
-.footer-bottom a { color: var(--text-dim); text-decoration: none; }
-.footer-bottom a:hover { color: var(--brand); }
-
-@media(max-width:720px) {
-  .blog-grid { grid-template-columns: 1fr; }
-  .card-featured { grid-template-columns: 1fr; }
-  .cf-btn { display: none; }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-}
-</style>
+</script>
 </head>
 <body>
-
-<nav>
-  <a href="/" class="nav-logo"><img src="../logo.png" alt="SafeHotels.ai" height="36" style="border-radius:6px;display:block;"></a>
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/search">Search Hotels</a>
-    <a href="/blog/" class="active">Blog</a>
-    <a href="/submit-review">Submit Review</a>
-    <a href="/contact">Contact</a>
-  </div>
-  <a href="/" class="nav-cta">Search Hotels →</a>
-</nav>
-
-<section class="hero">
-  <div class="hero-tag">Real Crime Data · Updated Weekly</div>
-  <h1>UK Hotel <em>Safety</em> Guides</h1>
-  <p class="hero-sub">City-by-city safety breakdowns, neighbourhood guides, and solo travel advice — all powered by real Police.uk crime data.</p>
-</section>
-
-<section class="blog-section">
-
-  <div class="section-label">Latest Article</div>
-
-  <a href="is-shoreditch-safe-for-solo-female-travellers.html" class="card-featured">
-    <div>
-      <div class="cf-new">New · November 2026</div>
-      <div class="cf-tag">Shoreditch, London · Solo Female</div>
-      <div class="cf-title">Is Shoreditch Safe for Solo Female Travellers? (2026)</div>
-      <div class="cf-desc">Shoreditch records some of the highest crime volumes in London, but most of it clusters around nightclubs late at night. Real Police.uk data shows where women travelling alone should stay, from calm Clerkenwell and Liverpool Street to the Boxpark and Hoxton Square nightlife core.</div>
-      <div class="cf-meta">
-        <span>November 2026</span>
-        <span>9 min read</span>
-        <span>Solo Female Guide</span>
-      </div>
+    <div id="animGradient">
+        <div class="blob" style="width:700px;height:700px;background:radial-gradient(circle,rgba(255,117,31,0.55),transparent 70%);top:-150px;left:-150px;animation:blobMove1 18s ease-in-out infinite;"></div>
+        <div class="blob" style="width:600px;height:600px;background:radial-gradient(circle,rgba(15,52,96,0.8),transparent 70%);bottom:-100px;right:-100px;animation:blobMove2 22s ease-in-out infinite;"></div>
+        <div class="blob" style="width:500px;height:500px;background:radial-gradient(circle,rgba(255,117,31,0.4),transparent 70%);top:40%;left:30%;animation:blobMove3 26s ease-in-out infinite;"></div>
+        <div class="blob" style="width:450px;height:450px;background:radial-gradient(circle,rgba(30,50,100,0.85),transparent 70%);top:20%;right:5%;animation:blobMove4 20s ease-in-out infinite;"></div>
     </div>
-    <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:1rem;">
-      <img src="../images/shoreditch.jpg" alt="Shoreditch street art in East London" style="width:260px;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,117,31,0.2);">
-      <span class="cf-btn">Read article →</span>
+    <style>
+        @keyframes blobMove1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(120px,80px)} 66%{transform:translate(-60px,140px)} }
+        @keyframes blobMove2 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-100px,-80px)} 66%{transform:translate(80px,-120px)} }
+        @keyframes blobMove3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-80px,60px)} 66%{transform:translate(100px,-80px)} }
+        @keyframes blobMove4 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(60px,100px)} 66%{transform:translate(-80px,40px)} }
+    </style>
+    <canvas id="pageGrid"></canvas>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="SafeHotels.ai" height="44" style="border-radius: 8px;">
+                </a>
+                <nav class="nav-menu">
+                    <a href="index.html">Home</a>
+                    <a href="search.html">Search Hotels</a>
+                    <a href="blog/">Blog</a>
+                    <a href="#features">Our Features</a>
+                    <a href="submit-review.html">Submit Review</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#" class="nav-chat-btn">Chat with AI</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <style>
+        body {
+            position: relative;
+            background: #080d1a;
+        }
+        #animGradient {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        #animGradient .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 1;
+        }
+        #pageGrid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: transparent;
+        }
+        header, section, footer, .chat-container {
+            position: relative;
+            z-index: 3;
+        }
+        .chat-button {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 1000;
+        }
+        .hero-mascot {
+            position: absolute;
+            right: 40px;
+            bottom: 0;
+            width: 300px;
+            height: auto;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        @media (max-width: 1100px) {
+            .hero-mascot {
+                width: 180px;
+                right: 16px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-mascot {
+                width: 110px;
+                right: 8px;
+                top: 16px;
+                transform: none;
+            }
+        }
+    </style>
+    <section class="hero">
+        <canvas id="heroParticles" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
+        <img src="Left-Photoroom.png" alt="SafeHotels mascot" class="hero-mascot">
+        <div class="container">
+            <div class="hero-content" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+                <h1 class="hero-title" style="background:linear-gradient(90deg,#ffffff 0%,#ffe0c8 30%,#ffffff 50%,#ffc49a 70%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;">Find Safe Hotels in London &amp; Worldwide</h1>
+                <style>@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}</style>
+                <p class="hero-subtitle" style="text-align:center;">Book with confidence using real Police.uk crime data, neighbourhood safety scores, and AI guidance</p>
+                <div class="search-card">
+                    <div class="search-inputs">
+                        <div class="input-group location-input">
+                            <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Where</label>
+                            <input type="text" id="location" placeholder="London, United Kingdom" value="London, United Kingdom">
+                        </div>
+                        <div class="input-group date-input">
+                            <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Check-in</label>
+                            <input type="date" id="checkin">
+                        </div>
+                        <div class="input-group date-input">
+                            <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Check-out</label>
+                            <input type="date" id="checkout">
+                        </div>
+                        <div class="input-group guests-input">
+                            <label><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Guests</label>
+                            <select id="guests">
+                                <option>1 guest</option>
+                                <option selected>2 guests</option>
+                                <option>3 guests</option>
+                                <option>4 guests</option>
+                                <option>5+ guests</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="search-btn" id="main-search" onclick="goToSearch()">Search Safe Hotels</button>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat-item"><strong>Police.uk</strong><span>Official Crime Data</span></div>
+                    <div class="stat-item"><strong>Weekly</strong><span>Guides Updated</span></div>
+                    <div class="stat-item"><strong>Free</strong><span>No Hidden Fees</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .features-showcase {
+            background: transparent !important;
+        }
+        .features-showcase .showcase-header h2,
+        .features-showcase .section-heading,
+        .features-showcase .feature-card-alt h4,
+        .features-showcase .features-cta h2 {
+            color: #ffffff !important;
+        }
+        .features-showcase .showcase-header p,
+        .features-showcase .feature-card-alt p,
+        .features-showcase .features-cta p {
+            color: rgba(255,255,255,0.72) !important;
+        }
+        .features-showcase .feature-section {
+            background: transparent !important;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 60px;
+            margin-top: 20px;
+        }
+        .features-showcase .feature-section:first-of-type {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        .features-showcase .feature-card-alt,
+        .features-showcase .features-grid-alt .feature-card-alt,
+        section.features-showcase .feature-card-alt {
+            background: rgba(255,255,255,0.07) !important;
+            border: 1px solid rgba(255,255,255,0.12) !important;
+            border-radius: 16px !important;
+            padding: 28px !important;
+            backdrop-filter: blur(10px) !important;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3) !important;
+            transition: background 0.2s, transform 0.2s !important;
+            color: white !important;
+        }
+        .features-showcase .feature-card-alt:hover,
+        .features-showcase .features-grid-alt .feature-card-alt:hover {
+            background: rgba(255,255,255,0.14) !important;
+            transform: translateY(-3px) !important;
+        }
+        .features-showcase .feature-card-alt h4,
+        .features-showcase .features-grid-alt .feature-card-alt h4 {
+            color: #ffffff !important;
+        }
+        .features-showcase .feature-card-alt p,
+        .features-showcase .features-grid-alt .feature-card-alt p {
+            color: rgba(255,255,255,0.72) !important;
+        }
+        .features-showcase .section-badge {
+            background: rgba(255,117,31,0.2) !important;
+            color: #ff9a5c !important;
+            border: 1px solid rgba(255,117,31,0.3);
+        }
+        .features-showcase .btn-cta-primary {
+            background: #ff751f !important;
+            color: white !important;
+        }
+        .features-showcase .btn-cta-secondary {
+            background: rgba(255,255,255,0.1) !important;
+            color: white !important;
+            border: 1px solid rgba(255,255,255,0.3) !important;
+        }
+        .features-showcase .btn-cta-secondary:hover {
+            background: rgba(255,255,255,0.2) !important;
+        }
+    </style>
+    <section class="features-showcase" id="features">
+        <div class="container">
+            <div class="showcase-header">
+                <h2>What Makes SafeHotels.ai Unique</h2>
+                <p>The only platform combining official Police.uk crime data, neighbourhood safety scores, and AI-powered safety guidance</p>
+            </div>
+            <div class="feature-section">
+                <div class="section-badge community"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:6px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Real Crime Data, Not Guesswork</div>
+                <h3 class="section-heading">Safety You Can Actually Check Before You Book</h3>
+                <div class="features-grid-alt">
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                        <h4>Real Police.uk Crime Data</h4>
+                        <p>Every safety score is built from official Police.uk recorded crime data for the area, so you see the real picture for each postcode</p>
+                    </div>
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                        <h4>Neighbourhood Safety Scores</h4>
+                        <p>Areas are scored across night safety, street safety, hotel security, and area cleanliness, so you can compare before you book</p>
+                    </div>
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                        <h4>City-by-City Safety Guides</h4>
+                        <p>In-depth guides to the safest areas to stay across UK cities, from London and Manchester to Chester, written for real trips</p>
+                    </div>
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                        <h4>Built for Solo Travellers</h4>
+                        <p>Honest night-safety advice written for solo travellers and solo female visitors, so you know exactly where to base yourself</p>
+                    </div>
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                        <h4>AI Safety Assistant</h4>
+                        <p>Ask questions and get safety guidance drawn from real crime data at any time, powered by Claude AI</p>
+                    </div>
+                    <div class="feature-card-alt">
+                        <div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                        <h4>Free and Independent</h4>
+                        <p>Free to use, with rankings based on real data and honest guidance rather than paid placement or hidden fees</p>
+                    </div>
+                </div>
+            </div>
+            <section class="neighborhoods-section" style="margin:0 -9999px;padding:60px 9999px;background:transparent;">
+        <div class="container">
+            <h2 class="section-title" style="color:#fff">Safest London Neighbourhoods</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.72)">Explore our top-rated safe areas with real crime data</p>
+            <div class="neighborhoods-grid">
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="/images/richmond.jpg" alt="Richmond upon Thames" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">98% Safe</div>
+                        <h3>Richmond upon Thames</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Leafy, affluent area with parks and riverside. Extremely low crime rate, perfect for solo travellers.</p>
+                        <a href="search.html?area=richmond" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="/images/kensington.jpg" alt="Kensington London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">96% Safe</div>
+                        <h3>Kensington &amp; Chelsea</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Upscale area with museums, shops, excellent security. Well-lit streets and high police presence.</p>
+                        <a href="search.html?area=kensington" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="/images/greenwich.webp" alt="Greenwich London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">94% Safe</div>
+                        <h3>Greenwich</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Low</strong></p>
+                        <p class="description">Historic maritime area with parks and attractions. Safe, welcoming with great transport links.</p>
+                        <a href="search.html?area=greenwich" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image"><img src="/images/hampstead.jpg" alt="Hampstead London" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div class="neighborhood-content">
+                        <div class="safety-badge excellent">95% Safe</div>
+                        <h3>Hampstead</h3>
+                        <p class="crime-stat">Crime Rate: <strong>Very Low</strong></p>
+                        <p class="description">Charming village feel with Hampstead Heath. Upscale residential area with minimal crime.</p>
+                        <a href="search.html?area=hampstead" class="view-hotels-btn">View Hotels →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            <div style="padding:60px 0;">
+        <div class="container">
+            <h2 class="section-title" style="color:#ffffff">Hotel Safety Guides</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,0.72)">Data-driven articles to help you travel smarter and safer across the UK</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto 36px">
+
+                <a href="blog/is-camden-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,117,31,0.3);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,117,31,0.3)'">
+                    <img src="/images/camden.jpg" alt="Camden Lock and Camden Market in North London" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.2);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">✨ New · Camden</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Camden Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Camden records one of the highest crime rates in London, but most of it is phone theft and pickpocketing around Camden Town and the market. Real Police.uk data shows the calmer places to stay, from Primrose Hill and Hampstead to Belsize Park and King's Cross.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-shoreditch-safe-for-solo-female-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/shoreditch.jpg" alt="Shoreditch street art in East London" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Shoreditch · Solo Female</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Shoreditch Safe for Solo Female Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Shoreditch records some of the highest crime volumes in London, but most of it clusters around nightclubs late at night. Real Police.uk data shows where women travelling alone should stay, from calm Clerkenwell and Liverpool Street to the Boxpark and Hoxton Square nightlife core.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-near-luton-airport.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/luton.jpg" alt="London Luton Airport terminal" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Luton Airport</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near London Luton Airport (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Luton town has a mixed reputation, but the places you would actually stay tell a calmer story. Real Police.uk data compares the walk-to-terminal hotels, the Parkway station hotels, Harpenden and Dunstable, so you can pick the right base for an early flight or a late landing.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-near-stansted-airport.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/stansted.jpg" alt="London Stansted Airport terminal" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Stansted Airport</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near London Stansted Airport (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Stansted sits in one of the lowest-crime districts in Essex. Real Police.uk data compares the terminal walkway hotels, the shuttle hotels, Bishop's Stortford and Saffron Walden, so you can pick the right base for an early flight or a late landing.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-near-gatwick-airport.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/gatwick.jpg" alt="London Gatwick Airport terminal" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Gatwick Airport</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near Gatwick Airport (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Where to sleep before an early flight or after a late landing. Real Police.uk data compares the terminal-connected hotels, Horley, Reigate, Copthorne and Crawley, so you know which side of the airport to book.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-canterbury-safe-for-solo-female-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/canterbury.jpg" alt="Canterbury Cathedral and the historic city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Canterbury</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Canterbury Safe for Solo Female Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Canterbury is a compact, walkable cathedral city and one of the safest major towns in Kent. Real Police.uk data ranks the safest areas to stay, from leafy South Canterbury to St Dunstan's by the station, with honest night-safety advice for solo female visitors.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-exeter.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/exeter.jpg" alt="Exeter Cathedral and Cathedral Green" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Exeter</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Exeter for Solo Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Exeter is a compact, walkable cathedral city and one of the South West's best city breaks. Real Police.uk data ranks the safest areas to stay, from leafy St Leonard's and riverside Topsham to the Cathedral Quarter, with honest advice on the city centre after dark.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-bournemouth-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/bournemouth.jpg" alt="Bournemouth beach and pier" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Bournemouth</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Bournemouth Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Bournemouth is one of the UK's favourite seaside breaks, with seven miles of Blue Flag beach and a walkable town centre. Real Police.uk data ranks the safest areas to stay, from affluent Westbourne to quiet Southbourne, with honest advice on the town-centre gardens and Boscombe after dark.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-durham.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/durham.jpg" alt="Durham Cathedral and Castle on the River Wear" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Durham</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Durham (2026) — Real Crime Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Durham is one of England's smallest cities and one of its calmest — a cathedral and castle wrapped inside a single loop of the River Wear. Real Police.uk data ranks the safest areas to stay, from the UNESCO Bailey peninsula to leafy Neville's Cross, with the one route to avoid after dark.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-chester-safe-for-solo-female-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/chester.jpg" alt="Chester city walls and River Dee" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Chester · Solo Female</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Chester Safe for Solo Female Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Chester is one of England's safest and most walkable historic cities, set in a county rated the safest in the North West. Real Police.uk data ranks the safest areas to stay, from riverside Handbridge to Hoole by the station, with honest night-safety advice for solo female visitors.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-norwich.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/norwich.jpg" alt="Norwich Cathedral and city skyline" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Norwich</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Norwich (2026) — Real Crime Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Norwich is one of England's safest small cities, but as Norfolk's only city it concentrates the county's crime. Real Police.uk data ranks the safest areas to stay, from the Cathedral Quarter and the leafy Golden Triangle to honest night-safety advice for solo female visitors.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-dundee-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/dundee.jpg" alt="Dundee waterfront and V&amp;A museum" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Dundee</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Dundee Safe for Solo Travellers? (2026) — Police Scotland Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Dundee has just overtaken Glasgow to record the highest crime rate of any Scottish council — real Police Scotland data answers every question, from the safest areas like Broughty Ferry and the West End to honest night-safety advice.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-aberdeen.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/aberdeen.jpg" alt="Aberdeen granite city skyline" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Aberdeen</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels in Aberdeen (2026) — Police Scotland Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police Scotland crime data across every Aberdeen neighbourhood — from the West End and Ferryhill to the harbour-side city centre — so you know exactly where to book.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-swansea-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/swansea.jpg" alt="Swansea Bay and marina" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Swansea</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Swansea Safe for Solo Travellers? (2026) — Real Crime Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Swansea neighbourhood — from Mumbles and the Maritime Quarter to the Wind Street nightlife strip — so solo travellers know exactly where to stay.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-portsmouth.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/portsmouth.jpg" alt="Portsmouth Spinnaker Tower and harbour" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Portsmouth</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Portsmouth (2026) — Real Crime Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Portsmouth neighbourhood — from Old Portsmouth and Gunwharf to the Southsea seafront — so solo travellers know exactly where to stay.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-southampton-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/southampton.jpg" alt="Southampton waterfront and city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Southampton</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Southampton Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Southampton neighbourhood — from leafy Bassett to the city centre — so solo travellers know exactly where to stay.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-coventry-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/coventry.jpg" alt="Coventry city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Coventry</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Coventry Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Coventry neighbourhood — from leafy Earlsdon to the city centre — so solo travellers know exactly where to stay.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-leicester-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/leicester.jpg" alt="Leicester city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Leicester</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Leicester Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Leicester neighbourhood — from Stoneygate to the city centre — so solo travellers know exactly where to stay.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-near-edinburgh-airport.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/edinburgh-airport.jpg" alt="Edinburgh Airport terminal building" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Edinburgh Airport</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near Edinburgh Airport (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police Scotland crime data for every postcode around the airport — from the terminal zone hotels to quiet Newbridge — so you can book safely before an early flight or after a late arrival.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-cambridge.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/cambridge.jpg" alt="Cambridge college buildings and River Cam" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Cambridge</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Cambridge for Solo Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Cambridge is one of the UK's safest small cities — but its crime data has one big surprise. Real Police.uk crime data ranks the safest areas to stay, from leafy Newnham to riverside De Freville.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-oxford.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/oxford.jpg" alt="Oxford university spires and skyline" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Oxford</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Oxford for Solo Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Oxford is one of England's safest, most walkable cities — but its crime clusters in a few busy spots. Real Police.uk crime data ranks the safest areas to stay — from leafy Summertown to canal-side Jericho.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-bath-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/bath.jpg" alt="Bath city skyline and Bath Abbey" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Bath</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Bath Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Bath neighbourhood — from Bathwick to Widcombe — so solo travellers know exactly where to stay in one of the UK's safest cities.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-near-manchester-airport.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/manchester-airport.jpg" alt="Manchester Airport terminal" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Manchester Airport</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near Manchester Airport (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data for every postcode around the airport — from the M90 terminal hotels to the quiet Cheshire side — so you can book safely near your flight.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-brighton.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/brighton.jpg" alt="Brighton Palace Pier and seafront" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Brighton</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Brighton for Solo Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data for every Brighton &amp; Hove postcode — from Hove to Kemptown — so solo travellers know exactly where to stay.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-cardiff-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/cardiff.jpg" alt="Cardiff Bay waterfront" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Cardiff</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Cardiff Safe for Solo Travellers? (2026 Honest Review)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real crime data from South Wales Police — Cardiff Bay, Pontcanna, and the areas solo travellers should avoid.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-to-stay-in-nottingham.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/nottingham.jpg" alt="Nottingham Lace Market" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Nottingham</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Nottingham (2026) — Real Crime Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Nottingham postcode — from the Lace Market to West Bridgford.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-sheffield.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/sheffield.jpg" alt="Sheffield city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Sheffield</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Sheffield for Solo Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every Sheffield neighbourhood — from Fulwood to Kelham Island.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-newcastle.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/newcastle.jpg" alt="Newcastle Tyne Bridge" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Newcastle</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas in Newcastle for Solo Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every central Newcastle neighbourhood — from Grainger Town to Jesmond.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-glasgow.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/glasgow.jpg" alt="Glasgow city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Glasgow</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels in Glasgow (2026) — Real Crime Data</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police Scotland crime data across every major Glasgow neighbourhood — so you can book with confidence.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-liverpool-safe-for-solo-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/liverpool.jpg" alt="Liverpool waterfront" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Liverpool</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Liverpool Safe for Solo Travellers? (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police.uk crime data across every major Liverpool neighbourhood — so you can book with confidence.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-leeds.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/leeds.jpg" alt="Leeds city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Leeds</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Leeds (2026)</h3>
+                        <span style="color:#ff751f;font-size:13px;font-weight:600">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safe-hotels-heathrow.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/heathrow.jpg" alt="London Heathrow Airport" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Heathrow</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safe Hotels Near Heathrow Airport (2026)</h3>
+                        <span style="color:#ff751f;font-size:13px;font-weight:600">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/is-birmingham-safe-for-solo-female-travellers.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/birmingham-solo-female.jpg" alt="Birmingham Victoria Square" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Birmingham · Solo Female</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Is Birmingham Safe for Solo Female Travellers? (2026)</h3>
+                        <span style="color:#ff751f;font-size:13px;font-weight:600">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-edinburgh.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/edinburgh.jpg" alt="Edinburgh Old Town" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Edinburgh</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Edinburgh (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real Police Scotland crime data reveals the safest neighbourhoods for solo travellers.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-to-stay-in-london.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/london.jpg" alt="London skyline" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(255,117,31,0.15);color:#ff751f;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">London</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">The Safest Areas to Stay in London (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Official crime data reveals which neighbourhoods are truly safest for tourists.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/solo-female-travel-uk-hotel-safety-guide.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/solo-female.jpg" alt="Solo female traveller" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(142,68,173,0.2);color:#c39bd3;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Solo Female</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Ultimate Solo Female Travel Hotel Safety Guide</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">What to look for in a hotel's security and the safest UK cities to visit alone.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/hotel-safety-tips-uk.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/hotel-tips.jpg" alt="Hotel safety tips" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(243,156,18,0.15);color:#f0b429;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Tips</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">10 Hotel Safety Tips Every Traveller Should Know</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Good habits that keep you safe regardless of which hotel you book.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-areas-manchester.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/manchester.jpg" alt="Manchester city centre" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(22,160,133,0.15);color:#48c9b0;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Manchester</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">Safest Areas to Stay in Manchester (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">Real police crime data reveals the safest neighbourhoods for solo travellers visiting Manchester.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+                <a href="blog/safest-cities-uk-solo-female.html" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .2s,border-color .2s;backdrop-filter:blur(10px)" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,117,31,0.4)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.1)'">
+                    <img src="/images/safest-cities.jpg" alt="Safest UK cities" style="width:100%;height:150px;object-fit:cover;display:block">
+                    <div style="padding:18px;flex:1;display:flex;flex-direction:column">
+                        <span style="background:rgba(233,30,140,0.15);color:#f48fb1;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block;margin-bottom:10px">Solo Female</span>
+                        <h3 style="font-size:15px;font-weight:700;color:#ffffff;margin:0 0 8px;line-height:1.4;flex:1">10 Safest UK Cities for Solo Female Travellers (2026)</h3>
+                        <p style="font-size:13px;color:rgba(255,255,255,0.55);margin:0 0 12px;line-height:1.6">We ranked the safest UK cities using real Police.uk crime data — with hotel tips and area breakdowns.</p>
+                        <span style="color:#ff751f;font-weight:700;font-size:13px">Read guide →</span>
+                    </div>
+                </a>
+
+            </div>
+            <div style="text-align:center">
+                <a href="blog/" style="display:inline-block;border:2px solid #ff751f;color:#ff751f;background:transparent;padding:12px 28px;border-radius:8px;font-weight:700;text-decoration:none;font-size:15px">View all articles →</a>
+            </div>
+        </div>
     </div>
-  </a>
+        <div class="container">
+            <div class="feature-section">
+                <div class="section-badge crime"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:6px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Real-Time Crime Data Integration</div>
+                <h3 class="section-heading">Official Police Statistics for Every Single Hotel</h3>
+                <div class="features-grid-alt">
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h4>Postcode-Specific Safety Scores</h4><p>Get exact crime data for your hotel's postcode - not vague neighborhood estimates or guesswork</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><h4>Crime Breakdown by Type</h4><p>See theft, burglary, violence, and anti-social behavior statistics shown separately for each area</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div><h4>City Average Comparison</h4><p>Know exactly if your area is 50% safer or 20% riskier than the city average. No surprises</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h4>Police &amp; Hospital Distances</h4><p>See how close emergency services are to your hotel. Important for peace of mind and safety</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div><h4>Police.uk API Integration</h4><p>Official UK government crime statistics, updated regularly so you always have current information</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4>Safety Trend Analysis</h4><p>See if neighborhoods are getting safer over time or if crime is increasing. Make informed choices</p></div>
+                </div>
+            </div>
+            <div class="feature-section">
+                <div class="section-badge ai"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:6px"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>AI-Powered Smart Recommendations</div>
+                <h3 class="section-heading">Intelligent Suggestions Personalized Just for You</h3>
+                <div class="features-grid-alt">
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>24/7 AI Chat Assistant</h4><p>Ask any safety question anytime, day or night. Get instant intelligent answers from our AI assistant</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg></div><h4>Powered by Claude AI</h4><p>Advanced language model drawing on comprehensive Police.uk crime data and local area safety signals</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h4>Personalized Hotel Suggestions</h4><p>Tell AI your budget, preferences, and specific safety concerns - get perfectly matched hotel recommendations</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><h4>Natural Conversations</h4><p>Just say "I'm a solo female on a budget" and AI understands context to find safest affordable options</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h4>Instant Response Times</h4><p>No waiting hours or days for answers. Get comprehensive safety information in just seconds</p></div>
+                    <div class="feature-card-alt" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:28px;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.3)"><div class="feature-icon-large"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#ff751f" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h4>Continuously Updated</h4><p>Our knowledge base grows with every new city guide and crime data update added to the platform</p></div>
+                </div>
+            </div>
+            <div class="features-cta">
+                <h2>Experience the Difference</h2>
+                <p>See how SafeHotels.ai makes finding safe accommodation absolutely effortless</p>
+                <div class="cta-buttons">
+                    <a href="search.html" class="btn-cta-primary">Browse Safe Hotels Now</a>
+                    <button class="btn-cta-secondary" id="try-ai">Try AI Assistant Free</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
 
-  <div class="section-label" style="margin-top:2.5rem;">All Articles</div>
-
-  <div class="blog-grid">
-
-    <a href="is-shoreditch-safe-for-solo-female-travellers.html" class="blog-card">
-      <img src="../images/shoreditch.jpg" alt="Shoreditch street art in East London" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Shoreditch · Solo Female</div>
-      <div class="bc-title">Is Shoreditch Safe for Solo Female Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for Shoreditch and the areas around it, from Clerkenwell and Liverpool Street to Spitalfields and Hoxton Square, so solo female travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>November 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-near-luton-airport.html" class="blog-card">
-      <img src="../images/luton.jpg" alt="London Luton Airport terminal" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Luton Airport</div>
-      <div class="bc-title">Safe Hotels Near London Luton Airport (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every area around Luton Airport, from the walk-to-terminal hotels and Luton Airport Parkway to Harpenden and Dunstable, so you can book safely near the airport.</div>
-      <div class="bc-meta"><span>November 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-near-stansted-airport.html" class="blog-card">
-      <img src="../images/stansted.jpg" alt="London Stansted Airport terminal" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Stansted Airport</div>
-      <div class="bc-title">Safe Hotels Near London Stansted Airport (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every area around Stansted, from the terminal walkway hotels to Bishop's Stortford and Saffron Walden, so you can book safely near the airport.</div>
-      <div class="bc-meta"><span>October 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-near-gatwick-airport.html" class="blog-card">
-      <img src="../images/gatwick.jpg" alt="London Gatwick Airport terminal" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Gatwick Airport</div>
-      <div class="bc-title">Safe Hotels Near Gatwick Airport (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every area around Gatwick, from the terminal-connected hotels to Horley, Reigate and Crawley, so you can book safely near the airport.</div>
-      <div class="bc-meta"><span>October 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-canterbury-safe-for-solo-female-travellers.html" class="blog-card">
-      <img src="../images/canterbury.jpg" alt="Canterbury Cathedral and the historic city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Canterbury · Solo Female</div>
-      <div class="bc-title">Is Canterbury Safe for Solo Female Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Canterbury area, from leafy South Canterbury and St Dunstan's to the Cathedral Quarter and the High Street, so solo female travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>October 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-exeter.html" class="blog-card">
-      <img src="../images/exeter.jpg" alt="Exeter Cathedral and Cathedral Green" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Exeter</div>
-      <div class="bc-title">Safest Areas in Exeter for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Exeter area, from St Leonard's and Topsham to Heavitree and the Cathedral Quarter, so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>October 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-bournemouth-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/bournemouth.jpg" alt="Bournemouth beach and pier" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Bournemouth</div>
-      <div class="bc-title">Is Bournemouth Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Bournemouth area, from affluent Westbourne and quiet Southbourne to the clifftop hotel district and the town-centre gardens, so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>October 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-durham.html" class="blog-card">
-      <img src="../images/durham.jpg" alt="Durham Cathedral and Castle on the River Wear" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Durham</div>
-      <div class="bc-title">Safest Areas to Stay in Durham (2026) — Real Crime Data</div>
-      <div class="bc-desc">Real Police.uk crime data across every Durham area, from the UNESCO Bailey peninsula and Neville's Cross to Old Elvet and the Milburngate riverside, so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>September 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-chester-safe-for-solo-female-travellers.html" class="blog-card">
-      <img src="../images/chester.jpg" alt="Chester city walls and River Dee" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Chester · Solo Female</div>
-      <div class="bc-title">Is Chester Safe for Solo Female Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Chester area, from riverside Handbridge and Hoole by the station to the walled city centre, so solo female travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>September 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-norwich.html" class="blog-card">
-      <img src="../images/norwich.jpg" alt="Norwich Cathedral and city skyline" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Norwich</div>
-      <div class="bc-title">Safest Areas to Stay in Norwich (2026) — Real Crime Data</div>
-      <div class="bc-desc">Real Police.uk crime data across every Norwich neighbourhood — from the Cathedral Quarter and the Golden Triangle to the Prince of Wales Road nightlife strip — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>September 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-dundee-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/dundee.jpg" alt="Dundee waterfront and V&amp;A museum" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Dundee</div>
-      <div class="bc-title">Is Dundee Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Dundee now records the highest crime rate of any Scottish council — real Police Scotland data across every ward, from the safest suburb of Broughty Ferry to the West End and city-centre waterfront, so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>September 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-aberdeen.html" class="blog-card">
-      <img src="../images/aberdeen.jpg" alt="Aberdeen granite city skyline" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Aberdeen</div>
-      <div class="bc-title">Safe Hotels in Aberdeen (2026) — Police Scotland Data</div>
-      <div class="bc-desc">Real Police Scotland crime data across every Aberdeen neighbourhood — from the West End and Ferryhill to the harbour-side city centre — so you know exactly where to book.</div>
-      <div class="bc-meta"><span>August 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-swansea-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/swansea.jpg" alt="Swansea Bay and marina" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Swansea</div>
-      <div class="bc-title">Is Swansea Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Swansea neighbourhood — from Mumbles and the Maritime Quarter to Wind Street — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>August 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-portsmouth.html" class="blog-card">
-      <img src="../images/portsmouth.jpg" alt="Portsmouth Spinnaker Tower and harbour" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Portsmouth</div>
-      <div class="bc-title">Safest Areas in Portsmouth (2026) — Real Crime Data</div>
-      <div class="bc-desc">Real Police.uk crime data across every Portsmouth neighbourhood — from Old Portsmouth and Gunwharf to the Southsea seafront — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>August 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-southampton-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/southampton.jpg" alt="Southampton waterfront and city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Southampton</div>
-      <div class="bc-title">Is Southampton Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Southampton neighbourhood — from Bassett to the city centre — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>July 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-coventry-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/coventry.jpg" alt="Coventry city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Coventry</div>
-      <div class="bc-title">Is Coventry Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Coventry neighbourhood — from Earlsdon to the city centre — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>July 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-leicester-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/leicester.jpg" alt="Leicester city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Leicester</div>
-      <div class="bc-title">Is Leicester Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Leicester neighbourhood — from Stoneygate to the city centre — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>July 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-near-edinburgh-airport.html" class="blog-card">
-      <img src="../images/edinburgh-airport.jpg" alt="Edinburgh Airport terminal building" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Edinburgh Airport</div>
-      <div class="bc-title">Safe Hotels Near Edinburgh Airport (2026)</div>
-      <div class="bc-desc">Real Police Scotland crime data for every postcode around Edinburgh Airport — from the terminal zone to Newbridge — so solo travellers can book with confidence.</div>
-      <div class="bc-meta"><span>July 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-cambridge.html" class="blog-card">
-      <img src="../images/cambridge.jpg" alt="Cambridge college buildings and River Cam" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Cambridge</div>
-      <div class="bc-title">Safest Areas in Cambridge for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Cambridge neighbourhood — from Newnham to Mill Road — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>July 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-oxford.html" class="blog-card">
-      <img src="../images/oxford.jpg" alt="Oxford university spires and skyline" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Oxford</div>
-      <div class="bc-title">Safest Areas in Oxford for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Oxford neighbourhood — from Summertown to Jericho — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>June 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-york-safe-for-solo-female-travellers.html" class="blog-card">
-      <img src="../images/york.jpg" alt="York Minster and city walls" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">York · Solo Female</div>
-      <div class="bc-title">Is York Safe for Solo Female Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every York neighbourhood — from Bootham to Bishopthorpe Road — so solo female travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>June 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-bath-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/bath.jpg" alt="Bath city skyline and Bath Abbey" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Bath</div>
-      <div class="bc-title">Is Bath Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Bath neighbourhood — from Bathwick to Widcombe — so solo travellers know exactly where to stay in one of the UK's safest cities.</div>
-      <div class="bc-meta"><span>June 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-near-manchester-airport.html" class="blog-card">
-      <img src="../images/manchester-airport.jpg" alt="Manchester Airport terminal" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Manchester Airport</div>
-      <div class="bc-title">Safe Hotels Near Manchester Airport (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every postcode around Manchester Airport — from the M90 terminal hotels to the Cheshire side — so you can book safely near the airport.</div>
-      <div class="bc-meta"><span>June 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-brighton.html" class="blog-card">
-      <img src="../images/brighton.jpg" alt="Brighton Palace Pier and seafront" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Brighton</div>
-      <div class="bc-title">Safest Areas in Brighton for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every Brighton &amp; Hove postcode — from Hove to Kemptown — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>May 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-cardiff-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/cardiff.jpg" alt="Cardiff Bay waterfront" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Cardiff</div>
-      <div class="bc-title">Is Cardiff Safe for Solo Travellers? (2026 Honest Review)</div>
-      <div class="bc-desc">Cardiff is one of the UK's most underrated city breaks. Real crime data from South Wales Police — Cardiff Bay, Pontcanna, and the areas to avoid.</div>
-      <div class="bc-meta"><span>May 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-to-stay-in-nottingham.html" class="blog-card">
-      <img src="../images/nottingham.jpg" alt="Nottingham Lace Market" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Nottingham</div>
-      <div class="bc-title">Safest Areas to Stay in Nottingham (2026) — Real Crime Data</div>
-      <div class="bc-desc">Nottingham gets a tough reputation — but the reality is far more nuanced. Real Police.uk data for every postcode, from the Lace Market to West Bridgford.</div>
-      <div class="bc-meta"><span>May 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-sheffield.html" class="blog-card">
-      <img src="../images/sheffield.jpg" alt="Sheffield city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Sheffield</div>
-      <div class="bc-title">Safest Areas in Sheffield for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Sheffield neighbourhood — from Fulwood to Kelham Island — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>May 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-newcastle.html" class="blog-card">
-      <img src="../images/newcastle.jpg" alt="Newcastle Tyne Bridge" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Newcastle</div>
-      <div class="bc-title">Safest Areas in Newcastle for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every central Newcastle neighbourhood — from Grainger Town to Jesmond — so you can book with confidence.</div>
-      <div class="bc-meta"><span>April 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-glasgow.html" class="blog-card">
-      <img src="../images/glasgow.jpg" alt="Glasgow city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Glasgow</div>
-      <div class="bc-title">Safe Hotels in Glasgow (2026) — Real Crime Data</div>
-      <div class="bc-desc">Real Police Scotland crime data across every major Glasgow neighbourhood — from the West End to Merchant City — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>April 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-liverpool-safe-for-solo-travellers.html" class="blog-card">
-      <img src="../images/liverpool.jpg" alt="Liverpool waterfront" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Liverpool</div>
-      <div class="bc-title">Is Liverpool Safe for Solo Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every major Liverpool neighbourhood — from the Waterfront to Ropewalks — so you can book with confidence.</div>
-      <div class="bc-meta"><span>April 2026</span><span>9 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-leeds.html" class="blog-card">
-      <img src="../images/leeds.jpg" alt="Leeds city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Leeds</div>
-      <div class="bc-title">Safest Areas to Stay in Leeds (2026) — Real Crime Data</div>
-      <div class="bc-desc">Real Police.uk crime data for every Leeds postcode — from the LS1 financial quarter to Headingley — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>April 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safe-hotels-heathrow.html" class="blog-card">
-      <img src="../images/heathrow.jpg" alt="London Heathrow Airport" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">London Heathrow</div>
-      <div class="bc-title">Safe Hotels Near Heathrow Airport (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every postcode around Heathrow — from the Bath Road corridor to Hayes — so you can book safely near the airport.</div>
-      <div class="bc-meta"><span>April 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-bristol.html" class="blog-card">
-      <img src="../images/bristol.jpg" alt="Bristol Harbourside" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Bristol</div>
-      <div class="bc-title">Safest Areas in Bristol for Solo Travellers (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data for every Bristol postcode — from Clifton to the Harbourside — so solo travellers know exactly where to stay.</div>
-      <div class="bc-meta"><span>March 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-birmingham-safe-for-solo-female-travellers.html" class="blog-card">
-      <img src="../images/birmingham-solo-female.jpg" alt="Birmingham Victoria Square" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Birmingham · Solo Female</div>
-      <div class="bc-title">Is Birmingham Safe for Solo Female Travellers? (2026)</div>
-      <div class="bc-desc">Real Police.uk crime data across every Birmingham neighbourhood — plus exactly which areas solo female travellers should choose and which to avoid.</div>
-      <div class="bc-meta"><span>March 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-edinburgh.html" class="blog-card">
-      <img src="../images/edinburgh.jpg" alt="Edinburgh castle and Old Town" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Edinburgh</div>
-      <div class="bc-title">Safest Areas to Stay in Edinburgh (2026) — Real Crime Data</div>
-      <div class="bc-desc">We pulled real Police Scotland crime data for every Edinburgh postcode — from the New Town to Leith — to reveal exactly where solo travellers should stay.</div>
-      <div class="bc-meta"><span>March 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-manchester.html" class="blog-card">
-      <img src="../images/manchester.jpg" alt="Manchester city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Manchester</div>
-      <div class="bc-title">Safest Areas to Stay in Manchester (2026) — Real Crime Data</div>
-      <div class="bc-desc">We pulled real Police.uk crime statistics for every Manchester postcode to reveal exactly which neighbourhoods are safest for solo travellers — from Spinningfields to Ancoats.</div>
-      <div class="bc-meta"><span>March 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="safest-areas-to-stay-in-london.html" class="blog-card">
-      <img src="../images/london.jpg" alt="London skyline" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">London</div>
-      <div class="bc-title">The Safest Areas to Stay in London (2026 Guide)</div>
-      <div class="bc-desc">We analysed Police.uk crime data across every London borough to reveal which neighbourhoods offer the lowest crime rates for visitors.</div>
-      <div class="bc-meta"><span>Feb 2026</span><span>8 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="solo-female-travel-uk-hotel-safety-guide.html" class="blog-card">
-      <img src="../images/solo-female.jpg" alt="Solo female traveller" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Solo Female Travel</div>
-      <div class="bc-title">The Ultimate Solo Female Travel Hotel Safety Guide — UK</div>
-      <div class="bc-desc">From hotel security checks to the safest UK cities, this is our complete guide for women travelling alone across the UK.</div>
-      <div class="bc-meta"><span>Feb 2026</span><span>10 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="is-birmingham-safe-for-tourists.html" class="blog-card">
-      <img src="../images/birmingham.jpg" alt="Birmingham city centre" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Birmingham</div>
-      <div class="bc-title">Is Birmingham Safe for Tourists? (Honest 2026 Review)</div>
-      <div class="bc-desc">The real picture on Birmingham's safety — which areas are genuinely safe, which to avoid, and where the best safe hotels are located.</div>
-      <div class="bc-meta"><span>Feb 2026</span><span>7 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="hotel-safety-tips-uk.html" class="blog-card">
-      <img src="../images/hotel-tips.jpg" alt="Hotel safety tips" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.85rem;">
-      <div class="bc-tag">Safety Tips</div>
-      <div class="bc-title">10 Hotel Safety Tips Every Traveller Should Know</div>
-      <div class="bc-desc">Even in the safest hotels, good habits matter. Our tips cover everything from room selection to securing your valuables.</div>
-      <div class="bc-meta"><span>Feb 2026</span><span>5 min read</span></div>
-      <span class="bc-arrow">Read article →</span>
-    </a>
-
-    <a href="/" class="search-card">
-      <div class="bc-tag">Hotel Search</div>
-      <div class="bc-title">Search Safe Hotels Now</div>
-      <div class="bc-desc">Browse our full database of UK hotels ranked by safety score with real Police.uk crime data.</div>
-      <span class="bc-arrow">Browse hotels →</span>
-    </a>
-
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <a href="/" class="footer-logo"><img src="../logo.png" alt="SafeHotels.ai" height="36" style="border-radius:6px;display:block;margin-bottom:0.75rem;"></a>
-      <p class="footer-tagline">Your trusted platform for safe hotel bookings across the UK. Powered by real Police.uk crime data.</p>
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Start Your Safe London Adventure</h2>
+                <p>Find the perfect hotel in London's safest neighbourhoods with real crime data and neighbourhood safety scores</p>
+                <a href="search.html" class="cta-btn">Search Safe Hotels Now</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo"><img src="logo.png" alt="SafeHotels.ai" height="36" style="border-radius: 6px;"></div>
+                    <p>Your trusted platform for safe hotel bookings across the UK.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="submit-review.html">Submit Review</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="search.html">All Hotels</a></li>
+                        <li><a href="search.html?badge=solo-female">Solo Female Picks</a></li>
+                        <li><a href="search.html?badge=family">Family Hotels</a></li>
+                        <li><a href="search.html?badge=budget-safe">Budget Safe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Use</a></li>
+                        <li><a href="affiliate-disclosure.html">Affiliate Disclosure</a></li>
+                        <li><a href="contact.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SafeHotels.ai • Live crime data: data.police.uk • <a href="privacy.html" style="color:#aaa;">Privacy</a> • <a href="terms.html" style="color:#aaa;">Terms</a> • <a href="contact.html" style="color:#aaa;">Contact</a></p>
+                <p style="font-size:11px;color:#888;margin-top:6px;">We may earn a commission when you book through our links, at no extra cost to you. Some links on this site are affiliate links.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <div class="chat-header-left">
+                <div class="chat-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="white"/>
+                        <path d="M8 14C8 14 9.5 16 12 16C14.5 16 16 14 16 14" stroke="#ff751f" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="9" cy="9" r="1.5" fill="#ff751f"/>
+                        <circle cx="15" cy="9" r="1.5" fill="#ff751f"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="chat-title">SafeHotels AI Assistant</div>
+                    <div class="chat-status"><span class="status-dot"></span> Online</div>
+                </div>
+            </div>
+            <button class="chat-minimize" id="chatMinimize">−</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="bot-message">
+                <div class="message-avatar">AI</div>
+                <div class="message-bubble">
+                    <p>Hi! I'm your SafeHotels AI assistant powered by Claude.</p>
+                    <p>I can help you find the safest hotels using real crime data and neighbourhood safety scores!</p>
+                    <p><strong>Where would you like to stay?</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Ask about safe hotels in London..." />
+            <button id="chatSend">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10L18 2L10 18L8.5 11.5L2 10Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
     </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/search">Search Hotels</a></li>
-        <li><a href="/blog/">Blog</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/submit-review">Submit Review</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/terms">Terms of Use</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 SafeHotels.ai · Crime data sourced from <a href="https://data.police.uk" target="_blank">Police.uk</a> · Some links on this site are affiliate links</span>
-    <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
-  </div>
-</footer>
+    <button class="chat-button" id="chatButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 13.54 2.38 15 3.03 16.3L2 22L7.7 20.97C9 21.62 10.46 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="currentColor"/>
+        </svg>
+        <span class="chat-badge">AI</span>
+    </button>
+    <script>
+    (function() {
+        const canvas = document.getElementById('heroParticles');
+        const hero = canvas.parentElement;
+        const ctx = canvas.getContext('2d');
+        let mouse = { x: -9999, y: -9999 };
+        let particles = [];
+        const COUNT = 80;
+        const MAX_DIST = 140;
+        const MOUSE_DIST = 180;
 
+        function resize() {
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+        }
+
+        function Particle() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.r = Math.random() * 2 + 1;
+        }
+
+        Particle.prototype.update = function() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        };
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                ctx.beginPath();
+                ctx.arc(particles[i].x, particles[i].y, particles[i].r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,248,220,0.9)';
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < MAX_DIST) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(255,248,220,${0.5 * (1 - dist / MAX_DIST)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+
+                const mdx = particles[i].x - mouse.x;
+                const mdy = particles[i].y - mouse.y;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < MOUSE_DIST) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(255,248,220,${0.8 * (1 - mdist / MOUSE_DIST)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        hero.addEventListener('mousemove', function(e) {
+            const rect = hero.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', function() {
+            mouse.x = -9999;
+            mouse.y = -9999;
+        });
+
+        window.addEventListener('resize', function() {
+            resize();
+            init();
+        });
+
+        resize();
+        init();
+        draw();
+    })();
+    </script>
+    <script>
+    (function() {
+        const canvas = document.getElementById('pageGrid');
+        const ctx = canvas.getContext('2d');
+        const SIZE = 48;
+        let offset = 0;
+
+        function resize() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            offset = (offset + 0.3) % SIZE;
+
+            ctx.strokeStyle = 'rgba(255,117,31,0.07)';
+            ctx.lineWidth = 1;
+
+            for (let y = (offset % SIZE); y < canvas.height; y += SIZE) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+            for (let x = (offset % SIZE); x < canvas.width; x += SIZE) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        draw();
+    })();
+    </script>
+    <script src="script.js"></script>
+    <script>
+    function goToSearch() {
+        const loc = document.getElementById('location').value.trim();
+        const ci  = document.getElementById('checkin').value;
+        const co  = document.getElementById('checkout').value;
+        const g   = document.getElementById('guests').value;
+        const p   = new URLSearchParams();
+        if (loc) p.set('location', loc);
+        if (ci)  p.set('checkin', ci);
+        if (co)  p.set('checkout', co);
+        if (g)   p.set('guests', g.replace(/\D+/g, '') || '2');
+        window.location.href = 'search.html?' + p.toString();
+    }
+    (function() {
+        const ci = document.getElementById('checkin');
+        const co = document.getElementById('checkout');
+        if (!ci.value) {
+            const d1 = new Date(); d1.setDate(d1.getDate() + 1);
+            const d2 = new Date(); d2.setDate(d2.getDate() + 2);
+            ci.value = d1.toISOString().slice(0,10);
+            co.value = d2.toISOString().slice(0,10);
+        }
+    })();
+    </script>
 </body>
 </html>
