@@ -168,6 +168,9 @@ async function getCrimes(lat, lng) {
     const crimes = raw
       .filter((c) => c.location)
       .map((c) => ({ category: c.category, lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }));
+    // An empty list almost always means the force doesn't publish to police.uk
+    // (e.g. Greater Manchester Police), not that there was no crime. Treat it as no data.
+    if (crimes.length === 0) return { crimes: null, month };
     return { crimes, month };
   } catch (e) {
     console.error("police.uk error:", e.message);
