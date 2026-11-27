@@ -1,326 +1,229 @@
 // ============================================================
-// SafeHotels.ai — Netlify Serverless Function
-// Endpoint: /.netlify/functions/hotel-search
+// SafeHotels.ai: Netlify Serverless Function
+// Endpoint: /.netlify/functions/hotel-search  (also /api/hotel-search)
 //
 // What it does:
-//   1. Geocodes the user's city with Nominatim (free, no key)
-//   2. Calls Travelpayouts Hotel Data API to get hotels near lat/lng
-//   3. Calls data.police.uk to get crime stats for those coords
-//   4. Returns enriched hotel results with a safety score
+//   1. Finds the searched place with Nominatim (free, no key)
+//   2. Looks up nearby hotels in our own UK hotel list
+//      (data/uk-hotels.json, from OpenStreetMap)
+//   3. Gets street-level crime for the area from data.police.uk
+//   4. Gives each hotel a safety score from the crimes recorded
+//      near it, and a Stay22 "Check prices" link
+//
+// Settings (Netlify > Site configuration > Environment variables):
+//   STAY22_AID   your Stay22 affiliate ID (from hub.stay22.com)
 // ============================================================
 
-const TRAVELPAYOUTS_TOKEN = "0479e2cf95de9480df4cab134c607941";
+// The hotel list is split in two files to keep each upload small
+const HOTELS = [
+  ...require("../../data/uk-hotels-1.json"),
+  ...require("../../data/uk-hotels-2.json"),
+];
 
-exports.handler = async function (event, context) {
-  // CORS headers — allow requests from same origin
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Content-Type": "application/json",
-  };
+const STAY22_AID = process.env.STAY22_AID || "";
+const SEARCH_RADIUS_KM = 1.5;   // hotels shown around the searched place
+const WIDER_RADIUS_KM = 6;      // used if too few hotels nearby
+const HOTEL_CRIME_RADIUS_M = 250; // crimes counted "near" a hotel
+const MAX_RESULTS = 40;
 
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers, body: "" };
-  }
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Content-Type": "application/json",
+};
+
+exports.handler = async function (event) {
+  if (event.httpMethod === "OPTIONS") return { statusCode: 200, headers, body: "" };
 
   const params = event.queryStringParameters || {};
-  const { location, checkin, checkout, guests } = params;
+  const location = (params.location || "").trim();
+  if (!location) return reply(400, { error: "location parameter is required" });
 
-  if (!location) {
-    return {
-      statusCode: 400,
-      headers,
-      body: JSON.stringify({ error: "location parameter is required" }),
-    };
-  }
+  const checkin = params.checkin || "";
+  const checkout = params.checkout || "";
+  const guests = parseGuests(params.guests);
 
   try {
-    // ── Step 1: Geocode the location ───────────────────────────
-    const geoUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-      location + ", UK"
-    )}&format=json&limit=1&countrycodes=gb`;
-
-    const geoRes = await fetch(geoUrl, {
-      headers: { "User-Agent": "SafeHotels.ai/1.0 (safehotels.ai)" },
-    });
-    const geoData = await geoRes.json();
-
-    if (!geoData || geoData.length === 0) {
-      return {
-        statusCode: 404,
-        headers,
-        body: JSON.stringify({ error: "Location not found. Try a UK city name like 'London' or 'Manchester'." }),
-      };
+    // 1. Where did they search?
+    const geoUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1&countrycodes=gb`;
+    const geoRes = await fetch(geoUrl, { headers: { "User-Agent": "SafeHotels.ai/1.0 (https://safehotels.ai)" } });
+    const geo = await geoRes.json();
+    if (!geo || geo.length === 0) {
+      return reply(404, { error: "We couldn't find that place. Try a UK town, area or postcode, e.g. 'Manchester' or 'W8 5DL'." });
     }
+    const lat = parseFloat(geo[0].lat);
+    const lng = parseFloat(geo[0].lon);
+    const locationName = geo[0].display_name.split(",")[0];
 
-    const lat = parseFloat(geoData[0].lat);
-    const lng = parseFloat(geoData[0].lon);
-    const locationName = geoData[0].display_name.split(",")[0];
+    // 2. Nearby hotels from our list
+    let radius = SEARCH_RADIUS_KM;
+    let nearby = hotelsWithin(lat, lng, radius);
+    if (nearby.length < 5) {
+      radius = WIDER_RADIUS_KM;
+      nearby = hotelsWithin(lat, lng, radius);
+    }
+    nearby = nearby.slice(0, MAX_RESULTS);
 
-    // ── Step 2: Call Travelpayouts Hotel API ───────────────────
-    const checkInDate = checkin || getTodayPlus(1);
-    const checkOutDate = checkout || getTodayPlus(2);
-    const adultsCount = parseGuests(guests);
+    // 3. Crime around the searched place (police.uk covers about 1 mile)
+    const { crimes, month } = await getCrimes(lat, lng);
+    const area = scoreArea(crimes);
 
-    let hotels = [];
-    try {
-      // Step 2a: Get location ID from Travelpayouts
-      const locationUrl = `https://engine.hotellook.com/api/v2/lookup.json?query=${encodeURIComponent(location)}&lang=en&lookFor=city&limit=1&token=${TRAVELPAYOUTS_TOKEN}`;
-      console.log("Looking up location:", locationUrl);
-      const locationRes = await fetch(locationUrl);
-      const locationData = await locationRes.json();
-      console.log("Location data:", JSON.stringify(locationData).slice(0, 300));
-
-      const cityId = locationData?.results?.locations?.[0]?.id;
-      console.log("City ID:", cityId);
-
-      if (cityId) {
-        // Step 2b: Get hotels for that city
-        const hotelsUrl = `https://engine.hotellook.com/api/v2/cache.json?location=${cityId}&checkIn=${checkInDate}&checkOut=${checkOutDate}&adultsCount=${adultsCount}&currency=gbp&limit=20&token=${TRAVELPAYOUTS_TOKEN}`;
-        console.log("Fetching hotels:", hotelsUrl);
-        const hotelsRes = await fetch(hotelsUrl);
-        const hotelsData = await hotelsRes.json();
-        console.log("Hotels response:", Array.isArray(hotelsData) ? "array len=" + hotelsData.length : JSON.stringify(hotelsData).slice(0, 200));
-        hotels = extractHotels(hotelsData, lat, lng);
-        console.log("Hotels extracted:", hotels.length);
-      } else {
-        console.log("No city ID found, trying direct lat/lng cache call");
-        // Fallback: try with city name directly
-        const directUrl = `https://engine.hotellook.com/api/v2/cache.json?location=${encodeURIComponent(locationName)}&checkIn=${checkInDate}&checkOut=${checkOutDate}&adultsCount=${adultsCount}&currency=gbp&limit=20&token=${TRAVELPAYOUTS_TOKEN}`;
-        const directRes = await fetch(directUrl);
-        const directData = await directRes.json();
-        console.log("Direct response:", Array.isArray(directData) ? "array len=" + directData.length : JSON.stringify(directData).slice(0, 200));
-        hotels = extractHotels(directData, lat, lng);
+    // 4. Score each hotel by crimes recorded near it
+    const results = nearby.map((h) => {
+      const withinCrimeData = h.distanceKm <= 1.4; // police.uk only returns crimes within ~1 mile of the search point
+      let safetyScore = null, safetyLabel = "No data", crimesNearby = null, scoreBasis = "none";
+      if (crimes && withinCrimeData) {
+        crimesNearby = crimes.filter((c) => metres(h.lat, h.lon, c.lat, c.lng) <= HOTEL_CRIME_RADIUS_M).length;
+        ({ safetyScore, safetyLabel } = scoreHotel(crimesNearby));
+        scoreBasis = "hotel";
+      } else if (crimes) {
+        ({ safetyScore, safetyLabel } = { safetyScore: area.score, safetyLabel: area.label });
+        scoreBasis = "area";
       }
-    } catch (tpErr) {
-      console.error("Travelpayouts error:", tpErr.message);
-    }
+      return {
+        id: h.osm_id,
+        name: h.name,
+        type: h.type,
+        stars: h.stars ? parseInt(h.stars, 10) || null : null,
+        lat: h.lat,
+        lng: h.lon,
+        address: [h.address, h.town, h.postcode].filter(Boolean).join(", "),
+        postcode: h.postcode || null,
+        website: h.website || null,
+        distanceKm: Math.round(h.distanceKm * 10) / 10,
+        priceMin: null,
+        currency: "GBP",
+        rating: null,
+        reviewCount: 0,
+        photoUrl: null,
+        safetyScore,
+        safetyLabel,
+        crimesNearby,
+        scoreBasis,
+        bookingUrl: stay22Url(h, checkin, checkout, guests),
+        source: "openstreetmap",
+      };
+    });
 
-    // ── Step 3: Get crime data from data.police.uk ─────────────
-    const crimeData = await getCrimeData(lat, lng);
-
-    // ── Step 4: Build safety score and merge ───────────────────
-    const { crimeScore, crimeLabel, crimeCount, crimeBreakdown } = scoreCrime(crimeData);
-
-    // Enrich each hotel with crime context
-    const enrichedHotels = hotels.map((hotel) =>
-      enrichHotel(hotel, crimeScore, crimeLabel, crimeCount, checkInDate, checkOutDate, adultsCount)
-    );
-
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        location: locationName,
-        lat,
-        lng,
-        checkin: checkInDate,
-        checkout: checkOutDate,
-        guests: adultsCount,
-        crime: {
-          score: crimeScore,
-          label: crimeLabel,
-          totalCrimes: crimeCount,
-          breakdown: crimeBreakdown,
-          source: "data.police.uk",
-          period: "last 3 months",
-        },
-        hotels: enrichedHotels,
-        totalResults: enrichedHotels.length,
-      }),
-    };
+    return reply(200, {
+      location: locationName,
+      lat,
+      lng,
+      checkin,
+      checkout,
+      guests,
+      radiusKm: radius,
+      crime: {
+        score: area.score,
+        label: area.label,
+        totalCrimes: crimes ? crimes.length : null,
+        breakdown: area.breakdown,
+        source: "data.police.uk",
+        period: month ? `month of ${month}` : "not available",
+        note: `Hotel scores count crimes recorded within ${HOTEL_CRIME_RADIUS_M}m of each hotel in that month.`,
+      },
+      hotels: results,
+      totalResults: results.length,
+      attribution: "Hotel data © OpenStreetMap contributors. Crime data from data.police.uk (Open Government Licence).",
+    });
   } catch (err) {
     console.error("hotel-search error:", err);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: "Search failed. Please try again." }),
-    };
+    return reply(500, { error: "Search failed. Please try again." });
   }
 };
 
-// ── Travelpayouts URL builder ────────────────────────────────
-function buildTravelpayoutsUrl(lat, lng, checkin, checkout, adults) {
-  // Cache API — returns instantly, no async polling needed
-  const base = "https://engine.hotellook.com/api/v2/cache.json";
-  return (
-    `${base}?token=${TRAVELPAYOUTS_TOKEN}` +
-    `&marker=501240` +
-    `&lat=${lat}&lon=${lng}` +
-    `&checkIn=${checkin}&checkOut=${checkout}` +
-    `&adultsCount=${adults}` +
-    `&currency=gbp&lang=en-gb` +
-    `&limit=20&distance=3`
-  );
+// ── Helpers ──────────────────────────────────────────────────
+function reply(statusCode, body) {
+  return { statusCode, headers, body: JSON.stringify(body) };
 }
 
-// ── Extract & normalise hotels from Travelpayouts response ───
-function extractHotels(data, searchLat, searchLng) {
-  // Cache API returns an array directly
-  const results = Array.isArray(data) ? data : (data?.results || data?.hotels || []);
-  if (!results || results.length === 0) return [];
-
-  return results.slice(0, 15).map((h) => ({
-    id: h.id || h.hotelId,
-    name: h.hotelName || h.name || "Unknown Hotel",
-    stars: h.stars || 3,
-    lat: h.location?.lat || h.lat || searchLat,
-    lng: h.location?.lon || h.lon || searchLng,
-    address: h.address || h.location?.name || "",
-    priceMin: h.priceFrom ? Math.round(h.priceFrom) : null,
-    priceMax: h.priceTo ? Math.round(h.priceTo) : null,
-    currency: "GBP",
-    rating: h.rating ? parseFloat(h.rating).toFixed(1) : null,
-    reviewCount: h.reviewCount || 0,
-    photoUrl: h.photoUrl ? `https://photo.hotellook.com/image_v2/limit/${h.photoUrl}/600/400.jpg` : null,
-    bookingUrl: null,
-    source: "travelpayouts",
-  }));
+function metres(lat1, lon1, lat2, lon2) {
+  const R = 6371000, toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
 }
 
-// ── Build affiliate deep-link to Booking.com ─────────────────
-function buildBookingUrl(hotel, checkin, checkout, adults) {
-  const q = encodeURIComponent((hotel.name || '') + ', UK');
-  return (
-    `https://www.booking.com/search.html?ss=${q}` +
-    `&aid=304142&label=safehotels-tp501240` +
-    `&checkin=${checkin}&checkout=${checkout}` +
-    `&group_adults=${adults || 2}&lang=en-gb`
-  );
-}
-
-// ── Fetch crime data from data.police.uk ─────────────────────
-async function getCrimeData(lat, lng) {
-  const months = getLastThreeMonths();
-  const crimeArrays = await Promise.all(
-    months.map(async (month) => {
-      try {
-        const url = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}&date=${month}`;
-        const res = await fetch(url);
-        if (!res.ok) return [];
-        return await res.json();
-      } catch {
-        return [];
-      }
-    })
-  );
-  return crimeArrays.flat();
-}
-
-// ── Score crime data ──────────────────────────────────────────
-function scoreCrime(crimes) {
-  if (!crimes || crimes.length === 0) {
-    return { crimeScore: 80, crimeLabel: "Unknown", crimeCount: 0, crimeBreakdown: {} };
+function hotelsWithin(lat, lng, km) {
+  // quick box filter first, then exact distance
+  const dLat = km / 111, dLng = km / (111 * Math.cos((lat * Math.PI) / 180));
+  const out = [];
+  for (const h of HOTELS) {
+    if (Math.abs(h.lat - lat) > dLat || Math.abs(h.lon - lng) > dLng) continue;
+    const d = metres(lat, lng, h.lat, h.lon) / 1000;
+    if (d <= km) out.push({ ...h, distanceKm: d });
   }
+  return out.sort((a, b) => a.distanceKm - b.distanceKm);
+}
 
+async function getCrimes(lat, lng) {
+  try {
+    // police.uk publishes a couple of months behind, so ask for its latest month
+    const upd = await (await fetch("https://data.police.uk/api/crime-last-updated")).json();
+    const month = (upd.date || "").slice(0, 7);
+    const url = `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${lng}${month ? `&date=${month}` : ""}`;
+    const res = await fetch(url);
+    if (!res.ok) return { crimes: null, month: null }; // e.g. too many crimes in central areas, or no coverage
+    const raw = await res.json();
+    const crimes = raw
+      .filter((c) => c.location)
+      .map((c) => ({ category: c.category, lat: parseFloat(c.location.latitude), lng: parseFloat(c.location.longitude) }));
+    return { crimes, month };
+  } catch (e) {
+    console.error("police.uk error:", e.message);
+    return { crimes: null, month: null };
+  }
+}
+
+// Area score: all crimes within ~1 mile in one month
+function scoreArea(crimes) {
+  if (!crimes) return { score: null, label: "No data", breakdown: {} };
+  const n = crimes.length;
+  let score, label;
+  if (n < 50) { score = 95 - Math.floor(n / 5); label = "Very Safe"; }
+  else if (n < 150) { score = 85 - Math.floor((n - 50) / 7); label = "Safe"; }
+  else if (n < 400) { score = 70 - Math.floor((n - 150) / 15); label = "Moderate"; }
+  else if (n < 800) { score = 52 - Math.floor((n - 400) / 25); label = "Elevated"; }
+  else { score = Math.max(10, 35 - Math.floor((n - 800) / 50)); label = "High Crime"; }
+
+  const names = {
+    "anti-social-behaviour": "Anti-social behaviour", burglary: "Burglary",
+    "criminal-damage-arson": "Criminal damage", drugs: "Drugs",
+    "possession-of-weapons": "Weapons", "public-order": "Public order",
+    robbery: "Robbery", shoplifting: "Shoplifting", "theft-from-the-person": "Theft from person",
+    "vehicle-crime": "Vehicle crime", "violent-crime": "Violent crime",
+    "other-crime": "Other crime", "other-theft": "Other theft", "bicycle-theft": "Bicycle theft",
+  };
+  const counts = {};
+  crimes.forEach((c) => (counts[c.category] = (counts[c.category] || 0) + 1));
   const breakdown = {};
-  crimes.forEach((c) => {
-    const cat = c.category || "other";
-    breakdown[cat] = (breakdown[cat] || 0) + 1;
+  Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6)
+    .forEach(([k, v]) => (breakdown[names[k] || k] = v));
+  return { score: Math.max(0, Math.min(100, score)), label, breakdown };
+}
+
+// Hotel score: crimes within 250m in one month
+function scoreHotel(n) {
+  if (n < 10) return { safetyScore: 95 - n, safetyLabel: "Very Safe" };
+  if (n < 30) return { safetyScore: 85 - Math.floor((n - 10) / 2), safetyLabel: "Safe" };
+  if (n < 70) return { safetyScore: 74 - Math.floor((n - 30) / 2), safetyLabel: "Moderate" };
+  if (n < 150) return { safetyScore: 54 - Math.floor((n - 70) / 4), safetyLabel: "Elevated" };
+  return { safetyScore: Math.max(10, 34 - Math.floor((n - 150) / 10)), safetyLabel: "High Crime" };
+}
+
+function stay22Url(h, checkin, checkout, guests) {
+  const p = new URLSearchParams({
+    hotelname: h.name,
+    address: [h.address, h.town, h.postcode, "UK"].filter(Boolean).join(", "),
+    adults: String(guests),
   });
-
-  const totalCrimes = crimes.length;
-
-  // Score: fewer crimes = higher safety score
-  // Calibrated for a 1-mile UK urban radius over 3 months:
-  // < 50  = very safe (90–100)
-  // 50–150 = safe (75–89)
-  // 150–300 = moderate (55–74)
-  // 300–500 = elevated (35–54)
-  // 500+  = high (0–34)
-  let score;
-  let label;
-
-  if (totalCrimes < 50) {
-    score = 95 - Math.floor(totalCrimes / 5);
-    label = "Very Safe";
-  } else if (totalCrimes < 150) {
-    score = 89 - Math.floor((totalCrimes - 50) / 7);
-    label = "Safe";
-  } else if (totalCrimes < 300) {
-    score = 74 - Math.floor((totalCrimes - 150) / 10);
-    label = "Moderate";
-  } else if (totalCrimes < 500) {
-    score = 54 - Math.floor((totalCrimes - 300) / 10);
-    label = "Elevated";
-  } else {
-    score = Math.max(10, 34 - Math.floor((totalCrimes - 500) / 20));
-    label = "High Crime";
-  }
-
-  // Format breakdown with readable category names
-  const readableBreakdown = {};
-  const categoryNames = {
-    "anti-social-behaviour": "Anti-social behaviour",
-    "burglary": "Burglary",
-    "criminal-damage-arson": "Criminal damage",
-    "drugs": "Drugs",
-    "possession-of-weapons": "Weapons",
-    "public-order": "Public order",
-    "robbery": "Robbery",
-    "shoplifting": "Shoplifting",
-    "theft-from-the-person": "Theft from person",
-    "vehicle-crime": "Vehicle crime",
-    "violent-crime": "Violent crime",
-    "other-crime": "Other crime",
-    "other-theft": "Other theft",
-  };
-
-  Object.entries(breakdown)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 6)
-    .forEach(([k, v]) => {
-      readableBreakdown[categoryNames[k] || k] = v;
-    });
-
-  return { crimeScore: Math.max(0, Math.min(100, score)), crimeLabel: label, crimeCount: totalCrimes, crimeBreakdown: readableBreakdown };
+  if (STAY22_AID) p.set("aid", STAY22_AID);
+  if (checkin) p.set("checkin", checkin);
+  if (checkout) p.set("checkout", checkout);
+  return `https://www.stay22.com/allez/roam?${p.toString()}`;
 }
 
-// ── Enrich hotel with safety data ────────────────────────────
-function enrichHotel(hotel, crimeScore, crimeLabel, crimeCount, checkin, checkout, adults) {
-  // Each hotel shares the area-level crime score (we adjust slightly by hotel stars/tier as a proxy)
-  const hotelBonus = (hotel.stars || 3) * 1.5 - 3;
-  const finalScore = Math.min(99, Math.round(crimeScore + hotelBonus));
-  const safetyLabel = finalScore >= 85 ? "Very Safe" : finalScore >= 70 ? "Safe" : finalScore >= 55 ? "Moderate" : "Check Area";
-
-  return {
-    ...hotel,
-    safetyScore: finalScore,
-    safetyLabel,
-    crimeLabel,
-    bookingUrl: buildBookingUrl(hotel, checkin, checkout, adults),
-  };
-}
-
-// ── Fallback Booking.com URL if no hotel ID ──────────────────
-function buildFallbackUrl(hotelName, checkin, checkout, adults) {
-  const q = encodeURIComponent(hotelName || "hotels");
-  return (
-    `https://www.booking.com/search.html?ss=${q}` +
-    `&checkin=${checkin}&checkout=${checkout}&group_adults=${adults}` +
-    `&aid=304142&label=safehotels-tp501240&lang=en-gb`
-  );
-}
-
-// ── Date helpers ─────────────────────────────────────────────
-function getTodayPlus(days) {
-  const d = new Date();
-  d.setDate(d.getDate() + days);
-  return d.toISOString().slice(0, 10);
-}
-
-function getLastThreeMonths() {
-  const months = [];
-  const d = new Date();
-  for (let i = 1; i <= 3; i++) {
-    const m = new Date(d.getFullYear(), d.getMonth() - i, 1);
-    months.push(`${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, "0")}`);
-  }
-  return months;
-}
-
-function parseGuests(guests) {
-  if (!guests) return 2;
-  const n = parseInt(guests);
+function parseGuests(g) {
+  const n = parseInt(g, 10);
   return isNaN(n) ? 2 : Math.max(1, Math.min(10, n));
 }
