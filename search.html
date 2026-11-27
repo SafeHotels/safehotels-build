@@ -680,6 +680,7 @@
     (function readUrlParams() {
         const p = new URLSearchParams(window.location.search);
         if (p.get('location')) sbLocation.value = p.get('location');
+        else if (p.get('city')) sbLocation.value = p.get('city');
         if (p.get('checkin'))  sbCheckin.value  = p.get('checkin');
         if (p.get('checkout')) sbCheckout.value = p.get('checkout');
         if (p.get('guests'))   sbGuests.value   = p.get('guests');
