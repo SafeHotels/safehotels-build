@@ -6,12 +6,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About SafeHotels.ai — Real Crime Data for Safer Hotel Stays</title>
-<meta name="description" content="SafeHotels.ai helps solo travellers and business professionals book safe hotels across the UK using real Police.uk crime data, neighbourhood safety scores and community reviews.">
+<meta name="description" content="SafeHotels.ai helps solo travellers and business professionals book safe hotels across the UK using real Police.uk crime data and hotel-level safety scores.">
 <link rel="canonical" href="https://safehotels.ai/about">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3R56CJDZZ0');</script>
+<script src="/consent.js" defer></script>
 <style>
 :root {
   --brand: #ff751f;
@@ -109,20 +108,20 @@ footer { background: var(--navy-mid); border-top: 1px solid var(--navy-border); 
 
   <h2>What We Do</h2>
   <p>Most hotel sites rank rooms by price, star rating and review score. None of them tell you what's happening on the street outside. We do. SafeHotels.ai layers <strong>official Police.uk crime data</strong> over every area, so you can see how safe a hotel's postcode actually is before you book.</p>
-  <p>We focus on the UK, and we publish a new city safety guide every week — each one built on real data rather than opinion.</p>
+  <p>We focus on the UK, and we publish city safety guides built on official crime data rather than opinion.</p>
 
   <h2>Why We Built It</h2>
   <p>Travelling alone changes how you think about where you stay. The walk back to the hotel at night, the quiet street the booking photos never show, the difference one postcode makes — these are real concerns, and they're rarely answered honestly online. We built SafeHotels.ai to put that missing information in one place, in plain language, for the people who need it most: <strong>solo female travellers and business travellers</strong>.</p>
 
   <h2>How Our Safety Scores Work</h2>
   <div class="steps">
-    <div class="step"><div class="n">Step 1 · Data</div><p>We pull rolling 12-month crime statistics from the Police.uk API — and Police Scotland for Scottish cities — for each area.</p></div>
-    <div class="step"><div class="n">Step 2 · Weighting</div><p>Crimes are weighted by category severity and normalised per 1,000 residents, so busy city centres aren't unfairly penalised for footfall.</p></div>
-    <div class="step"><div class="n">Step 3 · Score</div><p>Each area gets a clear safety score across night safety, street safety, hotel security and cleanliness. Higher is safer. Updated weekly.</p></div>
+    <div class="step"><div class="n">Step 1 · Data</div><p>When you search, we fetch street-level crime for that area from the Police.uk API, using the latest month it has published (it usually runs about two months behind).</p></div>
+    <div class="step"><div class="n">Step 2 · Hotels</div><p>Our list of UK hotels, guest houses and hostels comes from OpenStreetMap. We show the ones near where you searched, nearest first.</p></div>
+    <div class="step"><div class="n">Step 3 · Score</div><p>Each hotel gets a score out of 100 from the number of crimes recorded within 250m of it that month. Fewer crimes means a higher score. If Police.uk has no data for an area, we show "No data" rather than guess.</p></div>
   </div>
 
   <div class="callout">
-    <p><strong>Important:</strong> Our scores reflect the wider postcode area, not the quality of any individual hotel. A higher-crime area doesn't mean a bad hotel — it means worth knowing before you book.</p>
+    <p><strong>Important:</strong> Our scores describe the streets around a hotel, not the hotel itself. Busy areas such as city centres and shopping streets record more crime simply because more people pass through, so a lower score doesn't mean a bad hotel. It's worth knowing before you book. Some police forces, including Greater Manchester Police, don't currently publish to Police.uk, and Scotland's data isn't included, so you'll see "No data" there.</p>
   </div>
 
   <h2>Who It's For</h2>

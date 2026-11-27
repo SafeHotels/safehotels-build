@@ -13,13 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3R56CJDZZ0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3R56CJDZJ0');
-    </script>
+    <script src="/consent.js" defer></script>
     <!-- Travelpayouts -->
     <script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
       (function () {
@@ -495,12 +489,11 @@
                     </div>
                     <!-- Filters -->
                     <div class="filter-section">
-                        <h4>Filter by traveller type</h4>
+                        <h4>Type of place</h4>
                         <span class="filter-btn active" data-filter="all">All</span>
-                        <span class="filter-btn" data-filter="solo-female">Solo Female</span>
-                        <span class="filter-btn" data-filter="family">Family</span>
-                        <span class="filter-btn" data-filter="budget">Budget</span>
-                        <span class="filter-btn" data-filter="luxury">Luxury</span>
+                        <span class="filter-btn" data-filter="hotel">Hotels</span>
+                        <span class="filter-btn" data-filter="guest_house">Guest houses</span>
+                        <span class="filter-btn" data-filter="hostel">Hostels</span>
                     </div>
                     <div class="filter-section">
                         <h4>Star rating</h4>
@@ -578,9 +571,9 @@
                     <h4>Discover</h4>
                     <ul>
                         <li><a href="search.html">All Hotels</a></li>
-                        <li><a href="search.html?badge=solo-female">Solo Female Picks</a></li>
-                        <li><a href="search.html?badge=family">Family Hotels</a></li>
-                        <li><a href="search.html?badge=budget-safe">Budget Safe</a></li>
+                        <li><a href="blog/solo-female-travel-uk-hotel-safety-guide.html">Solo Female Travel Guide</a></li>
+                        <li><a href="blog/safest-cities-uk-solo-female.html">Safest UK Cities</a></li>
+                        <li><a href="blog/hotel-safety-tips-uk.html">Hotel Safety Tips</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -588,13 +581,13 @@
                     <ul>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Use</a></li>
-                        <li><a href="contact.html">Cookie Policy</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 SafeHotels.ai • Live crime data: data.police.uk • Hotel data &copy; <a href="https://www.openstreetmap.org/copyright" style="color:#aaa;">OpenStreetMap contributors</a> • <a href="privacy.html" style="color:#aaa;">Privacy</a> • <a href="terms.html" style="color:#aaa;">Terms</a></p>
-                <p style="font-size:11px;color:#888;margin-top:6px;">We may earn a commission when you book through our links, at no extra cost to you. Affiliate partnerships include Awin.</p>
+                <p style="font-size:11px;color:#888;margin-top:6px;">We may earn a commission when you book through our links, at no extra cost to you. Our booking links go through Stay22.</p>
             </div>
         </div>
     </footer>
@@ -868,11 +861,7 @@
         filteredResults = allResults.filter(h => {
             // Badge/type filter
             if (currentFilter !== 'all') {
-                const badges = h.badges || [];
-                if (currentFilter === 'solo-female' && !badges.includes('solo-female')) return false;
-                if (currentFilter === 'family' && !badges.includes('family')) return false;
-                if (currentFilter === 'budget' && !badges.includes('budget-safe') && (h.priceMin || 999) > 120) return false;
-                if (currentFilter === 'luxury' && (h.stars || 0) < 4) return false;
+                if (h.type !== currentFilter) return false;
             }
             // Stars filter
             if (currentStars > 0 && (h.stars || 0) < currentStars) return false;
