@@ -593,7 +593,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 SafeHotels.ai • Live crime data: data.police.uk • <a href="privacy.html" style="color:#aaa;">Privacy</a> • <a href="terms.html" style="color:#aaa;">Terms</a></p>
+                <p>&copy; 2026 SafeHotels.ai • Live crime data: data.police.uk • Hotel data &copy; <a href="https://www.openstreetmap.org/copyright" style="color:#aaa;">OpenStreetMap contributors</a> • <a href="privacy.html" style="color:#aaa;">Privacy</a> • <a href="terms.html" style="color:#aaa;">Terms</a></p>
                 <p style="font-size:11px;color:#888;margin-top:6px;">We may earn a commission when you book through our links, at no extra cost to you. Affiliate partnerships include Awin.</p>
             </div>
         </div>
@@ -748,12 +748,8 @@
 
             searchData = data;
 
-            // If Travelpayouts returned no hotels, fall back to our static data
-            if (!data.hotels || data.hotels.length === 0) {
-                allResults = getStaticFallback(loc, data.crime);
-            } else {
-                allResults = data.hotels;
-            }
+            // Hotels now come from our own UK hotel list (OpenStreetMap)
+            allResults = data.hotels || [];
 
             renderSidebar(data);
             sidebar.style.display = 'block';
@@ -762,11 +758,7 @@
         } catch (err) {
             console.error(err);
             // Network error — show static results anyway with real crime sidebar
-            showError('Could not connect to search. Showing our curated hotels for this area instead.');
-            const fallback = getStaticFallback(loc, null);
-            allResults = fallback;
-            sidebar.style.display = 'none';
-            applyFiltersAndRender();
+            showError('Could not connect to search. Please try again in a moment.');
         }
     }
 
@@ -830,12 +822,12 @@
         document.getElementById('sidebar-location').textContent = `📍 ${data.location}`;
         const score = data.crime.score;
         const label = data.crime.label;
-        document.getElementById('meter-score').textContent = score;
+        document.getElementById('meter-score').textContent = (score == null ? '–' : score);
         const badgeEl = document.getElementById('meter-badge');
         badgeEl.textContent = label;
         badgeEl.className = 'meter-badge ' + labelToClass(label);
         const bar = document.getElementById('meter-bar');
-        bar.style.width = score + '%';
+        bar.style.width = (score || 0) + '%';
         if (score < 55) bar.className = 'meter-bar elevated';
         else if (score < 75) bar.className = 'meter-bar moderate';
         else bar.className = 'meter-bar';
@@ -846,7 +838,7 @@
         const total = data.crime.totalCrimes;
         if (total > 0) {
             const totalLi = document.createElement('li');
-            totalLi.innerHTML = `<span class="cat">Total crimes (3 months)</span><span class="cnt">${total}</span>`;
+            totalLi.innerHTML = `<span class="cat">Total crimes within ~1 mile (${data.crime.period})</span><span class="cnt">${total}</span>`;
             breakdownEl.appendChild(totalLi);
             Object.entries(bd).forEach(([cat, cnt]) => {
                 const li = document.createElement('li');
@@ -920,11 +912,16 @@
         card.className = 'hotel-card';
 
         // Safety colour
-        const score = h.safetyScore || 75;
-        const safetyColor = score >= 85 ? '#16a34a' : score >= 70 ? '#65a30d' : score >= 55 ? '#d97706' : '#dc2626';
+        const esc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const hasScore = typeof h.safetyScore === 'number';
+        const score = hasScore ? h.safetyScore : null;
+        const safetyColor = !hasScore ? '#888' : score >= 85 ? '#16a34a' : score >= 70 ? '#65a30d' : score >= 55 ? '#d97706' : '#dc2626';
 
         // Stars
-        const starsHtml = '★'.repeat(h.stars || 3) + '☆'.repeat(Math.max(0, 5 - (h.stars || 3)));
+        const typeNames = { hotel: 'Hotel', guest_house: 'Guest house', hostel: 'Hostel', motel: 'Motel' };
+        const starsHtml = h.stars
+            ? '★'.repeat(h.stars) + '☆'.repeat(Math.max(0, 5 - h.stars))
+            : `<span style="font-size:12px;color:#888;">${typeNames[h.type] || 'Hotel'}</span>`;
 
         // Price
         const priceHtml = h.priceMin
@@ -932,8 +929,12 @@
             : `<div class="price-from"><div class="label">Check for</div><div class="amount">prices</div></div>`;
 
         // Safety chip
-        const chipClass = score >= 85 ? 'badge-very-safe' : score >= 70 ? 'badge-safe' : score >= 55 ? 'badge-moderate' : 'badge-elevated';
-        const safetyChip = `<span class="safety-label-chip ${chipClass}">${h.safetyLabel || 'Safe'}</span>`;
+        const chipClass = !hasScore ? 'badge-moderate' : score >= 85 ? 'badge-very-safe' : score >= 70 ? 'badge-safe' : score >= 55 ? 'badge-moderate' : 'badge-elevated';
+        const safetyChip = `<span class="safety-label-chip ${chipClass}">${esc(h.safetyLabel || 'No data')}</span>`;
+        const crimeLine = (typeof h.crimesNearby === 'number')
+            ? `<div style="font-size:12px;color:#666;margin-top:4px;">${h.crimesNearby} crime${h.crimesNearby === 1 ? '' : 's'} recorded within 250m${searchData && searchData.crime && searchData.crime.period ? ' (' + esc(searchData.crime.period) + ')' : ''}</div>`
+            : (h.scoreBasis === 'area' ? `<div style="font-size:12px;color:#666;margin-top:4px;">Score based on the wider area</div>` : '');
+        const distLine = (typeof h.distanceKm === 'number') ? ` · ${h.distanceKm} km away` : '';
 
         // Rating
         const ratingHtml = h.rating && h.rating > 0
@@ -960,25 +961,24 @@
                     : `<div class="hotel-img-placeholder">🏨</div>`
                 }
                 <div class="hotel-safety-badge">
-                    <span class="score" style="color:${safetyColor};">${score}</span>
+                    <span class="score" style="color:${safetyColor};">${hasScore ? score : '–'}</span>
                     <span style="font-size:10px;color:#555;">/ 100</span>
                 </div>
             </div>
             <div class="hotel-card-body">
                 ${staticBadge}
                 <div class="stars">${starsHtml}</div>
-                <h3>${h.name}</h3>
-                <div class="area-tag">📍 ${h.address || 'UK'}</div>
+                <h3>${esc(h.name)}</h3>
+                <div class="area-tag">📍 ${esc(h.address || 'UK')}${distLine}</div>
                 <div class="rating-row">
                     ${ratingHtml}
                     ${safetyChip}
                 </div>
-                ${desc}
-                ${review}
+                ${crimeLine}
             </div>
             <div class="hotel-card-action">
                 ${priceHtml}
-                <a href="${bookingUrl(h, sbCheckin.value, sbCheckout.value, sbGuests.value)}" target="_blank" rel="noopener sponsored" class="book-btn">Book Now →</a>
+                <a href="${esc(h.bookingUrl || bookingUrl(h, sbCheckin.value, sbCheckout.value, sbGuests.value))}" target="_blank" rel="noopener sponsored" class="book-btn">Check prices →</a>
                 <span class="affiliate-note">via our partner</span>
             </div>
         `;

@@ -2,6 +2,9 @@
   publish = "."
   functions = "netlify/functions"
 
+[functions]
+  included_files = ["data/uk-hotels-1.json", "data/uk-hotels-2.json"]
+
 [[redirects]]
   from = "/api/hotel-search"
   to = "/.netlify/functions/hotel-search"
